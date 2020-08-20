@@ -1,13 +1,18 @@
-<!DOCTYPE html>
-<html>
+{% extends "bulma-base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}{% endblock %}
 
-<head>
-    <meta charset="utf-8">
-    <meta httpe-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Home</title>
-    <meta name="viewport" content="width=device-width, intial-scale=1">
-</head>
-<body>
-    Hello
-</body>
-</html>
+{% block content %}
+<div class="columns">
+    <div class="column">
+        <div class="card">
+            <div class="title">one</div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="card">
+            <div class="title">two</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Max Bender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyles.css')}}">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    {% block style %}{% endblock %}
+    <style>
+        .is-vertical-center {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+    {% block headblock %}{% endblock %}
+</head>
+
+<body>
+{% block content %}
+{% endblock %}
+{% block script %}{% endblock %}
+</body>
+</html>
