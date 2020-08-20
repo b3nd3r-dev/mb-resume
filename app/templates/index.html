@@ -5,222 +5,191 @@
 {% block content %}
 {% include 'navbar-base.html' %}
 <!-- INTRO -->
-<br>
-<br>
-<br>
-
-<div class="columns">
-    <div class="column is-4 is-offset-1">
-        <div class="card">
+<div class="columns has-background-primary is-bold pt-6">
+    <div class="column is-6 is-offset-1">
             <div class="title is-size-2 has-text-centered">Principal Engineer</div>
             <br>
             <div class="title is-size-3 has-text-centered">I'm Max Bender a Principal Engineer specializing in CICD and DevOps solutions.</div>
-        </div>
     </div>
-    <div class="column is-4 is-offset-1">
-        <div class="card">
-        </div>
+    <div class="column is-4">
+        <figure class='image is-128x128 has-image-centered'>
+            <img class="is-rounded" src="{{ url_for('static', filename='images/max-headshot.jpg') }}">
+        </figure>
     </div>
 </div>
 
-
-<br>
 
 
 <!-- ABOUT ME -->
-<div class="columns">
-    <div class="column is-4 is-offset-1">
-        <div class="subtitle is-5">
-            
-        </div>
-    </div>
-    <div class="column is-5 is-offset-1">
-        <div class="subtitle is-5">
-            “[being a Principal Engineer] is far more strategic, it’s far more business oriented, it’s involving a lot more influence, being an influencer without having the management title.” <br> <br> - Silvia Bostros in an episode of Arrested DevOps
-        </div>
-    </div>
-</div>
-<div class="columns">
-    <div class="column is-10 is-offset-1">
+<div class="columns has-background-primary">
+    <div class="column is-10 is-offset-1 pb-6">
         <div class="subtitle">
             Primarily, my work has been on CICD and DevOps solutions, but I often get this itch to create something new. <span class="span is-family-monospace has-text-weight-bold">Python</span> is my go-to scripting language but I’m not afraid of a little <span class="span is-family-monospace has-text-weight-bold">Bash</span> or <span class="span is-family-monospace has-text-weight-bold">Ruby</span> if the use-case calls for it or I am trying to work with a library that requires the aforementioned (i.e <span class="span is-family-monospace has-text-weight-bold">Chef</span>). The instant gratification of making websites and working with complex relational database setups is a puzzle that I relish. Using <span class="span is-family-monospace has-text-weight-bold">Flask</span> and <span class="span is-family-monospace has-text-weight-bold">SQLAlchemy</span> I have put together some complex websites as a consultant on the side. See the <a href='#'> NexNest project </a> as an example.</div>
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-<!-- DELETE ONLy FOR DEV -->
-<br>
-<br>
-<br>
-<br>
-<br>
-
 <!-- SKILLS -->
-
-<section class="hero is-dark is-bold">
+<section class="hero is-info pt-6">
     <div class="hero-body">
-      <div class="title is-bold is-size-1 has-text-centered">PYTHON. BASH. RUBY. FLASK. SQLACHEMY. CHEF. TRAVIS. </div>
-      <div class="title is-bold is-size-1 has-text-centered">OPEN STACK. KVM. RABBIT MQ. TERRAFORM. ANSIBLE. </div>
-      <div class="title is-bold is-size-1 has-text-centered">ANSIBLE. RBAC. JENKINS. OPENFAAS. POSTGRESS. REDIS. </div>
+      <div class="title is-bold is-size-1 has-text-centered has-text-link">PYTHON. BASH. RUBY. FLASK. SQLACHEMY. CHEF. TRAVIS. </div>
+      <div class="title is-bold is-size-1 has-text-centered has-text-link">OPEN STACK. KVM. RABBIT MQ. TERRAFORM. ANSIBLE. </div>
+      <div class="title is-bold is-size-1 has-text-centered has-text-link">ANSIBLE. RBAC. JENKINS. OPENFAAS. POSTGRESS. REDIS. </div>
     </div>
-  </section>
-  <br>
-<!-- PROJECTS -->
-<div class="columns">
-    <div class="column is-10 is-offset-1">
-        <div class="title has-text-centered">Projects:</div>
-    </div>
-</div>
-<div class="columns">
-    <div class="column">
-        <div class="card">
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-3 has-text-centered">Travis on Z</p>
-                  <div class="has-text-centered">
-                    <span class="tag is-medium">
-                        Travis
-                      </span>
-                      <span class="tag is-medium">
-                        Dev Ops
-                      </span>
-                  </div>
-                  <p class="subtitle is-6 has-text-centered has-text-link">
-                      <a href='#' >github.com/bendermIBM/travis-cookbooks</a>
-                </p>
-                </div>
-              </div>
-              <div class="content has-text-centered">
-                Enabling the tool that enables the tools - on Linux on Z.
-                <br>
-              </div>
-            </div>
-          </div>
-    </div>
-    <div class="column">
-        <div class="card">
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                    <p class="title is-3 has-text-centered">Content Development Clusters for IBM Cloud Private</p>
-                    <div class="has-text-centered">
-                        <span class="tag is-medium">
-                            Kubernetes
-                          </span>
-                          <span class="tag is-medium">
-                            Docker
-                          </span>
-                      </div>
-                    <p class="subtitle is-6 has-text-centered has-text-link">
-                        <a href='#' >https://www.ibm.com/cloud/private</a>
-                    </p>
-                  </div>
-              </div>
-          
-              <div class="content has-text-centered">
-                IBM Cloud™ Private is a reliable and scalable cloud platform that runs on your infrastructure. It’s built on open source frameworks, like containers, Kubernetes and Cloud Foundry.
-                <br>              </div>
-            </div>
-          </div>
-          
-    </div>
-    <div class="column">
-        <div class="card">
+</section>
 
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                    <p class="title is-3 has-text-centered">NexNest</p>
-                    <div class="has-text-centered">
-                        <span class="tag is-medium">
-                            Web Development
-                          </span>
-                          <span class="tag is-medium">
-                            Python
-                          </span>
-                          <span class="tag is-medium">
-                            Flask
-                          </span>
-                      </div>
-                    <p class="subtitle is-6 has-text-centered has-text-link">
-                        <a href='#' >https://www.ibm.com/cloud/private</a>
-                        </p>
-                  </div>
-              </div>
-          
-              <div class="content has-text">
-                Student housing portal built with love by @Max Bender and @Mike Mcginnis
-                <br>
-              </div>
+<!-- PROJECTS -->
+<section class="hero is-primary is-bold">
+    <div class="hero-body ">
+        <div class="columns">
+            <div class="column is-10 is-offset-1">
+                <div class="title">PROJECTS</div>
             </div>
-          </div>
-</div>
-</div>
-<br>
-<div class="columns">
-    <div class="column is-offset-1 is-5">
-        <div class="card">
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-3 has-text-centered">Let's Talk</p>
-                  <div class="has-text-centered">
-                    <span class="tag is-medium">
-                        Education
-                      </span>
-                      <span class="tag is-medium">
-                        Mentoring
-                      </span>
-                  </div>
-                  <p class="subtitle is-6 has-text-centered has-text-link">
-                      <!-- <a href='#' >github.com/bendermIBM/travis-cookbooks</a> -->
-                </p>
-                </div>
-              </div>
-              <div class="content has-text-centered">
-                Short hands-on education modules surrounding a specific technology or a group of technologies together.
-                <br>
-              </div>
-            </div>
-          </div>
-    </div>
-    <div class="column is-5">
-        <div class="card">
-            <div class="card-content">
-                <div class="media">
-                    <div class="media-content">
-                        <p class="title is-3 has-text-centered">Viral Education/TALOS    
+        </div>
+        <div class="columns">
+            <div class="column">
+                <div class="card">
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-content">
+                          <p class="title is-3 has-text-centered">Travis on Z</p>
+                          <div class="has-text-centered">
+                            <span class="tag is-medium is-info is-success">
+                                Travis
+                              </span>
+                              <span class="tag is-medium is-info is-success">
+                                Dev Ops
+                              </span>
+                          </div>
+                          <p class="subtitle is-6 has-text-centered has-text-link">
+                              <a href='#' >github.com/bendermIBM/travis-cookbooks</a>
                         </p>
-                        <div class="has-text-centered">
-                            <span class="tag is-medium">
-                                Web Development
-                            </span>
-                            <span class="tag is-medium">
-                                PHP
-                            </span>
                         </div>
-                        <p class="subtitle is-6 has-text-centered has-text-link">
-                            <a href='#' >github.com/maxbbender/Viral-Education</a>
+                      </div>
+                      <div class="content has-text-centered">
+                        Enabling the tool that enables the tools - on Linux on Z.
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="column">
+                <div class="card">
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-content">
+                            <p class="title is-3 has-text-centered">Content Development Clusters for IBM Cloud Private</p>
+                            <div class="has-text-centered">
+                                <span class="tag is-medium is-info is-success">
+                                    Kubernetes
+                                  </span>
+                                  <span class="tag is-medium is-info is-success">
+                                    Docker
+                                  </span>
+                              </div>
+                            <p class="subtitle is-6 has-text-centered has-text-link">
+                                <a href='#' >https://www.ibm.com/cloud/private</a>
+                            </p>
+                          </div>
+                      </div>
+                  
+                      <div class="content has-text-centered">
+                        IBM Cloud™ Private is a reliable and scalable cloud platform that runs on your infrastructure. It’s built on open source frameworks, like containers, Kubernetes and Cloud Foundry.
+                        <br>              </div>
+                    </div>
+                  </div>
+                  
+            </div>
+            <div class="column">
+                <div class="card">
+        
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-content">
+                            <p class="title is-3 has-text-centered">NexNest</p>
+                            <div class="has-text-centered">
+                                <span class="tag is-medium is-info is-success">
+                                    Web Development
+                                  </span>
+                                  <span class="tag is-medium is-info is-success">
+                                    Python
+                                  </span>
+                                  <span class="tag is-medium is-info is-success">
+                                    Flask
+                                  </span>
+                              </div>
+                            <p class="subtitle is-6 has-text-centered has-text-link">
+                                <a href='#' >https://www.ibm.com/cloud/private</a>
+                                </p>
+                          </div>
+                      </div>
+                  
+                      <div class="content has-text">
+                        Student housing portal built with love by @Max Bender and @Mike Mcginnis
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+        </div>
+        </div>
+        <br>
+        <div class="columns">
+            <div class="column is-offset-1 is-5">
+                <div class="card">
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-content">
+                          <p class="title is-3 has-text-centered">Let's Talk</p>
+                          <div class="has-text-centered">
+                            <span class="tag is-medium is-info is-success">
+                                Education
+                              </span>
+                              <span class="tag is-medium is-info is-success">
+                                Mentoring
+                              </span>
+                          </div>
+                          <p class="subtitle is-6 has-text-centered has-text-link">
+                              <!-- <a href='#' >github.com/bendermIBM/travis-cookbooks</a> -->
                         </p>
+                        </div>
+                      </div>
+                      <div class="content has-text-centered">
+                        Short hands-on education modules surrounding a specific technology or a group of technologies together.
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="column is-5">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-content">
+                                <p class="title is-3 has-text-centered">Viral Education/TALOS    
+                                </p>
+                                <div class="has-text-centered">
+                                    <span class="tag is-medium is-info is-success">
+                                        Web Development
+                                    </span>
+                                    <span class="tag is-medium is-info is-success">
+                                        PHP
+                                    </span>
+                                </div>
+                                <p class="subtitle is-6 has-text-centered has-text-link">
+                                    <a href='#' >github.com/maxbbender/Viral-Education</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="content has-text-centered">
+                        TALOS (Textual Augmentation Learning of Semantics), a Web-based platform for vocabulary acquisition that provides capabilities for analytics to support learning of vocabulary. This software prototype, currently in beta-testing, supports differentiated learning as well as common coursework, allowing users to contribute and access text while promoting ease of reading.              
+                        </div>
+                        <br>
                     </div>
                 </div>
-                <div class="content has-text-centered">
-                TALOS (Textual Augmentation Learning of Semantics), a Web-based platform for vocabulary acquisition that provides capabilities for analytics to support learning of vocabulary. This software prototype, currently in beta-testing, supports differentiated learning as well as common coursework, allowing users to contribute and access text while promoting ease of reading.              
-                </div>
-                <br>
             </div>
         </div>
     </div>
-</div>
-<br>
+</section>
+
 <!-- EXPERIENCE -->
 <section class="hero is-light is-bold">
     <div class="hero-body">
@@ -257,7 +226,7 @@
 <!-- EDUCATION -->
 <section class="hero is-dark is-bold">
     <div class="hero-body">
-        <h1 class="title pl-6">
+        <h1 class="title pl-6 is-size-2">
             EDUCATION
           </h1>
           <br>
