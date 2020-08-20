@@ -30,9 +30,18 @@ You have to set some environment variables by using `export ENVAR=VALUE` or crea
 
 ## Todo
 
+single page to show topics 
+expand aspects to different page
 
+brief description with a ...read more to a deeper page 
 
+technologies used to complete projects
 
+travis: travis, dev ops
+cloud: kubernetes, docker
+Nex: web development, python, flask
+lets talk: education, mentoring
+Talos: web development, PHP
 
 ## TO START
 
