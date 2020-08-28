@@ -116,7 +116,7 @@ section .scroll2 div:nth-child(2) {
   vertical-align: top;
   width: 20px; }
   .delete::before, .delete::after {
-    background-color: white;
+    background-color: #19181A;
     content: "";
     display: block;
     left: 50%;
@@ -421,7 +421,7 @@ a.box:active {
   box-shadow: inset 0 1px 2px rgba(25, 24, 26, 0.2), 0 0 0 1px #479761; }
 
 .button {
-  background-color: white;
+  background-color: #19181A;
   border-color: #dbdbdb;
   border-width: 2px;
   color: #363636;
@@ -1231,7 +1231,7 @@ a.box:active {
     font-size: 1.5rem; }
   .button[disabled],
   fieldset[disabled] .button {
-    background-color: white;
+    background-color: #19181A;
     border-color: #dbdbdb;
     box-shadow: none;
     opacity: 0.5; }
@@ -1581,7 +1581,7 @@ a.box:active {
     color: currentColor; }
   .notification code,
   .notification pre {
-    background: white; }
+    background: #19181A; }
   .notification pre code {
     background: transparent; }
   .notification > .delete {
@@ -1768,7 +1768,7 @@ a.box:active {
     background-position: -200% 0; } }
 
 .table {
-  background-color: white;
+  background-color: #19181A;
   color: #363636; }
   .table td,
   .table th {
@@ -2147,7 +2147,7 @@ a.tag:hover {
   vertical-align: top; }
 
 .input, .textarea, .select select {
-  background-color: white;
+  background-color: #19181A;
   border-color: transparent;
   border-radius: 4px;
   color: #363636; }
@@ -2950,7 +2950,7 @@ a.tag:hover {
     font-size: 1.5rem; }
 
 .navbar {
-  background-color: white;
+  background-color: #19181A;
   min-height: 3.25rem;
   position: relative;
   z-index: 30; }
@@ -3448,7 +3448,7 @@ body.has-navbar-fixed-bottom {
   overflow-y: hidden; }
 
 .navbar-burger {
-  color: #4a4a4a;
+  color: #479761;
   cursor: pointer;
   display: block;
   height: 3.25rem;
@@ -3568,7 +3568,7 @@ a.navbar-item,
   .navbar-link::after {
     display: none; }
   .navbar-menu {
-    background-color: white;
+    background-color: #19181A;
     box-shadow: 0 8px 16px rgba(25, 24, 26, 0.1);
     padding: 0.5rem 0; }
     .navbar-menu.is-active {
@@ -3658,7 +3658,7 @@ a.navbar-item,
     justify-content: flex-end;
     margin-left: auto; }
   .navbar-dropdown {
-    background-color: white;
+    background-color: #19181A;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
     border-top: 2px solid #dbdbdb;
