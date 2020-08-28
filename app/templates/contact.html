@@ -1,10 +1,69 @@
 {% extends "bulma-base.html" %}
 {% set active_page = "contact" %}
-{% block title %}Contact{% endblock %}
 {% block head %}{% endblock %}
 
 {% block content %}
 {% include 'navbar-base.html' %}
-<div class="title">hello</div>
+
+
+<div class="columns">
+    <div class="column is-offset-1 is-5" style="padding-right: 25px; padding-top: 60px">
+        <figure class='image is-864x1024'><img src="{{ url_for('static', filename='images/max.jpg') }}"></figure>
+        <!-- need a larger resolution image -->
+    </div>
+    <div class="column">
+        <div class="field">
+            <label class="label has-text-primary is-size-4">Name</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="Your Name">
+            </div>
+        </div>
+        
+        <div class="field">
+            <label class="label has-text-primary is-size-6">Email</label>
+            <div class="control has-icons-left has-icons-right">
+                <input class="input" type="email" placeholder="Email" value="">
+                <span class="icon is-small is-left pl-3 pt-2">
+                    <i class="fas fa-envelope"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label has-text-primary is-size-6">Phone</label>
+            <div class="field-label"></div>
+            <div class="field-body">
+                <div class="field is-expanded">
+                    <div class="field has-addons">
+                        <p class="control">
+                            <a class="button is-static">
+                                +1
+                            </a>
+                        </p>
+                        <p class="control is-expanded">
+                            <input class="input" type="tel" placeholder="Phone Number">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="field">
+            <label class="label has-text-primary is-size-5">Message</label>
+            <div class="control">
+                <textarea class="textarea" placeholder="I'd be interested in working on a project about..."></textarea>
+            </div>
+        </div>
+        
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-link">Send Message</button>
+            </div>
+        </div>
+    </div>
+    <div class="column is-1"></div>
+</div>
+
+
 {% include 'footer-base.html' %}
 {% endblock %}

@@ -4,31 +4,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap');
 
 // Set your brand colors
-$purple: #88BDBC;
-$pink: #4f4a41;
-$brown: #F1FCED;
-$beige-light: #D0D1CD;
-$beige-lighter: #EFF0EB;
+$black: #19181A;
+$green: #479761;
+$tan: #CEBC81;
+$purple: #A16E83;
+$beige: #B19F9E;
 $secondary: #254E58;
+$theme-white: #bfbfbf;
+$theme-gray:#909090;
 
 // Update Bulma's global variables
 $family-sans-serif: 'Roboto', sans-serif;
-$grey-dark: $brown;
-$grey-light: $beige-light;
-$primary: $purple;
-$link: $pink;
-$info: $brown;
-$success: $secondary;
+$primary: $theme-white;
+$link: $green;
+$info: $theme-gray;
+$success: $beige;
 $widescreen-enabled: false;
 $fullhd-enabled: false;
+$link-hover: $purple;
+$navbar-item-hover: $purple;
+$box-background-color: $secondary;
 
 // Update some of Bulma's component variables
-$body-background-color: $purple;
+$body-background-color: $black;
+$footer-background-color: $black;
 $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
 $dimensions: 16 24 32 48 64 96 128 200 256;
-
+$primary-light: findLightColor($primary);
 
 .has-image-centered {
     margin-left: auto;
