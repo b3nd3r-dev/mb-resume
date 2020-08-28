@@ -12,7 +12,11 @@ def contact():
 
 @main.route('/project')
 def project():
-    return render_template('projects.html')
+    return render_template('project.html')
+    
+@main.route('/projectdetail')
+def projectdetail():
+    return render_template('projectdetail.html')
 
 # @main.route('/test')
 # @main.route('/test/<poopy>')

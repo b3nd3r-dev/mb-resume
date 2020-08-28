@@ -23,7 +23,7 @@ $widescreen-enabled: false;
 $fullhd-enabled: false;
 $link-hover: $purple;
 $navbar-item-hover: $purple;
-$box-background-color: $secondary;
+$box-background-color: $green;
 
 // Update some of Bulma's component variables
 $body-background-color: $black;
@@ -38,6 +38,83 @@ $primary-light: findLightColor($primary);
     margin-left: auto;
     margin-right: auto;
   }
+
+// SCROLLING
+section{
+  position: relative;
+  overflow: hidden;
+}
+section .scroll{
+  width: 100%;
+  display: flex;
+}
+section .scroll div{
+  font-size: 4em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  animation: animate 50s linear infinite;
+  animation-delay: -50s; 
+}
+section .scroll div:nth-child(2){
+  animation: animate2 50s linear infinite;
+  animation-delay: -25s; 
+}
+@keyframes animate{
+  0%
+  {
+    transform:translatex(100%);
+  }
+  100%
+  {
+    transform:translatex(-100%);
+  }
+}
+@keyframes animate2{
+  0%
+  {
+    transform:translatex(0%);
+  }
+  100%
+  {
+    transform:translatex(-200%);
+  }
+}
+// REVERSE SCROLL
+section .scroll2{
+  width: 100%;
+  display: flex;
+}
+section .scroll2 div{
+  font-size: 4em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  animation: animate3 50s linear infinite;
+  animation-delay: -50s; 
+}
+section .scroll2 div:nth-child(2){
+  animation: animate4 50s linear infinite;
+  animation-delay: -25s; 
+}
+@keyframes animate3{
+  0%
+  {
+    transform:translatex(-100%);
+  }
+  100%
+  {
+    transform:translatex(100%);
+  }
+}
+@keyframes animate4{
+  0%
+  {
+    transform:translatex(-200%);
+  }
+  100%
+  {
+    transform:translatex(0%);
+  }
+}
 
 // Import only what you need from Bulma
 @import "../node_modules/bulma/sass/utilities/initial-variables.sass";

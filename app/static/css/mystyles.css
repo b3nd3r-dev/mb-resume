@@ -3,6 +3,64 @@
   margin-left: auto;
   margin-right: auto; }
 
+section {
+  position: relative;
+  overflow: hidden; }
+
+section .scroll {
+  width: 100%;
+  display: flex; }
+
+section .scroll div {
+  font-size: 4em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  animation: animate 50s linear infinite;
+  animation-delay: -50s; }
+
+section .scroll div:nth-child(2) {
+  animation: animate2 50s linear infinite;
+  animation-delay: -25s; }
+
+@keyframes animate {
+  0% {
+    transform: translatex(100%); }
+  100% {
+    transform: translatex(-100%); } }
+
+@keyframes animate2 {
+  0% {
+    transform: translatex(0%); }
+  100% {
+    transform: translatex(-200%); } }
+
+section .scroll2 {
+  width: 100%;
+  display: flex; }
+
+section .scroll2 div {
+  font-size: 4em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  animation: animate3 50s linear infinite;
+  animation-delay: -50s; }
+
+section .scroll2 div:nth-child(2) {
+  animation: animate4 50s linear infinite;
+  animation-delay: -25s; }
+
+@keyframes animate3 {
+  0% {
+    transform: translatex(-100%); }
+  100% {
+    transform: translatex(100%); } }
+
+@keyframes animate4 {
+  0% {
+    transform: translatex(-200%); }
+  100% {
+    transform: translatex(0%); } }
+
 @keyframes spinAround {
   from {
     transform: rotate(0deg); }
@@ -349,7 +407,7 @@ table th {
   color: #363636; }
 
 .box {
-  background-color: #254E58;
+  background-color: #479761;
   border-radius: 6px;
   box-shadow: 0 0.5em 1em -0.125em rgba(25, 24, 26, 0.1), 0 0px 0 1px rgba(25, 24, 26, 0.02);
   color: #4a4a4a;
