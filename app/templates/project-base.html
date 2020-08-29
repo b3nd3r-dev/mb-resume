@@ -2,23 +2,21 @@
     <div class="column is-10 is-offset-1">
         <div class="box">
             <div class="title has-text-primary">
-                Project Title 
+                {{ project.title }}
                 <!-- <a href="{{ url_for('static', filename=target_project_title)}}"></a> -->
+                {% for tag in project.tags %}
                 <span class="tag is-small is-link is-dark">
-                    TAG 1
+                    {{ tag.name }}
                     <!-- <a href="{{ url_for('static', filename=target_project_tag1)}}"></a> -->
                 </span>
-                <span class="tag is-smalll is-link is-dark">
-                    TAG 2
-                    <!-- <a href="{{ url_for('static', filename=target_project_tag2)}}"></a> -->
-                </span>
+                {% endfor %}
             </div>
             <div class="link has-text-info">
-                LINK HERE
+                {{ project.project_link | default('No LINK!')}}
                 <!-- <a href="{{ url_for('static', filename=target_project_link)}}"></a> -->
             </div>
             <div class="subtitle has-text-primary">
-                DESCRIPTION
+                {{ project.long_description }}
                 <!-- <a href="{{ url_for('static', filename=target_project_description)}}"></a> -->
             </div>
         </div>
