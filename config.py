@@ -5,11 +5,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     FLASK_ADMIN_SWATCH = 'cerulean'
-
-
-    
     SECURITY_PASSWORD_SALT = os.environ.get('SECURITY_PASSWORD_SALT')
-
 
     @staticmethod
     def init_app(app):
@@ -32,15 +28,16 @@ class DevelopmentConfig(Config):
         Config.init_app(app)
 
     DEBUG = True
-
     MAIL_SUPPRESS_SEND = True
-
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
+        'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
 
 
 class TestingConfig(Config):
     TESTING = True
     MAIL_SUPPRESS_SEND = True
-
+    SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
+        'sqlite:///' + os.path.join(basedir, 'data-test.sqlite')
 
 
 class ProductionConfig(Config):
@@ -50,6 +47,7 @@ class ProductionConfig(Config):
 
     DEBUG = False
     TESTING = False
+    SQLALCHEMY_DATABASE_URI = os.environ.get('PROD_DATABASE_URL')
 
 
 class UnixConfig(ProductionConfig):

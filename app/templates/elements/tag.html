@@ -1,0 +1,7 @@
+{% if tag.knowledge == 'fluent' %}
+<span class="mx-3 has-text-link">{{ tag.name }}</span>
+{% elif tag.knowledge == 'proficient' %}
+<span class="mx-3 has-text-white">{{ tag.name }}</span>
+{% elif tag.knowledge == 'familiar' %}
+<span class="mx-3 has-text-grey">{{ tag.name }}</span>
+{% endif %}
