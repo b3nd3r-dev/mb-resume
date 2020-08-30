@@ -21,8 +21,10 @@ def createApp(configName):
 
     from app.blueprints.main import main as main_blueprint
     from app.blueprints.projects import projects as projects_blueprint
+    from app.blueprints.tag import tag as tag_blueprint
 
     app.register_blueprint(main_blueprint)
     app.register_blueprint(projects_blueprint, url_prefix='/projects')
+    app.register_blueprint(tag_blueprint, url_prefix='/tags')
 
     return app
