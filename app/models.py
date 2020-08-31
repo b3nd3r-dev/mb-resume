@@ -10,18 +10,22 @@ class Project(db.Model):
     project_link = db.Column(db.String, nullable=True)
     short_description = db.Column(db.Text, nullable=False)
     long_description = db.Column(db.Text, nullable=False)
+    featured = db.Column(db.Boolean, unique=false,
+                         default=False, nullable=False)
 
     # Relationships
-    tags = relationship("Tag", secondary='project_tags', back_populates='projects')
+    tags = relationship("Tag", secondary='project_tags',
+                        back_populates='projects')
 
-    def __init__(self, title, short_description, long_description, project_link=None):
+    def __init__(self, title, short_description, long_description, featured, project_link=None):
         self.title = title
         self.project_link = project_link
         self.short_description = short_description
         self.long_description = long_description
+        self.featured = featured
 
     def __repr__(self):
-        return f"Project {self.title} has {self.project_link}"
+        return f"Project {self.title} has {self.project_link} is featured {self.featured}"
 
 
 class Tag(db.Model):
@@ -32,7 +36,8 @@ class Tag(db.Model):
     knowledge = db.Column(db.String(15), nullable=False)
 
     # Relationships
-    projects = relationship('Project', secondary='project_tags', back_populates="tags")
+    projects = relationship(
+        'Project', secondary='project_tags', back_populates="tags")
 
     def __init__(self, name, knowledge):
         self.name = name
@@ -45,7 +50,8 @@ class Tag(db.Model):
 class ProjectTag(db.Model):
     # Attributes
     __tablename__ = "project_tags"
-    project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), primary_key=True)
+    project_id = db.Column(db.Integer, db.ForeignKey(
+        'projects.id'), primary_key=True)
     tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), primary_key=True)
 
     # Relationships

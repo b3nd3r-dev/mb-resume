@@ -2,8 +2,7 @@
     <div class="hero-body">
         <div class="container">
             <div class="title has-text-centered has-text-primary">
-                PROJECT TITLE
-                <!-- <a href="{{ url_for('static', filename=target_project_title)}}"></a> -->
+                {{ project.title}}
             </div>
         </div>
     </div>
@@ -11,21 +10,17 @@
 <div class="columns pt-6">
     <div class="column is-9 is-offset-1">
         <div class="subtitle has-text-info">
-            PROJECT LONG DESCRIPTION
-            <!-- <a href="{{ url_for('static', filename=target_project_long_description)}}"></a> -->
+            {{ project.long_description}}
         </div>
     </div>
     <div class="column is-2">
         <figure class="image is-128x128">
             <img src="https://bulma.io/images/placeholders/128x128.png">
-          </figure>
+        </figure>
+        {{% for tag in project.tags %}}
         <span class="tag is-small is-info">
-            TAG 1
-            <!-- <a href="{{ url_for('static', filename=target_project_tag1)}}"></a> -->
+            {{ tag.name }}
         </span>
-        <span class="tag is-smalll is-info">
-            TAG 2
-            <!-- <a href="{{ url_for('static', filename=target_project_tag2)}}"></a> -->
-        </span>
+        {{% endfor %}}
     </div>
 </div>
