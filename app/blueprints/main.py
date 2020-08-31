@@ -47,7 +47,12 @@ def contact():
 
 @ main.route('/project')
 def project():
-    return render_template('project.html')
+    return render_template('project.html',
+                           #    p_name=Project.title
+                           #    p_link=Project.project_link
+                           #    p_tags=Tag.project.tags
+                           #    p_short_desc=Project.short_description
+                           )
 
 
 @ main.route('/projectdetail')

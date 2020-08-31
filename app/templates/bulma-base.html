@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyles.css')}}" />
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   {% block style %}{% endblock %} '
-  {% include 'navbar-base.html' %}
+
 
   <style>
     .is-vertical-center {
@@ -20,6 +20,7 @@
 </head>
 
 <body>
+  {% include 'navbar-base.html' %}
   {% block content %} {% endblock %} {% block script %}{% endblock %}
 </body>
 

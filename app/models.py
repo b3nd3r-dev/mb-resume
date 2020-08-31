@@ -10,7 +10,7 @@ class Project(db.Model):
     project_link = db.Column(db.String, nullable=True)
     short_description = db.Column(db.Text, nullable=False)
     long_description = db.Column(db.Text, nullable=False)
-    featured = db.Column(db.Boolean, unique=false,
+    featured = db.Column(db.Boolean, unique=False,
                          default=False, nullable=False)
 
     # Relationships

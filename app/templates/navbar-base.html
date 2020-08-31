@@ -5,14 +5,14 @@
     ('main.projectdetail', 'projectdetail', 'ProjectDetail')
 ] -%}
 {% set active_page = active_page|default('index') -%}
-<div class="container">
+<nav class="navbar" role="navigation">
     <div class="navbar-brand">
         <a class="navbar-item">
-                <div class="">
-                    <a href="/">
-                        <!-- <img src="{{ url_for('static', filename='images/dixonlogo-small-logoonly.png') }}"> -->
-                    </a>
-                </div>
+            <div class="">
+                <a href="/">
+                    <!-- <img src="{{ url_for('static', filename='images/dixonlogo-small-logoonly.png') }}"> -->
+                </a>
+            </div>
         </a>
         <span class="navbar-burger" data-target="navbarMenuHeroB">
             <span></span>
@@ -24,40 +24,42 @@
 
 
     <div id="navbarMenuHeroB" class="navbar-menu navbar-end">
-        <div class="navbar-end">
+        <div class="navbar-end pr-6">
             {% for href, id, caption in navigation_bar %}
-            <a href="{{ url_for(href|e) }}" class="navbar-item{% if id == active_page %} is-active{% endif %} has-text-primary">
+            <a href="{{ url_for(href|e) }}"
+                class="navbar-item{% if id == active_page %} is-active{% endif %} has-text-primary">
                 {{ caption|e }}
-            </a> 
+            </a>
             {% endfor %}
         </div>
     </div>
-</div>
+</nav>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
 
-// Get all "navbar-burger" elements
-const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
-// Check if there are any navbar burgers
-if ($navbarBurgers.length > 0) {
+        // Check if there are any navbar burgers
+        if ($navbarBurgers.length > 0) {
 
-  // Add a click event on each of them
-  $navbarBurgers.forEach( el => {
-    el.addEventListener('click', () => {
+            // Add a click event on each of them
+            $navbarBurgers.forEach(el => {
+                el.addEventListener('click', () => {
 
-      // Get the target from the "data-target" attribute
-      const target = el.dataset.target;
-      const $target = document.getElementById(target);
+                    // Get the target from the "data-target" attribute
+                    const target = el.dataset.target;
+                    const $target = document.getElementById(target);
 
-      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-      el.classList.toggle('is-active');
-      $target.classList.toggle('is-active');
+                    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                    el.classList.toggle('is-active');
+                    $target.classList.toggle('is-active');
+
+                });
+            });
+        }
 
     });
-  });
-}
-
-});
 </script>
