@@ -1,0 +1,31 @@
+{% extends "bulma-base.html" %}
+{% set active_page = "tags" %}
+
+{% block content %}
+<div class="title has-text-centered has-text-primary">Create Tag</div>
+
+<form action="" method="POST" novalidate>
+  <div class="field">
+    <div class="columns">
+      <div class="column is-4 is-offset-4">
+        <label class="label has-text-primary has-text-centered">Name</label>
+        <div class="control">
+          {{ form.name.label(class_='has-text-primary') }}<br>
+          {{ form.name }}
+        </div>
+        {% with field=form.knowledge %}
+        {% include 'bulma-forms/select-field.html'%}
+        {% endwith %}
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-link">Submit</button>
+          </div>
+          <div class="control">
+            <button class="button is-link is-light">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}

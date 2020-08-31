@@ -3,18 +3,17 @@
 {% block head %}{% endblock %}
 
 {% block content %}
-{% include 'navbar-base.html' %}
 <!-- INTRO -->
 <div class="columns has-background-black is-bold pt-6">
-    <div class="column is-6 is-offset-1 ">
+    <div class="column is-5 is-offset-1 ">
         <div class="title is-size-2 has-text-centered has-text-primary">Principal Engineer</div>
         <br>
         <div class="title is-size-3 has-text-centered has-text-primary">
             I'm Max Bender a Principal Engineer specializing in CICD and DevOps solutions.
         </div>
     </div>
-    <div class="column is-4">
-        <figure class='image is-128x128 has-image-centered'>
+    <div class="column is-3 is-offset-1">
+        <figure class='image has-image-centered'>
             <img class="is-rounded" src="{{ url_for('static', filename='images/max-headshot.jpg') }}">
         </figure>
     </div>

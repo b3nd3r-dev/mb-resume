@@ -3,17 +3,16 @@
 {% block head %}{% endblock %}
 
 {% block content %}
-{% include 'navbar-base.html' %}
 <br>
 {% with %}
 
-    {% set target_project_title = 'TITLE1' %}
-    {% set target_project_link = 'LINK1' %}
-    {% set target_project_tag1 = 'TAG1' %}
-    {% set target_project_tag2 = 'TAG@' %}
-    {% set target_project_long_description = 'DESCRIPTION THINGS' %}
+{% set target_project_title = 'TITLE1' %}
+{% set target_project_link = 'LINK1' %}
+{% set target_project_tag1 = 'TAG1' %}
+{% set target_project_tag2 = 'TAG@' %}
+{% set target_project_long_description = 'DESCRIPTION THINGS' %}
 
-    {% include 'project-detail-base.html' %}
+{% include 'project-detail-base.html' %}
 
 {% endwith %}
 

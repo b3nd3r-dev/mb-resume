@@ -3,7 +3,6 @@
 {% block head %}{% endblock %}
 
 {% block content %}
-{% include 'navbar-base.html' %}
 <div class="columns">
     <div class="column is-10 is-offset-1">
         <div class="title has-text-primary has-text-cenetered">PROJECTS</div>
@@ -12,37 +11,37 @@
 
 {% with %}
 
-    {% set target_project_title = 'TITLE1' %}
-    {% set target_project_link = 'LINK1' %}
-    {% set target_project_tag1 = 'TAG1' %}
-    {% set target_project_tag2 = 'TAG@' %}
-    {% set target_project_description = 'DESCRIPTION THINGS' %}
+{% set target_project_title = 'TITLE1' %}
+{% set target_project_link = 'LINK1' %}
+{% set target_project_tag1 = 'TAG1' %}
+{% set target_project_tag2 = 'TAG@' %}
+{% set target_project_description = 'DESCRIPTION THINGS' %}
 
-    {% include 'project-base.html' %}
-
-{% endwith %}
-
-{% with %}
-
-    {% set target_project_title = 'TITLE1' %}
-    {% set target_project_link = 'LINK1' %}
-    {% set target_project_tag1 = 'TAG1' %}
-    {% set target_project_tag2 = 'TAG@' %}
-    {% set target_project_description = 'DESCRIPTION THINGS' %}
-
-    {% include 'project-base.html' %}
+{% include 'project-base.html' %}
 
 {% endwith %}
 
 {% with %}
 
-    {% set target_project_title = 'TITLE1' %}
-    {% set target_project_link = 'LINK1' %}
-    {% set target_project_tag1 = 'TAG1' %}
-    {% set target_project_tag2 = 'TAG@' %}
-    {% set target_project_description = 'DESCRIPTION THINGS' %}
+{% set target_project_title = 'TITLE1' %}
+{% set target_project_link = 'LINK1' %}
+{% set target_project_tag1 = 'TAG1' %}
+{% set target_project_tag2 = 'TAG@' %}
+{% set target_project_description = 'DESCRIPTION THINGS' %}
 
-    {% include 'project-base.html' %}
+{% include 'project-base.html' %}
+
+{% endwith %}
+
+{% with %}
+
+{% set target_project_title = 'TITLE1' %}
+{% set target_project_link = 'LINK1' %}
+{% set target_project_tag1 = 'TAG1' %}
+{% set target_project_tag2 = 'TAG@' %}
+{% set target_project_description = 'DESCRIPTION THINGS' %}
+
+{% include 'project-base.html' %}
 
 {% endwith %}
 
