@@ -1,18 +1,18 @@
 {% extends "bulma-base.html" %}
-{% set active_page = "tags_create" %}
+{% set active_page = "tags_update" %}
 {% block head %}{% endblock %}
 
 {% block content %}
-<section class="hero is-link is-bold">
+<section class="hero is-bold">
   <div class="hero-body">
-    <div class="title has-text-centered has-text-primary">Create Tag</div>
+    <div class="title has-text-centered has-text-primary">Update Tag</div>
     <div class="columns py-6">
       <div class="column is-4  is-offset-1">
         <form action="" method="POST" novalidate>
           <div class="field">
             <div class="control">
               {{ form.name.label(class_='subtitle has-text-primary')}}<br>
-              {{ form.name (class_='input has-text-white')}}
+              {{ form.name (class_='input has-background-link has-text-primary')}}
             </div>
           </div>
           {% with field=form.knowledge %}
@@ -20,18 +20,17 @@
           {% endwith %}
           <div class="field is-grouped">
             <div class="control ">
-              <button class="button is-link is-light">Submit</button>
+              <button class="button is-success">Submit</button>
             </div>
             <div class="control">
-              <button class="button is-dark">Cancel</button>
+              <button class="button is-info is-light">Cancel</button>
             </div>
           </div>
         </form>
       </div>
       <div class="column is-5 is-offset-1">
-        <div class="title">HELLO</div>
-        <div class='label has-text-white'>
-          {% for tag in first_tag_list %}{% include '../elements/tag.html' %}{% endfor %}
+        <div class='label is-size-4 has-text-white'>
+          {% for tag in all_tags %}{% include 'elements/tag.html' %}{% endfor %}
         </div>
       </div>
     </div>

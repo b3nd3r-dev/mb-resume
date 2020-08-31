@@ -47,7 +47,8 @@ def contact():
 
 @ main.route('/project')
 def project():
-    return render_template('project.html')
+    all_projects = Project.query.all()
+    return render_template('project.html', all_projects=all_projects)
 
 
 @ main.route('/projectdetail')

@@ -1,8 +1,8 @@
 from flask import Blueprint, redirect, render_template, request, url_for
-
+from random import shuffle
 from app import db
 from app.models import Project, Tag
-from app.forms import CreateTagForm
+from app.forms import CreateTagForm, UpdateTagForm
 
 tag = Blueprint('tags', __name__, template_folder='../templates')
 
@@ -10,6 +10,9 @@ tag = Blueprint('tags', __name__, template_folder='../templates')
 @tag.route('/create', methods=['GET', 'POST'])
 def create():
     form = CreateTagForm()
+
+    all_tags = Tag.query.all()
+    shuffle(all_tags)
 
     if form.validate_on_submit():
         new_tag_name = form.name.data
@@ -22,18 +25,35 @@ def create():
             db.session.add(new_tag)
             db.session.commit()
 
-    return render_template('tags/create.html', form=form)
-    pass
+    return render_template('tags/create.html', form=form, all_tags=all_tags)
 
 
-@tag.route('/view/<tag_id>')
-def view(tag_id):
-    pass
+@tag.route('/view/<tag_name>')
+def view(tag_name):
+    all_tags = Tag.query.all()
+    shuffle(all_tags)
+
+    tag = Tag.query.filter_by(name=tag_name).first()
+
+    return render_template('tags/view.html', tag=tag, all_tags=all_tags)
 
 
-@tag.route('/update/<tag_id>')
-def update(tag_id):
-    pass
+@tag.route('/update', methods=['GET', 'POST'])
+def update():
+    form = UpdateTagForm()
+    all_tags = Tag.query.all()
+    shuffle(all_tags)
+
+    if form.validate_on_submit():
+        new_tag_name = form.name.data
+
+        tag = Tag.query.filter_by(name=new_tag_name).first()
+
+        if tag:
+            form.populate_obj(tag)
+            db.session.commit()
+
+    return render_template('tags/update.html', form=form, all_tags=all_tags)
 
 
 @tag.route('/delete/<tag_id>')

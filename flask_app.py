@@ -20,6 +20,7 @@ def make_shell_context():
 
 @app.cli.command()
 def deploy():
-    from seed import seed_tags
+    from seed import seed_tags, seed_projects
     seed_tags(db)
+    seed_projects(db)
     pass
