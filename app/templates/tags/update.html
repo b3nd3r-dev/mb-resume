@@ -12,13 +12,13 @@
           <div class="field">
             <div class="control">
               {{ form.name.label(class_='subtitle has-text-primary')}}<br>
-              {{ form.name (class_='input has-background-link has-text-primary')}}
+              {{ form.name (class_='input has-background-link has-text-primary my-2')}}
             </div>
           </div>
           {% with field=form.knowledge %}
           {% include 'bulma-forms/select-field.html'%}
           {% endwith %}
-          <div class="field is-grouped">
+          <div class="field is-grouped py-3">
             <div class="control ">
               <button class="button is-success">Submit</button>
             </div>

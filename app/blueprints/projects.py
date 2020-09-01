@@ -1,19 +1,17 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from app.models import Project, Tag
 from app import db
+from app.models import Project, Tag
 from app.forms import CreateProjectForm
 
 projects = Blueprint('projects', __name__, template_folder='../templates')
 
 
-@projects.route('/')
-def hello():
-    return 'hello'
-
-
 @projects.route('/create', methods=['GET', 'POST'])
 def create():
     form = CreateProjectForm()
+
+    all_tags = Tag.query.all()
+    # use javascript to do what git does
 
     if form.validate_on_submit():
         new_project_title = form.title.data
@@ -29,6 +27,8 @@ def create():
                                   short_description=new_project_short_description,
                                   long_description=new_project_long_description
                                   )
+
+            new_project.tags.append()  # in for loop
             db.session.add(new_project)
             db.session.commit()
 

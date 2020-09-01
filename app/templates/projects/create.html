@@ -7,16 +7,34 @@
 <form action="" method="POST" novalidate>
   <div class="field">
     <div class="columns">
-      <div class="column is-4 is-offset-4">
-        <label class="label has-text-primary has-text-centered">Name</label>
+      <div class="column is-4 is-offset-2">
         <div class="control">
           {{ form.title.label(class_='has-text-primary') }}<br>
-          {{ form.title }}
+          {{ form.title (class_='input has-background-link has-text-primary my-2')}}
         </div>
-        {% with field=form.knowledge %}
-        {% include 'bulma-forms/select-field.html'%}
-        {% endwith %}
-        <div class="field is-grouped">
+        <div class="control">
+          {{ form.project_link.label(class_='has-text-primary') }}<br>
+          {{ form.project_link (class_='input has-background-link has-text-primary my-2')}}
+        </div>
+      </div>
+      <div class="column is-4">
+        <div class="control">
+          {{ form.tag_name.label(class_='has-text-primary') }}<br>
+          {{ form.tag_name (class_="input has-text-primary is-light my-2")}}
+        </div>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column is-8 is-offset-2">
+        <div class="control">
+          {{ form.short_description.label(class_='has-text-primary') }}<br>
+          {{ form.short_description (class_="textarea has-text-primary is-light my-2")}}
+        </div>
+        <div class="control">
+          {{ form.long_description.label(class_='has-text-primary') }}<br>
+          {{ form.long_description (class_="textarea has-text-primary is-light my-2")}}
+        </div>
+        <div class="field is-grouped py-3">
           <div class="control">
             <button class="button is-link">Submit</button>
           </div>

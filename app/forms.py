@@ -26,3 +26,7 @@ class CreateProjectForm(FlaskForm):
     project_link = StringField('Project Link')
     short_description = StringField("Short Description")
     long_description = StringField("Long Description")
+    tag_name = StringField('Tag Name', validators=[DataRequired()])
+    tag_knowledge = SelectField(
+        'What\'s your Proficiency', choices=tag_choices)
+    submit = SubmitField('Create Project')
