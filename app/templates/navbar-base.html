@@ -1,11 +1,10 @@
 {% set navigation_bar = [
     ('main.index', 'index', 'Home'),
     ('main.project', 'project', 'Projects'),
-    ('main.contact', 'contact', 'Contact'),
     ('main.projectdetail', 'projectdetail', 'ProjectDetail')
 ] -%}
 {% set active_page = active_page|default('index') -%}
-<nav class="navbar py-5 px-6" role="navigation">
+<nav class="navbar py-5 px-6 is-transparent" role="navigation">
     <div class="navbar-brand">
         <a class="navbar-item">
             <div class="">
@@ -31,6 +30,34 @@
                 {{ caption|e }}
             </a>
             {% endfor %}
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link has-text-primary">Tags</a>
+                <div class="navbar-dropdown">
+                    <a href="{{ url_for('tags.create') }}" class="navbar-item has-text-primary">
+                        Create
+                    </a>
+                    <a href="{{ url_for('tags.update') }}" class="navbar-item has-text-primary">
+                        Update
+                    </a>
+                    <a href="{{ url_for('tags.create') }}" class="navbar-item has-text-primary">
+                        Delete
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link has-text-primary">Projects</a>
+                <div class="navbar-dropdown">
+                    <a href="{{ url_for('projects.create') }}" class="navbar-item has-text-primary">
+                        Create
+                    </a>
+                    <a href="{{ url_for('projects.update') }}" class="navbar-item has-text-primary">
+                        Update
+                    </a>
+                    <a href="" class="navbar-item has-text-primary">
+                        Delete
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </nav>

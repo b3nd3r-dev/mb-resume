@@ -3,39 +3,39 @@
 {% block head %}{% endblock %}
 
 {% block content %}
-<section class="hero is-bold">
-  <div class="hero-body">
-    <div class="title has-text-centered has-text-primary">Create Tag</div>
-    <div class="columns py-6">
-      <div class="column is-4  is-offset-1">
-        <form action="" method="POST" novalidate>
-          <div class="field">
-            <div class="control">
-              {{ form.name.label(class_='subtitle has-text-primary')}}<br>
-              {{ form.name (class_='input has-background-link has-text-primary my-2')}}
-            </div>
-          </div>
-          {% with field=form.knowledge %}
-          {% include 'bulma-forms/select-field.html'%}
-          {% endwith %}
-          <div class="field is-grouped py-3">
-            <div class="control ">
-              <button class="button is-success">Submit</button>
-            </div>
-            <div class="control">
-              <button class="button is-info is-light">Cancel</button>
-            </div>
-          </div>
-        </form>
+<form action="{{url_for('tags.create')}}" method="POST">
+  <div class="title has-text-centered has-text-primary">Create Tag</div>
+  <div class="columns py-6">
+    <div class="column is-4  is-offset-1">
+      {{ form.hidden_tag() }}
+      <div class="field">
+        <div class="control">
+          {{ form.name.label(class_='subtitle has-text-primary')}}<br>
+          {{ form.name (class_='input has-background-link has-text-primary my-2')}}
+        </div>
       </div>
-      <div class="column is-5 is-offset-1">
-        <div class='label is-size-4 has-text-white'>
-          {% for tag in all_tags %}{% include 'elements/tag.html' %}{% endfor %}
+      {% with field=form.knowledge %}
+      {% include 'bulma-forms/select-field.html'%}
+      {% endwith %}
+      <div class=" field is-grouped py-3">
+        <div class="control ">
+          {{ form.submit (class_='button is-success')}}
+        </div>
+        <div class="control">
+          <button class="button is-info is-light">Cancel</button>
         </div>
       </div>
     </div>
+    <div class="column is-5 is-offset-1">
+      <div class='label is-size-4 has-text-white'>
+        {% for tag in all_tags %}{% include 'elements/tag.html' %}{% endfor %}
+      </div>
+    </div>
   </div>
-</section>
+</form>
+
+
+
 
 
 {% endblock %}

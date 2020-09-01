@@ -1,0 +1,17 @@
+{% extends "bulma-base.html" %}
+{% set active_page = "tags_view" %}
+{% block head %}{% endblock %}
+
+{% block content %}
+
+<div class="title has-text-primary has-text-centered">
+  {{ tag_name }}
+</div>
+<div class="subtitle has-text-primary has-text-centered">
+  Does not exist, please create <a href="../create">here</a>
+</div>
+<div class='label is-size-4 has-text-white has-text-centered'>
+  {% for tag in all_tags %}{% include 'elements/tag.html' %}{% endfor %}
+</div>
+
+{% endblock %}

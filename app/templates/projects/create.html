@@ -1,15 +1,16 @@
 {% extends "bulma-base.html" %}
-{% set active_page = "tags" %}
+{% set active_page = "projects_create" %}
+{% block head %}{% endblock %}
 
 {% block content %}
 <div class="title has-text-centered has-text-primary">Create Project</div>
-
 <form action="" method="POST" novalidate>
-  <div class="field">
-    <div class="columns">
-      <div class="column is-4 is-offset-2">
+  {{ form.hidden_tag() }}
+  <div class="columns pt-6">
+    <div class="column is-6  is-offset-2">
+      <div class="field">
         <div class="control">
-          {{ form.title.label(class_='has-text-primary') }}<br>
+          {{ form.title.label(class_='subtitle has-text-primary')}}<br>
           {{ form.title (class_='input has-background-link has-text-primary my-2')}}
         </div>
         <div class="control">
@@ -17,33 +18,40 @@
           {{ form.project_link (class_='input has-background-link has-text-primary my-2')}}
         </div>
       </div>
-      <div class="column is-4">
-        <div class="control">
-          {{ form.tag_name.label(class_='has-text-primary') }}<br>
-          {{ form.tag_name (class_="input has-text-primary is-light my-2")}}
-        </div>
+      <div class="control">
+        {{ form.short_description.label(class_='has-text-primary') }}<br>
+        {{ form.short_description (class_="textarea has-text-primary is-light my-2")}}
+      </div>
+      <div class="control">
+        {{ form.long_description.label(class_='has-text-primary') }}<br>
+        {{ form.long_description (class_="textarea has-text-primary is-light my-2")}}
       </div>
     </div>
-    <div class="columns">
-      <div class="column is-8 is-offset-2">
-        <div class="control">
-          {{ form.short_description.label(class_='has-text-primary') }}<br>
-          {{ form.short_description (class_="textarea has-text-primary is-light my-2")}}
+    <div class="column is-4">
+      {% with field=form.tag_name %}
+      {% include 'bulma-forms/select-multiple-field.html'%}
+      {% endwith %}
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column is-8 is-offset-2">
+
+      <div class="buttons">
+        <input type="submit" class="button is-success" value="Create Project">
+      </div>
+
+      <div class="field is-grouped py-3">
+        <div class="control ">
+          <button class="button is-success">Submit</button>
         </div>
         <div class="control">
-          {{ form.long_description.label(class_='has-text-primary') }}<br>
-          {{ form.long_description (class_="textarea has-text-primary is-light my-2")}}
-        </div>
-        <div class="field is-grouped py-3">
-          <div class="control">
-            <button class="button is-link">Submit</button>
-          </div>
-          <div class="control">
-            <button class="button is-link is-light">Cancel</button>
-          </div>
+          <button class="button is-info is-light">Cancel</button>
         </div>
       </div>
     </div>
   </div>
 </form>
+
+
+
 {% endblock %}

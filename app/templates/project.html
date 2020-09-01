@@ -9,7 +9,11 @@
     </div>
 </div>
 
-<div>{% for project in all_projects %}{% include 'project-base.html' %}{% endfor %}</div>
+<div>
+    {% for project in all_projects %}
+    {% include 'project-base.html' %}
+    {% endfor %}
+</div>
 
 {% include 'footer-base.html' %}
 {% endblock %}

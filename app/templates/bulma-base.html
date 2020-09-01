@@ -19,8 +19,41 @@
 
 <body>
     {% include 'navbar-base.html' %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'message' %}
+    <div class="flashes has-text-primary has-text-centered notification is-info">
+        <button class="delete"></button>
+        {{ message }}
+    </div>
+    {% elif category == 'error' %}
+    <div class="flashes has-text-primary has-text-centered notification is-danger">
+        <button class="delete"></button>
+        {{ message }}
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
     {% block content %}
     {% endblock %}
+    <script src="{{url_for('static', filename='node_modules/jquery/dist/jquery.min.js')}}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+                $notification = $delete.parentNode;
+
+                $delete.addEventListener('click', () => {
+                    $notification.parentNode.removeChild($notification);
+                });
+            });
+        });
+        $(document).ready(function () {
+            $(".flashes").delay(3000).fadeOut(800);
+        });
+
+    </script>
     {% block script %}{% endblock %}
 </body>
 
