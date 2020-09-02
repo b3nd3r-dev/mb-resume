@@ -3,7 +3,7 @@
 {% block head %}{% endblock %}
 
 {% block content %}
-<form action="" method="POST" novalidate>
+<form action="{{url_for('tags.update')}}" method="POST" novalidate>
   {{ form.hidden_tag() }}
   <div class="title has-text-centered has-text-primary">Update Tag</div>
   <div class="columns py-6">
@@ -12,10 +12,6 @@
         <div class="control">
           {{ form.name.label(class_='subtitle has-text-primary')}}<br>
           {{ form.name (class_='input has-background-link has-text-primary my-2')}}
-          {% for error in form.name.errors %}
-          <span style="color: red;">[{{ error }}]</span>
-          {% endfor %}
-
         </div>
       </div>
       {% with field=form.knowledge %}
@@ -23,7 +19,7 @@
       {% endwith %}
       <div class="field is-grouped py-3">
         <div class="control ">
-          <input type="submit" class="button is-success {{ form.submit }}">
+          {{ form.submit (class_='button is-success')}}
         </div>
         <div class="control">
           <button class="button is-info is-light">Cancel</button>
@@ -37,6 +33,4 @@
     </div>
   </div>
 </form>
-
-
 {% endblock %}

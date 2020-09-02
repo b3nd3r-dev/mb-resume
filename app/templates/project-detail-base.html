@@ -1,9 +1,13 @@
+{% extends "bulma-base.html" %}
+{% set active_page = "projectdetail" %}
+{% block head %}{% endblock %}
+
+{% block content %}
 <section class="hero is-link is-bold">
     <div class="hero-body">
         <div class="container">
-            <div class="title has-text-centered has-text-primary">
-                PROJECT TITLE
-                <!-- <a href="{{ url_for('static', filename=target_project_title)}}"></a> -->
+            <div class="title is-size-1 has-text-centered has-text-primary">
+                {{ project.title }}
             </div>
         </div>
     </div>
@@ -11,21 +15,24 @@
 <div class="columns pt-6">
     <div class="column is-9 is-offset-1">
         <div class="subtitle has-text-info">
-            PROJECT LONG DESCRIPTION
-            <!-- <a href="{{ url_for('static', filename=target_project_long_description)}}"></a> -->
+            {{ project.long_description }}
         </div>
     </div>
     <div class="column is-2">
-        <figure class="image is-128x128">
+        <figure class="image has-image-centered is-128x128">
             <img src="https://bulma.io/images/placeholders/128x128.png">
-          </figure>
-        <span class="tag is-small is-info">
-            TAG 1
-            <!-- <a href="{{ url_for('static', filename=target_project_tag1)}}"></a> -->
-        </span>
-        <span class="tag is-smalll is-info">
-            TAG 2
-            <!-- <a href="{{ url_for('static', filename=target_project_tag2)}}"></a> -->
-        </span>
+        </figure>
+        {% for tag in project.tags %}
+        <div class="py-3 has-text-centered">
+            <span class="tag is-small is-link is-dark">
+                {{ tag.name }}
+            </span>
+        </div>
+        {% endfor %}
+        <div class="subtitle is-size-6 has-text-link mr-5 my-3">
+            {{ project.project_link }}
+        </div>
     </div>
 </div>
+{% include 'footer-base.html' %}
+{% endblock %}

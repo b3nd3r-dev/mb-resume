@@ -12,7 +12,8 @@ class Project(db.Model):
     long_description = db.Column(db.Text, nullable=False)
 
     # Relationships
-    tags = relationship("Tag", secondary='project_tags', back_populates='projects')
+    tags = relationship("Tag", secondary='project_tags',
+                        back_populates='projects')
 
     def __init__(self, title, short_description, long_description, project_link=None):
         self.title = title
@@ -32,7 +33,8 @@ class Tag(db.Model):
     knowledge = db.Column(db.String(15), nullable=False)
 
     # Relationships
-    projects = relationship('Project', secondary='project_tags', back_populates="tags")
+    projects = relationship(
+        'Project', secondary='project_tags', back_populates="tags")
 
     def __init__(self, name, knowledge):
         self.name = name
@@ -45,7 +47,8 @@ class Tag(db.Model):
 class ProjectTag(db.Model):
     # Attributes
     __tablename__ = "project_tags"
-    project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), primary_key=True)
+    project_id = db.Column(db.Integer, db.ForeignKey(
+        'projects.id'), primary_key=True)
     tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), primary_key=True)
 
     # Relationships

@@ -51,9 +51,10 @@ def project():
     return render_template('project.html', all_projects=all_projects)
 
 
-@ main.route('/projectdetail')
-def projectdetail():
-    return render_template('projectdetail.html')
+@ main.route('/projectdetail/<projectid>')
+def projectdetail(projectid):
+    project = Project.query.filter_by(id=projectid).first()
+    return render_template('project-detail-base.html', project=project)
 
 # @main.route('/test')
 # @main.route('/test/<poopy>')

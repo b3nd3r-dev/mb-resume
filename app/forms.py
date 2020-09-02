@@ -22,6 +22,11 @@ class UpdateTagForm(FlaskForm):
     submit = SubmitField('Update Tag')
 
 
+class DeleteTagForm(FlaskForm):
+    name = StringField('Tag Name', validators=[DataRequired()])
+    submit = SubmitField('Delete Tag')
+
+
 class CreateProjectForm(FlaskForm):
     title = StringField('Project Title', validators=[DataRequired()])
     project_link = StringField('Project Link')
@@ -38,3 +43,8 @@ class UpdateProjectForm(FlaskForm):
     long_description = StringField("Long Description")
     tag_name = SelectMultipleField('Tag Name')
     submit = SubmitField('Update Project')
+
+
+class DeleteProjectForm(FlaskForm):
+    title = StringField('Project Title', validators=[DataRequired()])
+    submit = SubmitField('Delete Project')
