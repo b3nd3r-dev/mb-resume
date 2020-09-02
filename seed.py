@@ -34,9 +34,10 @@ projects = [
      'short_description': 'Enabling the tool that enables the tools - on Linux on Z.',
      'long_description': 'Enabling the tool that enables the tools - on Linux on Z.LONG VERSION'},
     {'title': 'IBM Cloud Private',
-     'project_link': 'https://www.ibm.com/cloud/private',
      'short_description': 'IBM Cloud™ Private is a reliable and scalable cloud platform that runs on your infrastructure. It’s built on open source frameworks, like containers, Kubernetes and Cloud Foundry.',
-     'long_description': 'IBM Cloud™ Private is a reliable and scalable cloud platform that runs on your infrastructure. It’s built on open source frameworks, like containers, Kubernetes and Cloud Foundry.LONG VERSION'}
+     'long_description': 'IBM Cloud™ Private is a reliable and scalable cloud platform that runs on your infrastructure. It’s built on open source frameworks, like containers, Kubernetes and Cloud Foundry.LONG VERSION',
+     'project_link': 'https://www.ibm.com/cloud/private'
+     }
 ]
 
 

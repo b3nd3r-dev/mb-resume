@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, SelectMultipleField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, SelectMultipleField, TextAreaField
 from app.models import Tag
 from wtforms.validators import DataRequired
 
@@ -30,8 +30,8 @@ class DeleteTagForm(FlaskForm):
 class CreateProjectForm(FlaskForm):
     title = StringField('Project Title', validators=[DataRequired()])
     project_link = StringField('Project Link')
-    short_description = StringField("Short Description")
-    long_description = StringField("Long Description")
+    short_description = TextAreaField("Short Description")
+    long_description = TextAreaField("Long Description")
     tag_name = SelectMultipleField('Tag Name')
     submit = SubmitField('Create Project')
 
@@ -39,8 +39,8 @@ class CreateProjectForm(FlaskForm):
 class UpdateProjectForm(FlaskForm):
     title = StringField('Project Title', validators=[DataRequired()])
     project_link = StringField('Project Link')
-    short_description = StringField("Short Description")
-    long_description = StringField("Long Description")
+    short_description = TextAreaField("Short Description")
+    long_description = TextAreaField("Long Description")
     tag_name = SelectMultipleField('Tag Name')
     submit = SubmitField('Update Project')
 

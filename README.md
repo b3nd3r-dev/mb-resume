@@ -33,13 +33,15 @@ You have to set some environment variables by using `export ENVAR=VALUE` or crea
 ## Todo
 AS OF 9/2/20
 Need twitter profile link
+any other links in footer
 Login to view CRUD menus
-.textarea updates - spacing and vertical align
+COMPLETED -- .textarea updates - spacing and vertical align
 Logo
 Updated Picture
 click email copies to clipboard - footer
 download button for resume
 tag page - create it
+links need to be actual links around page for external sites - project pages 
 
 ----
 single page to show topics 

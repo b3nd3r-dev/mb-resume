@@ -23,15 +23,25 @@
     {% if messages %}
     {% for category, message in messages %}
     {% if category == 'message' %}
-    <div class="flashes has-text-primary has-text-centered notification is-info">
-        <button class="delete"></button>
-        {{ message }}
+    <div class="columns">
+        <div class="column is-6 is-offset-3">
+            <div class="flashes has-text-primary has-text-centered notification is-info">
+                <button class="delete"></button>
+                {{ message }}
+            </div>
+        </div>
     </div>
+
     {% elif category == 'error' %}
-    <div class="flashes has-text-primary has-text-centered notification is-danger">
-        <button class="delete"></button>
-        {{ message }}
+    <div class="columns">
+        <div class="column is-6 is-offset-3">
+            <div class="flashes has-text-primary has-text-centered notification is-danger">
+                <button class="delete"></button>
+                {{ message }}
+            </div>
+        </div>
     </div>
+
     {% endif %}
     {% endfor %}
     {% endif %}

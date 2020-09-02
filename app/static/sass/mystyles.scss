@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 // Import a Google Font
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Titillium+Web&display=swap");
 
 // Set your brand colors
 $black: #19181A;
@@ -14,7 +14,9 @@ $theme-white: #bfbfbf;
 $theme-gray:#909090;
 
 // Update Bulma's global variables
-$family-sans-serif: 'Roboto', sans-serif;
+// $family-sans-serif: 'Titillium Web', sans-serif;
+$family-primary: 'Titillium Web', sans-serif;
+$family-secondary: 'Roboto', sans-serif;
 $primary: $theme-white;
 $link: $green;
 $info: $theme-gray;

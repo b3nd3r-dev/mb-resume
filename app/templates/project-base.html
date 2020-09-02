@@ -6,15 +6,15 @@
           {{ project.title }}
         </a>
         {% for tag in project.tags %}
-        <span class="tag is-small is-dark">
+        <a href="{{url_for('main.tagdetail', tagid=tag.id)}}" class="tag is-small is-dark is-family-secondary">
           {{ tag.name }}
-        </span>
+        </a>
         {% endfor %}
       </div>
-      <div class="subtitle">
+      <a href="https://{{ project.project_link }}" class="subtitle is-family-secondary is-family-secondary">
         {{ project.project_link }}
-      </div>
-      <div class="subtitle has-text-primary">
+      </a>
+      <div class="subtitle has-text-primary is-family-secondary is-family-secondary">
         {{ project.short_description }}
       </div>
     </div>

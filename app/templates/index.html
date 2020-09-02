@@ -23,7 +23,8 @@
 <div class="columns has-background-black">
     <div class="column is-10 is-offset-1 pb-6">
         <div class="subtitle has-text-info">
-            <div class="subtitle has-text-info is-italic">“[being a Principal Engineer] is far more strategic, it’s far
+            <div class="subtitle has-text-info is-italic is-family-secondary">“[being a Principal Engineer] is far more
+                strategic, it’s far
                 more business oriented, it’s involving a lot more influence, being an influencer without having the
                 management title.”
                 <br>
@@ -37,7 +38,7 @@
                 - Silvia Bostros from Arrested DevOps
             </div>
         </div>
-        <div class="subtitle has-text-primary">
+        <div class="subtitle has-text-primary is-family-secondary">
             Primarily, my work has been on CICD and DevOps solutions, but I often get this itch to create something new.
             <span class="span is-family-monospace has-text-weight-bold">Python</span> is my go-to scripting language but
             I’m not afraid of a little <span class="span is-family-monospace has-text-weight-bold">Bash</span> or <span
@@ -71,8 +72,9 @@
         </div>
     </div>
 </section>
-<!-- title is-bold is-size-1 has-text-centered has-text-info -->
-<!-- PROJECTS -->
+
+
+<!-- FEATURED PROJECTS -->
 <section class="hero is-bold">
     <div class="hero-body ">
         <div class="columns">
@@ -81,175 +83,17 @@
             </div>
         </div>
         <div class="columns">
-            <div class="column">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="media">
-                            <div class="media-content">
-                                <p class="subtitle is-3 has-text-centered has-text-primary">Travis on Z</p>
-                                <div class="has-text-centered pb-3">
-                                    <span class="tag is-medium has-background-success is-success">
-                                        Travis
-                                    </span>
-                                    <span class="tag is-medium is-info is-success">
-                                        Dev Ops
-                                    </span>
-                                </div>
-                                <div class="has-text-centered pb-1">
-                                    <p class="subtitle is-6 has-text-centered has-text-link">
-                                        <a href='#'>github.com/bendermIBM/travis-cookbooks</a>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="content has-text-centered has-text-info">
-                            Enabling the tool that enables the tools - on Linux on Z.
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="column">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="media">
-                            <div class="media-content">
-                                <p class="subtitle is-3 has-text-centered has-text-primary">IBM Cloud Private</p>
-                                <div class="has-text-centered pb-3">
-                                    <span class="tag is-medium has-background-success is-success">
-                                        Kubernetes
-                                    </span>
-                                    <span class="tag is-medium is-info is-success">
-                                        Docker
-                                    </span>
-                                </div>
-                                <div class="has-text-centered pb-1">
-                                    <p class="subtitle is-6 has-text-centered has-text-link">
-                                        <a href='#'>https://www.ibm.com/cloud/private</a>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="content has-text-centered has-text-info">
-                            IBM Cloud™ Private is a reliable and scalable cloud platform that runs on your
-                            infrastructure. It’s built on open source frameworks, like containers, Kubernetes and Cloud
-                            Foundry.
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="column">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="media">
-                            <div class="media-content">
-                                <p class="subtitle is-3 has-text-centered has-text-primary">
-                                    NexNest
-                                </p>
-                                <div class="has-text-centered pb-3">
-                                    <span class="tag is-medium has-background-success is-success">
-                                        Web Development
-                                    </span>
-                                    <span class="tag is-medium is-info is-success">
-                                        Python
-                                    </span>
-                                    <span class="tag is-medium is-info is-success">
-                                        flask
-                                    </span>
-                                </div>
-                                <div class="has-text-centered pb-1">
-                                    <p class="subtitle is-6 has-text-centered has-text-link">
-                                        <a href='#'>github.com/maxbbender/nexnest</a>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="content has-text-centered has-text-info">
-                            Student housing portal built with love by @Max Bender and @Mike Mcginnis
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% for project in first_project_list %}
+            {% include 'projects/featured.html' %}
+            {% endfor %}
         </div>
-        <br>
         <div class="columns">
-            <div class="column is-offset-1 is-5">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="media">
-                            <div class="media-content">
-                                <p class="subtitle is-3 has-text-centered has-text-primary">
-                                    Let's Talk
-                                </p>
-                                <div class="has-text-centered pb-3">
-                                    <span class="tag is-medium has-background-success is-success">
-                                        Education
-                                    </span>
-                                    <span class="tag is-medium is-info is-success">
-                                        Mentoring
-                                    </span>
-                                </div>
-                                <div class="has-text-centered pb-1">
-                                    <p class="subtitle is-6 has-text-centered has-text-link">
-                                        <a href='#'></a>
-                                        <br>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="content has-text-centered has-text-info">
-                            Short hands-on education modules surrounding a specific technology or a group of
-                            technologies together.
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="column is-5">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="media">
-                            <div class="media-content">
-                                <p class="subtitle is-3 has-text-centered has-text-primary">
-                                    Viral Education/TALOS
-                                </p>
-                                <div class="has-text-centered pb-3">
-                                    <span class="tag is-medium has-background-success is-success">
-                                        Web Development
-                                    </span>
-                                    <span class="tag is-medium is-info is-success">
-                                        PHP
-                                    </span>
-                                </div>
-                                <div class="has-text-centered pb-1">
-                                    <p class="subtitle is-6 has-text-centered has-text-link">
-                                        <a href='#'>github.com/maxbbender/Viral-Education</a>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="content has-text-centered has-text-info">
-                            TALOS (Textual Augmentation Learning of Semantics), a Web-based platform for vocabulary
-                            acquisition that provides capabilities for analytics to support learning of vocabulary.
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% for project in second_project_list %}
+            {% include 'projects/featured.html' %}
+            {% endfor %}
         </div>
     </div>
 </section>
-
-
-
-
 
 <!-- Timeline -->
 <div class="columns">
