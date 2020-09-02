@@ -1,7 +1,12 @@
+{% extends "bulma-base.html" %}
+{% set active_page = "projectdetail" %}
+{% block head %}{% endblock %}
+
+{% block content %}
 <section class="hero is-link is-bold">
     <div class="hero-body">
         <div class="container">
-            <div class="title has-text-centered has-text-primary">
+            <div class="title is-size-1 has-text-centered has-text-primary">
                 {{ project.title }}
             </div>
         </div>
@@ -10,17 +15,31 @@
 <div class="columns pt-6">
     <div class="column is-9 is-offset-1">
         <div class="subtitle has-text-info">
-            {{ project.long_description}}
+            {{ project.long_description }}
         </div>
     </div>
     <div class="column is-2">
-        <figure class="image is-128x128">
-            <img src="https://bulma.io/images/placeholders/128x128.png">
-        </figure>
-        {{% for tag in project.tags %}}
-        <span class="tag is-small is-info">
-            {{ tag.name }}
-        </span>
-        {{% endfor %}}
+        <div class="py-3 has-text-centered">
+            <div class="subtitle is-size-6 has-text-primary mr-5 my-3">
+                Project Technologies:
+            </div>
+            {% for tag in project.tags %}
+            <span class="tag is-small is-link is-dark">
+                {{ tag.name }}
+            </span>
+
+            {% endfor %}
+        </div>
+        <div class="subtitle is-size-6 has-text-primary mr-5 my-3 has-text-centered">
+            Project Link:
+        </div>
+        <div class="mr-5 my-3">
+            <a href="https://{{ project.project_link}}" class="subtitle is-size-6 has-text-link">
+                {{ project.project_link }}
+            </a>
+        </div>
+
     </div>
 </div>
+{% include 'footer-base.html' %}
+{% endblock %}

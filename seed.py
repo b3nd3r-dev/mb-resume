@@ -28,6 +28,19 @@ tags = [
 ]
 
 
+projects = [
+    {'title': 'Travis on Z',
+     'project_link': 'github.com/bendermIBM/travis-cookbooks',
+     'short_description': 'Enabling the tool that enables the tools - on Linux on Z.',
+     'long_description': 'Enabling the tool that enables the tools - on Linux on Z.LONG VERSION'},
+    {'title': 'IBM Cloud Private',
+     'short_description': 'IBM Cloud™ Private is a reliable and scalable cloud platform that runs on your infrastructure. It’s built on open source frameworks, like containers, Kubernetes and Cloud Foundry.',
+     'long_description': 'IBM Cloud™ Private is a reliable and scalable cloud platform that runs on your infrastructure. It’s built on open source frameworks, like containers, Kubernetes and Cloud Foundry.LONG VERSION',
+     'project_link': 'https://www.ibm.com/cloud/private'
+     }
+]
+
+
 def seed_tags(db):
 
     # Generate a List of Tags to be seeded
@@ -50,3 +63,30 @@ def seed_tags(db):
             db.session.add(tag)
 
     db.session.commit()
+
+
+def seed_projects(db):
+
+    # Generate a list of tags to be seeded
+    project_list = []
+
+    for project in projects:
+        new_project = Project(project['title'],
+                              project['project_link'],
+                              project['short_description'],
+                              project['long_description']
+                              )
+        project_list.append(new_project)
+
+        print(project_list)
+
+        # Add Project to Database
+        for project in project_list:
+
+            # First check if Project exists
+            project = Project.query.filter_by(title=project.title).first()
+
+            if not project:
+                db.session.add(new_project)
+
+        db.session.commit()

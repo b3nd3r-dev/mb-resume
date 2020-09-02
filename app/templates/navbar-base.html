@@ -1,16 +1,14 @@
 {% set navigation_bar = [
     ('main.index', 'index', 'Home'),
     ('main.project', 'project', 'Projects'),
-    ('main.contact', 'contact', 'Contact'),
-    ('main.projectdetail', 'projectdetail', 'ProjectDetail')
 ] -%}
 {% set active_page = active_page|default('index') -%}
-<nav class="navbar" role="navigation">
+<nav class="navbar py-5 px-6 is-transparent" role="navigation">
     <div class="navbar-brand">
         <a class="navbar-item">
             <div class="">
-                <a href="/">
-                    <!-- <img src="{{ url_for('static', filename='images/dixonlogo-small-logoonly.png') }}"> -->
+                <a href="{{ url_for('main.index') }}" class="image is-square is-64x64">
+                    <img src="{{ url_for('static', filename='images/MBlogo.png') }}">
                 </a>
             </div>
         </a>
@@ -31,35 +29,63 @@
                 {{ caption|e }}
             </a>
             {% endfor %}
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link has-text-primary">Tags</a>
+                <div class="navbar-dropdown">
+                    <a href="{{ url_for('tags.create') }}" class="navbar-item has-text-primary">
+                        Create
+                    </a>
+                    <a href="{{ url_for('tags.update') }}" class="navbar-item has-text-primary">
+                        Update
+                    </a>
+                    <a href="{{ url_for('tags.delete') }}" class="navbar-item has-text-primary">
+                        Delete
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link has-text-primary">Projects</a>
+                <div class="navbar-dropdown">
+                    <a href="{{ url_for('projects.create') }}" class="navbar-item has-text-primary">
+                        Create
+                    </a>
+                    <a href="{{ url_for('projects.update') }}" class="navbar-item has-text-primary">
+                        Update
+                    </a>
+                    <a href="{{ url_for('projects.delete') }}" class="navbar-item has-text-primary">
+                        Delete
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </nav>
+<<<<<<< HEAD=======>>>>>>> origin/master
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
+            // Get all "navbar-burger" elements
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
-        // Get all "navbar-burger" elements
-        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+            // Check if there are any navbar burgers
+            if ($navbarBurgers.length > 0) {
 
-        // Check if there are any navbar burgers
-        if ($navbarBurgers.length > 0) {
+                // Add a click event on each of them
+                $navbarBurgers.forEach(el => {
+                    el.addEventListener('click', () => {
 
-            // Add a click event on each of them
-            $navbarBurgers.forEach(el => {
-                el.addEventListener('click', () => {
+                        // Get the target from the "data-target" attribute
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
 
-                    // Get the target from the "data-target" attribute
-                    const target = el.dataset.target;
-                    const $target = document.getElementById(target);
+                        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
 
-                    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-                    el.classList.toggle('is-active');
-                    $target.classList.toggle('is-active');
-
+                    });
                 });
-            });
-        }
+            }
 
-    });
-</script>
+        });
+    </script>

@@ -2,26 +2,99 @@
 <html>
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Max Bender</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyles.css')}}" />
-  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-  {% block style %}{% endblock %} '
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Max Bender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyles.css')}}" />
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    {% block style %}{% endblock %} '
 
 
-  <style>
-    .is-vertical-center {
-      display: flex;
-      align-items: center;
-    }
-  </style>
-  {% block headblock %}{% endblock %}
+    <style>
+        .is-vertical-center {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+    {% block headblock %}{% endblock %}
 </head>
 
 <body>
-  {% include 'navbar-base.html' %}
-  {% block content %} {% endblock %} {% block script %}{% endblock %}
+    {% include 'navbar-base.html' %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'message' %}
+    <div class="columns">
+        <div class="column is-6 is-offset-3">
+            <div class="flashes has-text-primary has-text-centered notification is-info">
+                <button class="delete"></button>
+                {{ message }}
+            </div>
+        </div>
+    </div>
+
+    {% elif category == 'error' %}
+    <div class="columns">
+        <div class="column is-6 is-offset-3">
+            <div class="flashes has-text-primary has-text-centered notification is-danger">
+                <button class="delete"></button>
+                {{ message }}
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    {% block content %}
+    {% endblock %}
+    <script src="{{url_for('static', filename='node_modules/jquery/dist/jquery.min.js')}}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+                $notification = $delete.parentNode;
+
+                $delete.addEventListener('click', () => {
+                    $notification.parentNode.removeChild($notification);
+                });
+            });
+        });
+        $(document).ready(function () {
+            $(".flashes").delay(3000).fadeOut(800);
+        });
+    </script>
+    <script>
+        (function () {
+            var elements;
+            var windowHeight;
+
+            function init() {
+                elements = document.querySelectorAll('.hidden');
+                windowHeight = window.innerHeight;
+            }
+
+            function checkPosition() {
+                for (var i = 0; i < elements.length; i++) {
+                    var element = elements[i];
+                    var positionFromTop = elements[i].getBoundingClientRect().top;
+
+                    if (positionFromTop - windowHeight <= 0) {
+                        element.classList.add('fade-in-element');
+                        element.classList.remove('hidden');
+                    }
+                }
+            }
+
+            window.addEventListener('scroll', checkPosition);
+            window.addEventListener('resize', init);
+
+            init();
+            checkPosition();
+        })();
+    </script>
+    {% block script %}{% endblock %}
 </body>
 
 </html>

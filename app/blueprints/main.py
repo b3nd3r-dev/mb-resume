@@ -17,6 +17,15 @@ def chunks(lst, n):
 @main.route('/')
 def index():
 
+    # Project Splitting
+    all_projects = Project.query.all()
+    split_project_list = list(chunks(all_projects, int(len(all_projects) / 2)))
+    first_project_list = split_project_list[0]
+    second_project_list = split_project_list[1]
+
+    if len(split_project_list) > 2:
+        first_project_list.extend(split_project_list[2])
+
     # Query all Tags and Shuffle the output
     all_tags = Tag.query.all()
     shuffle(all_tags)
@@ -24,8 +33,6 @@ def index():
     # Split tags into 3 different lists https://stackoverflow.com/questions/312443/how-do-you-split-a-list-into-evenly-sized-chunks
     split_tag_list = list(chunks(all_tags, int(len(all_tags) / 3)))
 
-    print(split_tag_list)
-    print(type(split_tag_list))
     first_tag_list = split_tag_list[0]
     second_tag_list = split_tag_list[1]
     third_tag_list = split_tag_list[2]
@@ -36,7 +43,9 @@ def index():
     return render_template('index.html',
                            first_tag_list=first_tag_list,
                            second_tag_list=second_tag_list,
-                           third_tag_list=third_tag_list
+                           third_tag_list=third_tag_list,
+                           first_project_list=first_project_list,
+                           second_project_list=second_project_list
                            )
 
 
@@ -47,17 +56,21 @@ def contact():
 
 @ main.route('/project')
 def project():
-    return render_template('project.html',
-                           #    p_name=Project.title
-                           #    p_link=Project.project_link
-                           #    p_tags=Tag.project.tags
-                           #    p_short_desc=Project.short_description
-                           )
+    all_projects = Project.query.all()
+    return render_template('project.html', all_projects=all_projects)
 
 
-@ main.route('/projectdetail')
-def projectdetail():
-    return render_template('projectdetail.html')
+@ main.route('/projectdetail/<projectid>')
+def projectdetail(projectid):
+    project = Project.query.filter_by(id=projectid).first()
+    return render_template('project-detail-base.html', project=project)
+
+
+@ main.route('/tagdetail/<tagid>')
+def tagdetail(tagid):
+    project = Project.query.all()
+    tag = Tag.query.filter_by(id=tagid).first()
+    return render_template('tag-base.html', tag=tag, project=project)
 
 # @main.route('/test')
 # @main.route('/test/<poopy>')

@@ -31,7 +31,19 @@ You have to set some environment variables by using `export ENVAR=VALUE` or crea
 2. To confirm reload page and ensure is down
 
 ## Todo
+AS OF 9/2/20
+Need twitter profile link
+any other links in footer
+Login to view CRUD menus
+COMPLETED -- .textarea updates - spacing and vertical align
+Logo
+Updated Picture
+click email copies to clipboard - footer
+download button for resume
+tag page - create it
+links need to be actual links around page for external sites - project pages 
 
+----
 single page to show topics 
 expand aspects to different page
 
