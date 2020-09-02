@@ -10,19 +10,22 @@ class Project(db.Model):
     project_link = db.Column(db.String, nullable=True)
     short_description = db.Column(db.Text, nullable=False)
     long_description = db.Column(db.Text, nullable=False)
+    featured = db.Column(db.Boolean, unique=False,
+                         default=False, nullable=False)
 
     # Relationships
     tags = relationship("Tag", secondary='project_tags',
                         back_populates='projects')
 
-    def __init__(self, title, short_description, long_description, project_link=None):
+    def __init__(self, title, short_description, long_description, featured, project_link=None):
         self.title = title
         self.project_link = project_link
         self.short_description = short_description
         self.long_description = long_description
+        self.featured = featured
 
     def __repr__(self):
-        return f"Project {self.title} has {self.project_link}"
+        return f"Project {self.title} has {self.project_link} is featured {self.featured}"
 
 
 class Tag(db.Model):

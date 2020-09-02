@@ -46,6 +46,7 @@ def seed_tags(db):
     # Generate a List of Tags to be seeded
     tag_list = []
 
+    # A tag has attributes
     for tag in tags:
         new_tag = Tag(tag['name'], tag['knowledge'])
         tag_list.append(new_tag)
