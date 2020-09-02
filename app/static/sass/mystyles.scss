@@ -44,7 +44,7 @@ $primary-light: findLightColor($primary);
     margin-right: auto;
   }
 
-// SCROLLING
+// TAG SCROLLING
 section{
   position: relative;
   overflow: hidden;
@@ -84,7 +84,7 @@ section .scroll div:nth-child(2){
     transform:translatex(-200%);
   }
 }
-// REVERSE SCROLL
+// REVERSE TAG SCROLL
 section .scroll2{
   width: 100%;
   display: flex;
@@ -120,6 +120,21 @@ section .scroll2 div:nth-child(2){
     transform:translatex(0%);
   }
 }
+
+// FADE ON VERT SCROLL 
+// https://www.dev-tips-and-tricks.com/animate-elements-scrolled-view-vanilla-js#:~:text=The%20fade%2Din%20animation%20applied%20to%20an%20element&text=The%20solution%20is%20to%20add,can%20do%20this%20with%20JavaScript.&text=You%20should%20add%20the%20hidden,element%20you%20want%20to%20animate.
+
+@keyframes fade-in {
+  from {opacity:0; transform: scale(.7,.7)}
+  to {opacity: 1;}
+}
+.fade-in-element {
+  animation: fade-in 1.4s;
+}
+.hidden {
+  opacity: 0;
+}
+
 // Import only what you need from Bulma
 @import "../node_modules/bulma/sass/utilities/initial-variables.sass";
 @import "../node_modules/bulma/sass/utilities/functions.sass";

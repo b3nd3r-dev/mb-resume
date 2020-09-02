@@ -1,21 +1,28 @@
 <div class="columns">
   <div class="column is-10 is-offset-1">
     <div class="box">
-      <div>
-        <a href="{{url_for('main.projectdetail', projectid=project.id)}}" class="title has-text-primary">
-          {{ project.title }}
-        </a>
-        {% for tag in project.tags %}
-        <a href="{{url_for('main.tagdetail', tagid=tag.id)}}" class="tag is-small is-dark is-family-secondary">
-          {{ tag.name }}
-        </a>
-        {% endfor %}
-      </div>
-      <a href="https://{{ project.project_link }}" class="subtitle is-family-secondary is-family-secondary">
-        {{ project.project_link }}
-      </a>
-      <div class="subtitle has-text-primary is-family-secondary is-family-secondary">
-        {{ project.short_description }}
+      <div class="columns">
+        <div class="column is-10">
+          <div>
+            <a href="{{url_for('main.projectdetail', projectid=project.id)}}" class="title has-text-primary">
+              {{ project.title }}
+            </a>
+
+          </div>
+          <a href="https://{{ project.project_link }}" class="subtitle is-family-secondary is-family-secondary">
+            {{ project.project_link }}
+          </a>
+          <div class="subtitle has-text-primary is-family-secondary is-family-secondary">
+            {{ project.short_description }}
+          </div>
+        </div>
+        <div class="column is-2">
+          {% for tag in project.tags %}
+          <a href="{{url_for('main.tagdetail', tagid=tag.id)}}" class="tag is-small is-dark is-family-secondary">
+            {{ tag.name }}
+          </a>
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>
