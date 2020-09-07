@@ -13,32 +13,40 @@
     </div>
 </section>
 <div class="columns pt-6">
-    <div class="column is-9 is-offset-1">
-        <div class="subtitle has-text-info">
+    <div class="column is-8 is-offset-1">
+        <div class="subtitle has-text-info" style="white-space: pre-line">
             {{ project.long_description }}
         </div>
     </div>
     <div class="column is-2">
-        <div class="py-3 has-text-centered">
-            <div class="subtitle is-size-6 has-text-primary mr-5 my-3">
-                Project Technologies:
+        <div class="card">
+            <div class="media py-3">
+                <div class="media-content">
+                    <div class="card-header-title">
+                        <div class="title has-text-centered has-text-primary is-size-4">Project Technologies:</div>
+                    </div>
+                    <div class="card-content">
+                        {% for tag in project.tags %}
+                        <span class="tag is-small is-link is-dark">
+                            {{ tag.name }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
-            {% for tag in project.tags %}
-            <span class="tag is-small is-link is-dark">
-                {{ tag.name }}
-            </span>
-
-            {% endfor %}
+            <div class="media py-3">
+                <div class="media-content">
+                    <div class="card-header-title">
+                        <div class="title has-text-centered has-text-primary is-size-4">Project Link:</div>
+                    </div>
+                    <div class="card-content">
+                        <a href="https://{{ project.project_link}}" class="subtitle is-size-6 has-text-link">
+                            {{ project.project_link }}
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="subtitle is-size-6 has-text-primary mr-5 my-3 has-text-centered">
-            Project Link:
-        </div>
-        <div class="mr-5 my-3">
-            <a href="https://{{ project.project_link}}" class="subtitle is-size-6 has-text-link">
-                {{ project.project_link }}
-            </a>
-        </div>
-
     </div>
 </div>
 {% include 'footer-base.html' %}

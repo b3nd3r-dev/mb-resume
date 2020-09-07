@@ -1,5 +1,8 @@
 from . import db
 from sqlalchemy.orm import relationship
+from flask_login import UserMixin
+from app.utils.password import hash_password, check_password
+from app import login
 
 
 class Project(db.Model):
@@ -10,16 +13,18 @@ class Project(db.Model):
     project_link = db.Column(db.String, nullable=True)
     short_description = db.Column(db.Text, nullable=False)
     long_description = db.Column(db.Text, nullable=False)
+    featured = db.Column(db.Boolean, default=False)
 
     # Relationships
     tags = relationship("Tag", secondary='project_tags',
                         back_populates='projects')
 
-    def __init__(self, title, short_description, long_description, project_link=None):
+    def __init__(self, title, short_description, long_description, featured, project_link=None):
         self.title = title
         self.project_link = project_link
         self.short_description = short_description
         self.long_description = long_description
+        self.featured = featured
 
     def __repr__(self):
         return f"Project {self.title} has {self.project_link}"
@@ -61,3 +66,47 @@ class ProjectTag(db.Model):
 
     def __repr__(self):
         return f"ProjectTag {self.project.title} with tag {self.tag.name}"
+
+
+class User(UserMixin, db.Model):
+    # Attributes
+    __tablename__ = "users"
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(64), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
+    salt = db.Column(db.String(128), nullable=False)
+
+    def __init__(self, username, email, password):
+        self.username = username
+        self.email = email
+        self.setPassword(password)
+        pass
+
+    def setPassword(self, password):
+        if password == '':
+            return self
+
+        # Returns <hashed_password>:<salt>
+        hashedPassword = hash_password(password)
+
+        # Returns [<hashed_password>, <salt>]
+        splitPassword = hashedPassword.split(':')
+
+        self.password_hash = splitPassword[0]  # <hashed_password>
+        self.salt = splitPassword[1]  # <salt>
+
+        return self
+
+    # def checkPassword(self, password):
+    #     if password == '':
+    #         return self
+
+    #     self.password = check_password(password)
+
+    #     return self
+
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))

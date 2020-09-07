@@ -26,6 +26,9 @@
         {{ form.long_description.label(class_='has-text-primary is-family-secondary') }}<br>
         {{ form.long_description (class_="textarea has-text-primary is-light my-2")}}
       </div>
+      <div class="control">
+        {{ form.featured.label (class_="has-text-primary")}} {{ form.featured }}
+      </div>
     </div>
     <div class="column is-4">
       {% with field=form.tag_name %}
@@ -37,6 +40,7 @@
     <div class="column is-8 is-offset-2">
       <div class="field is-grouped py-3">
         <div class="control ">
+
           {{ form.submit (class_='button is-success')}}
         </div>
         <div class="control">

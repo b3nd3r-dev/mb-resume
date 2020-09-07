@@ -1,0 +1,46 @@
+{% extends "bulma-base.html" %}
+{% set active_page = "register" %}
+{% block head %}{% endblock %}
+
+{% block content %}
+<div class="columns">
+  <div class="column is-4 is-offset-4">
+    <div class="title has-text-centered has-text-primary">Register</div>
+    <form action="" method="post" novalidate>
+      {{ form.hidden_tag() }}
+      <div class="subtitle">
+        {{ form.username.label (class_='subtitle has-text-primary')}} <br>
+        {{ form.username (class_='input has-background-link has-text-primary my-2') }}
+        {% for error in form.username.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </div>
+      <div class="subtitle">
+        {{ form.email.label (class_='subtitle has-text-primary')}} <br>
+        {{ form.email (class_='input has-background-link has-text-primary my-2') }}
+        {% for error in form.email.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </div>
+      <div class="subtitle">
+        {{ form.password.label (class_='subtitle has-text-primary')}} <br>
+        {{ form.password (class_='input has-background-link has-text-primary my-2') }}
+        {% for error in form.password.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </div>
+      <div class="subtitle">
+        {{ form.confirm_p.label (class_='subtitle has-text-primary')}} <br>
+        {{ form.confirm_p (class_='input has-background-link has-text-primary my-2') }}
+        {% for error in form.confirm_p.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </div>
+      <div class="subtitle">
+        {{ form.submit (class_='button is-success')}}
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -4,7 +4,8 @@
 
 {% block content %}
 <div class="title has-text-centered has-text-primary">Update Project</div>
-<form action="{{url_for('projects.update')}}" method="POST" novalidate>
+<div class="subtitle has-text-centered has-text-info">Please fill in every field, update is destructive process</div>
+<form action="{{url_for('projects.update', projectid=projectid)}}" method="POST" novalidate>
   {{ form.hidden_tag() }}
   <div class="columns pt-6">
     <div class="column is-6  is-offset-2">
@@ -25,6 +26,9 @@
       <div class="control">
         {{ form.long_description.label(class_='has-text-primary') }}<br>
         {{ form.long_description (class_="textarea has-text-primary is-light my-2")}}
+      </div>
+      <div class="control">
+        {{ form.featured.label (class_="has-text-primary")}} {{ form.featured }}
       </div>
     </div>
     <div class="column is-4">

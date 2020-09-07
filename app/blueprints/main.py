@@ -4,12 +4,13 @@ from flask import Blueprint, redirect, render_template, request, url_for
 
 from app import db
 from app.models import Project, Tag
+from app.forms import LoginForm
 
 main = Blueprint('main', __name__, template_folder='../templates')
 
 
 def chunks(lst, n):
-    """Yield successive n-sized chunks from lst."""
+    # """Yield successive n-sized chunks from lst."""
     for i in range(0, len(lst), n):
         yield lst[i:i + n]
 
@@ -18,8 +19,8 @@ def chunks(lst, n):
 def index():
 
     # Project Splitting
-    all_projects = Project.query.all()
-    split_project_list = list(chunks(all_projects, int(len(all_projects) / 2)))
+    feat_proj = Project.query.filter_by(featured=True).all()
+    split_project_list = list(chunks(feat_proj, int(len(feat_proj) / 2)))
     first_project_list = split_project_list[0]
     second_project_list = split_project_list[1]
 
@@ -72,9 +73,32 @@ def tagdetail(tagid):
     tag = Tag.query.filter_by(id=tagid).first()
     return render_template('tag-base.html', tag=tag, project=project)
 
-# @main.route('/test')
-# @main.route('/test/<poopy>')
-# def test(poopy='biatch'):
-#     somelist = [1,2,3,4,5]
-#     print (poopy)
-#     return render_template('test.html', somelist=somelist, peepee=poopy)
+
+@main.route('/login')
+def login():
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        login_username = form.username.data
+        login_password = form.password.data
+        login_remember = form.remember_me.data
+
+        # user_exists = Users.query.filter_by(username=login_username).first()
+
+        # if user_exists:
+        #     pass_exists = Users.query.filter_by(
+        #         password=login_password).first()
+        # else:
+        #     flash('Username or password is incorrect. Please try again')
+        #     return redirect(url_for('main.login'))
+
+        flash(f'Login requested for { login_username }')
+
+    return render_template('login.html', title='Sign In', form=form)
+
+    # @main.route('/test')
+    # @main.route('/test/<poopy>')
+    # def test(poopy='biatch'):
+    #     somelist = [1,2,3,4,5]
+    #     print (poopy)
+    #     return render_template('test.html', somelist=somelist, peepee=poopy)
