@@ -13,14 +13,18 @@
         {% for project in tag.projects %}
         <div class="box">
             <div>
-                <a class="title has-text-primary" href="#">
+                <a class="title has-text-primary" href="{{url_for('main.projectdetail', projectid=project.id)}}">
                     {{ project.title }}
                 </a>
+                {% if project.project_link %}
+                <!-- variable is not empty -->
+                <a href="https://{{ project.project_link }}" target="_blank"> <i class="fas fa-link"
+                        style="vertical-align: 3px;"></i></a>
+                {% else %}
+                <!-- variable is empty -->
+                {% endif %}
             </div>
-            <a class="subtitle is-size-6 pt-1" href="https://{{ project.project_link}}">
-                {{ project.project_link }}
-            </a>
-            <div class="subtitle pt-1">
+            <div class="subtitle pt-1 has-text-primary">
                 {{ project.short_description }}
             </div>
         </div>

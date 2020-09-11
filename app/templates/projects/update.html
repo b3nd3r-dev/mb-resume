@@ -1,13 +1,18 @@
 {% extends "bulma-base.html" %}
 {% set active_page = "projects_update" %}
-{% block head %}{% endblock %}
+{% block headblock %}
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+{% endblock %}
 
 {% block content %}
 <div class="title has-text-centered has-text-primary">Update Project</div>
-<div class="subtitle has-text-centered has-text-info">Please fill in every field, update is destructive process</div>
 <form action="{{url_for('projects.update', projectid=projectid)}}" method="POST" novalidate>
   {{ form.hidden_tag() }}
-  <div class="columns pt-6">
+  <div class="columns pt-6 has-background-white">
     <div class="column is-6  is-offset-2">
       <div class="field">
         <div class="control">
@@ -20,19 +25,54 @@
         </div>
       </div>
       <div class="control">
-        {{ form.short_description.label(class_='has-text-primary') }}<br>
-        {{ form.short_description (class_="textarea has-text-primary is-light my-2")}}
+        {{ form.short_description.label(class_='has-text-primary is-family-secondary') }}<br>
+        {{ form.short_description (class_="textarea has-text-primary is-light my-2 has-summernote", id='shortdescription')}}
       </div>
+      <script>
+        $('#shortdescription').summernote({
+          placeholder: 'Hello stand alone ui',
+          tabsize: 2,
+          height: 120,
+          toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+          ]
+        });
+      </script>
       <div class="control">
-        {{ form.long_description.label(class_='has-text-primary') }}<br>
-        {{ form.long_description (class_="textarea has-text-primary is-light my-2")}}
+        {{ form.long_description.label(class_='has-text-primary is-family-secondary') }}<br>
+        {{ form.long_description (class_="textarea has-text-primary is-light my-2 has-summernote", id='longdescription')}}
       </div>
+      <script>
+        $('#longdescription').summernote({
+          placeholder: 'Hello stand alone ui',
+          tabsize: 2,
+          height: 120,
+          toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+          ]
+        });
+      </script>
       <div class="control">
         {{ form.featured.label (class_="has-text-primary")}} {{ form.featured }}
       </div>
     </div>
     <div class="column is-4">
       {% with field=form.tag_name %}
+      {% include 'bulma-forms/select-multiple-field.html'%}
+      {% endwith %}
+      {% with field=form.collab_name %}
       {% include 'bulma-forms/select-multiple-field.html'%}
       {% endwith %}
     </div>

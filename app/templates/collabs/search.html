@@ -1,0 +1,26 @@
+{% extends "bulma-base.html" %}
+{% set active_page = "projects_update" %}
+{% block head %}{% endblock %}
+
+{% block content %}
+<div class="title has-text-centered has-text-primary">Search for Collaborator</div>
+<form action="{{url_for('collabs.search')}}" method="POST" novalidate>
+  {{ form.hidden_tag() }}
+  <div class="columns pt-6">
+    <div class="column is-6  is-offset-2">
+      <div class="field">
+        <div class="control">
+          {{ form.fname_search.label(class_='subtitle has-text-primary')}}<br>
+          {{ form.fname_search (class_='input has-background-link has-text-primary my-2')}}
+        </div>
+        <div class="field">
+          <div class="control">
+            {{ form.lname_search.label(class_='subtitle has-text-primary')}}<br>
+            {{ form.lname_search (class_='input has-background-link has-text-primary my-2')}}
+          </div>
+          <div class="control ">
+            {{ form.search (class_='button is-success')}}
+          </div>
+        </div>
+</form>
+{% endblock %}

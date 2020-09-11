@@ -1,7 +1,7 @@
 {% if tag.knowledge == 'fluent' %}
-<span class="mx-3 has-text-link">{{ tag.name }}</span>
+<a href="{{url_for('main.tagdetail', tagid=tag.id)}}" class=" mx-3 has-text-link">{{ tag.name }}</a>
 {% elif tag.knowledge == 'proficient' %}
-<span class="mx-3 has-text-white">{{ tag.name }}</span>
+<a href="{{url_for('main.tagdetail', tagid=tag.id)}}" class=" mx-3 has-text-white">{{ tag.name }}</a>
 {% elif tag.knowledge == 'familiar' %}
-<span class="mx-3 has-text-grey">{{ tag.name }}</span>
+<a href="{{url_for('main.tagdetail', tagid=tag.id)}}" class=" mx-3 has-text-grey">{{ tag.name }}</a>
 {% endif %}

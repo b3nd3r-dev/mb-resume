@@ -18,6 +18,8 @@ class Project(db.Model):
     # Relationships
     tags = relationship("Tag", secondary='project_tags',
                         back_populates='projects')
+    collabs = relationship("Collab", secondary='project_collabs',
+                           back_populates='projects')
 
     def __init__(self, title, short_description, long_description, featured, project_link=None):
         self.title = title
@@ -27,7 +29,7 @@ class Project(db.Model):
         self.featured = featured
 
     def __repr__(self):
-        return f"Project {self.title} has {self.project_link}"
+        return f"Project {self.title} has link {self.project_link}"
 
 
 class Tag(db.Model):
@@ -52,8 +54,7 @@ class Tag(db.Model):
 class ProjectTag(db.Model):
     # Attributes
     __tablename__ = "project_tags"
-    project_id = db.Column(db.Integer, db.ForeignKey(
-        'projects.id'), primary_key=True)
+    project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), primary_key=True)
     tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), primary_key=True)
 
     # Relationships
@@ -68,18 +69,52 @@ class ProjectTag(db.Model):
         return f"ProjectTag {self.project.title} with tag {self.tag.name}"
 
 
+class Collab(db.Model):
+    __tablename__ = 'collabs'
+    # Attributes
+    id = db.Column(db.Integer, primary_key=True)
+    fname = db.Column(db.String(30), nullable=False)
+    lname = db.Column(db.String(30), nullable=False)
+    name = db.Column(db.String(61), nullable=False)
+    clink = db.Column(db.String, nullable=True)
+
+    # Relationships
+    projects = relationship(
+        'Project', secondary='project_collabs', back_populates="collabs")
+
+    def __init__(self, fname, lname, name, clink=None):
+        self.fname = fname
+        self.lname = lname
+        self.name = name
+
+    def __repr__(self):
+        return f"Collaborator {self.fname} last name is {self.lname} which is { self.name }"
+
+
+class ProjectCollab(db.Model):
+    # Attributes
+    __tablename__ = "project_collabs"
+    project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), primary_key=True)
+    collab_id = db.Column(db.Integer, db.ForeignKey('collabs.id'), primary_key=True)
+
+    def __init__(self, project, collab):
+        self.collab = collab
+        self.project = project
+
+    def __repr__(self):
+        return f"ProjectTag {self.project.title} with collab {self.collab.fname}"
+
+
 class User(UserMixin, db.Model):
     # Attributes
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     salt = db.Column(db.String(128), nullable=False)
 
-    def __init__(self, username, email, password):
+    def __init__(self, username, password):
         self.username = username
-        self.email = email
         self.setPassword(password)
         pass
 
@@ -97,14 +132,6 @@ class User(UserMixin, db.Model):
         self.salt = splitPassword[1]  # <salt>
 
         return self
-
-    # def checkPassword(self, password):
-    #     if password == '':
-    #         return self
-
-    #     self.password = check_password(password)
-
-    #     return self
 
 
 @login.user_loader

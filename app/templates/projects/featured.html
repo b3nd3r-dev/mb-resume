@@ -17,7 +17,7 @@
           </div>
           <div class="has-text-centered pb-1">
             <p class="subtitle is-6 has-text-centered has-text-link">
-              <a href="https://{{ project.project_link }}">
+              <a href="https://{{ project.project_link }}" target="_blank">
                 {{ project.project_link }}
               </a>
             </p>
@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="content has-text-centered has-text-info">
-        {{ project.short_description }}
+        {{ project.short_description | safe}}
         <br>
       </div>
     </div>

@@ -29,22 +29,12 @@ tags = [
 
 
 projects = [
-    {'title': 'Travis on Z',
-     'project_link': 'github.com/bendermIBM/travis-cookbooks',
-     'short_description': 'Enabling the tool that enables the tools - on Linux on Z.',
-     'long_description': 'Enabling the tool that enables the tools - on Linux on Z.LONG VERSION', 'featured': True},
+    {'title': 'Viral Education/TALOS',
+     'project_link': 'github.com/maxbbender/Viral-Education',
+     'short_description': 'TALOS (Textual Augmentation Learning of Semantics), a Web-based platform for vocabulary acquisition that provides capabilities for analytics to support learning of vocabulary. This software prototype, currently in beta-testing, supports differentiated learning as well as common coursework, allowing users to contribute and access text while promoting ease of reading.',
+     'long_description': 'The first real website I made for someone other than myself. Written in PHP in a summer alongside working at the Marist College HelpDesk, this website was part of a research project that funded me to present at INTED in Madrid, Spain. Alongside two professors, I gave a presentation on using technology to enhance learning in an un-obtrusive fashion with a concentration in learning foreign languages.'
 
-    {'title': 'IBM Cloud Private',
-     'short_description': 'IBM Cloud™ Private is a reliable and scalable cloud platform that runs on your infrastructure. It’s built on open source frameworks, like containers, Kubernetes and Cloud Foundry.',
-     'long_description': 'IBM Cloud™ Private is a reliable and scalable cloud platform that runs on your infrastructure. It’s built on open source frameworks, like containers, Kubernetes and Cloud Foundry.LONG VERSION',
-     'project_link': 'https://www.ibm.com/cloud/private',
-     'featured': True
-     },
-
-    {'title': 'NexNest',
-     'project_link': 'github.com/maxbbender/nexnest',
-     'short_description': 'Student housing portal built with love by @Max Bender and @Mike Mcginnis',
-     'long_description': 'I had written a couple websites with Flask in school, but wanted to learn more and read up on Miguel Grinberg’s Flask tutorial and was exposed to a new set of best practices. Approached with an idea for a rental website targeted at students we designed and implemented a website written in Python. Backed by a fairly complex database that featured notifications and recursive comments, SQLAlchemy handles most of the direct SQL queries the complex JOINs.',
+     'Backed by a MySQL database this is where I learned a lot about security in the modern age of web-development. Certain vulnerabilities such as SQL Injections and XSS were ones that I focused on researching because I knew they were some of the more common avenues of attack. Looking back on it however I have already noticed some mistakes but I was happy with how it came out.',
      'featured': True
      },
 
@@ -61,14 +51,31 @@ projects = [
      'featured': False
      },
 
-    {'title': 'Viral Education/TALOS',
-     'project_link': 'github.com/maxbbender/Viral-Education',
-     'short_description': 'TALOS (Textual Augmentation Learning of Semantics), a Web-based platform for vocabulary acquisition that provides capabilities for analytics to support learning of vocabulary. This software prototype, currently in beta-testing, supports differentiated learning as well as common coursework, allowing users to contribute and access text while promoting ease of reading.',
-     'long_description': 'The first real website I made for someone other than myself. Written in PHP in a summer alongside working at the Marist College HelpDesk, this website was part of a research project that funded me to present at INTED in Madrid, Spain. Alongside two professors, I gave a presentation on using technology to enhance learning in an un-obtrusive fashion with a concentration in learning foreign languages.'
-
-     'Backed by a MySQL database this is where I learned a lot about security in the modern age of web-development. Certain vulnerabilities such as SQL Injections and XSS were ones that I focused on researching because I knew they were some of the more common avenues of attack. Looking back on it however I have already noticed some mistakes but I was happy with how it came out.',
+    {'title': 'NexNest',
+     'project_link': 'github.com/maxbbender/nexnest',
+     'short_description': 'Student housing portal built with love by @Max Bender and @Mike Mcginnis',
+     'long_description': 'I had written a couple websites with Flask in school, but wanted to learn more and read up on Miguel Grinberg’s Flask tutorial and was exposed to a new set of best practices. Approached with an idea for a rental website targeted at students we designed and implemented a website written in Python. Backed by a fairly complex database that featured notifications and recursive comments, SQLAlchemy handles most of the direct SQL queries the complex JOINs.',
      'featured': True
-     }
+     },
+
+    {'title': 'IBM Cloud Private',
+     'short_description': 'IBM Cloud™ Private is a reliable and scalable cloud platform that runs on your infrastructure. It’s built on open source frameworks, like containers, Kubernetes and Cloud Foundry.',
+     'long_description': 'IBM Cloud™ Private is a reliable and scalable cloud platform that runs on your infrastructure. It’s built on open source frameworks, like containers, Kubernetes and Cloud Foundry.LONG VERSION',
+     'project_link': 'https://www.ibm.com/cloud/private',
+     'featured': True
+     },
+
+    {'title': 'Travis on Z',
+     'project_link': 'github.com/bendermIBM/travis-cookbooks',
+     'short_description': 'Enabling the tool that enables the tools - on Linux on Z.',
+     'long_description': 'Enabling the tool that enables the tools - on Linux on Z.LONG VERSION', 'featured': True}
+]
+
+collabs = [
+    {'fname': 'Max', 'lname': 'Bender', 'name': 'MaxBender', 'clink': 'linkMB'},
+    {'fname': 'Zac', 'lname': 'Bender', 'name': 'ZacBender', 'clink': 'linkZB'},
+    {'fname': 'Kasey', 'lname': 'Leahy', 'name': 'KaseyLeahy', 'clink': 'linkKL'},
+    {'fname': 'Tom', 'lname': 'Rowles', 'name': 'TomRowles', 'clink': 'linkTR'},
 ]
 
 
@@ -120,5 +127,32 @@ def seed_projects(db):
 
             if not project:
                 db.session.add(new_project)
+
+        db.session.commit()
+
+
+def seed_collabs(db):
+
+    # Generate a list of tags to be seeded
+    collab_list = []
+
+    for collab in collabs:
+        new_collab = Collab(collab['fname'],
+                            collab['lname'],
+                            collab['name'],
+                            collab['clink']
+                            )
+        collab_list.append(new_collab)
+
+        print(collab_list)
+
+        # Add Project to Database
+        for collab in collab_list:
+
+            # First check if Project exists
+            collab = Collab.query.filter_by(name=collab.name).first()
+
+            if not collab:
+                db.session.add(new_collab)
 
         db.session.commit()

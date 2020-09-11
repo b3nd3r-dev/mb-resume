@@ -4,15 +4,21 @@
 
 {% block content %}
 <div class="columns">
-    <div class="column is-10 is-offset-1">
-        <div class="title has-text-primary has-text-cenetered">PROJECTS</div>
+    <div class="column is-10 is-offset-1 has-text-centered">
+        <div class="title has-text-primary">PROJECTS</div>
     </div>
 </div>
 
 <div>
-    {% for project in all_projects %}
-    {% include 'project-base.html' %}
-    {% endfor %}
+    <div class="columns">
+        <div class="column">
+            <div class="column is-8 is-offset-2 ">
+                {% for project in all_projects %}
+                {% include 'project-base.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 
 {% include 'footer-base.html' %}

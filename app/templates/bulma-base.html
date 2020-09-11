@@ -7,15 +7,10 @@
     <title>Max Bender</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyles.css')}}" />
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    {% block style %}{% endblock %} '
-
-
-    <style>
-        .is-vertical-center {
-            display: flex;
-            align-items: center;
-        }
-    </style>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    {% block style %}{% endblock %}
     {% block headblock %}{% endblock %}
 </head>
 
@@ -93,6 +88,22 @@
             init();
             checkPosition();
         })();
+    </script>
+    <script>
+        function myFunction() {
+            /* Get the text field */
+            var copyText = document.getElementById("myInput");
+
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+
+            /* Alert the copied text */
+            alert("Copied the text: " + copyText.value);
+        }
     </script>
     {% block script %}{% endblock %}
 </body>

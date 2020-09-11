@@ -1,7 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&family=Titillium+Web&display=swap");
+.is-vertical-center {
+  display: flex;
+  align-items: center; }
+
+.has-text-vert-centered {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center; }
+
 .has-image-centered {
   margin-left: auto;
   margin-right: auto; }
+
+.padding-image {
+  padding-left: 8%;
+  padding-right: 12%;
+  padding-bottom: 1%; }
+
+.is-boxed-in {
+  border-color: #909090;
+  border-style: none;
+  border-width: 0px;
+  margin: 1%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 100vh; }
+
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%; }
+
+#wrapper {
+  flex: 1; }
 
 section {
   position: relative;
@@ -91,25 +123,8 @@ section .scroll2 div:nth-child(2) {
     -webkit-transform: scale(0.9);
     transform: scale(0.9); } }
 
-.hvr-pulse {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0); }
-
-.hvr-pulse:hover, .hvr-pulse:focus, .hvr-pulse:active {
-  -webkit-animation-name: hvr-pulse;
-  animation-name: hvr-pulse;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite; }
-
-/* Shrink */
-.hvr-shrink {
+/* Forward */
+.hvr-forward {
   display: inline-block;
   vertical-align: middle;
   -webkit-transform: perspective(1px) translateZ(0);
@@ -120,9 +135,40 @@ section .scroll2 div:nth-child(2) {
   -webkit-transition-property: transform;
   transition-property: transform; }
 
-.hvr-shrink:hover, .hvr-shrink:focus, .hvr-shrink:active {
-  -webkit-transform: scale(0.9);
-  transform: scale(0.9); }
+.hvr-forward:hover, .hvr-forward:focus, .hvr-forward:active {
+  -webkit-transform: translateX(8px);
+  transform: translateX(8px); }
+
+/* Outline In */
+.hvr-outline-in {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative; }
+
+.hvr-outline-in:before {
+  pointer-events: none;
+  content: '';
+  position: absolute;
+  border: #479761 solid 2px;
+  top: -16px;
+  right: -16px;
+  bottom: -16px;
+  left: -16px;
+  opacity: 0;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: top, right, bottom, left;
+  transition-property: top, right, bottom, left; }
+
+.hvr-outline-in:hover:before, .hvr-outline-in:focus:before, .hvr-outline-in:active:before {
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -8px;
+  opacity: 1; }
 
 @keyframes spinAround {
   from {
@@ -495,7 +541,7 @@ table th {
   color: #363636; }
 
 .box {
-  background-color: #479761;
+  background-color: #19181A;
   border-radius: 6px;
   box-shadow: 0 0.5em 1em -0.125em rgba(25, 24, 26, 0.1), 0 0px 0 1px rgba(25, 24, 26, 0.02);
   color: #4a4a4a;

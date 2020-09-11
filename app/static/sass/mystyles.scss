@@ -9,7 +9,7 @@ $green: #479761;
 $tan: #CEBC81;
 $purple: #A16E83;
 $beige: #B19F9E;
-$secondary: #254E58;
+$secondary: #1a1819;
 $theme-white: #bfbfbf;
 $theme-gray:#909090;
 
@@ -25,7 +25,7 @@ $widescreen-enabled: false;
 $fullhd-enabled: false;
 $link-hover: $purple;
 $navbar-item-hover: $purple;
-$box-background-color: $green;
+$box-background-color: $black;
 $scheme-main: $black;
 $navbar-burger-color: $green;
 $textarea-vertical-align: top;
@@ -39,10 +39,48 @@ $input-shadow: none;
 $dimensions: 16 24 32 48 64 96 128 200 256;
 $primary-light: findLightColor($primary);
 
+.is-vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+.has-text-vert-centered{
+  display: flex;
+  margin: auto;
+  align-items:center;
+  justify-content:center;
+}
+
 .has-image-centered {
     margin-left: auto;
     margin-right: auto;
   }
+
+.padding-image{
+  padding-left: 8%;
+  padding-right: 12%;
+  padding-bottom: 1%;
+}
+
+.is-boxed-in{
+  border-color: $theme-gray;
+  border-style: none;
+  border-width: 0px;
+  margin: 1%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+#wrapper {
+  flex: 1;
+}
 
 // TAG SCROLLING
 section{
@@ -58,12 +96,21 @@ section .scroll div{
   white-space: nowrap;
   text-transform: uppercase;
   animation: animate 50s linear infinite;
-  animation-delay: -50s; 
+  animation-delay: -50s;
 }
 section .scroll div:nth-child(2){
   animation: animate2 50s linear infinite;
   animation-delay: -25s; 
 }
+
+// section .scroll {
+//   @for $i from 1 through 2{
+//     div:nth-child(#{$i}):hover{
+//       animation-play-state: paused;
+//     }
+//   }
+// }
+
 @keyframes animate{
   0%
   {
@@ -84,6 +131,7 @@ section .scroll div:nth-child(2){
     transform:translatex(-200%);
   }
 }
+
 // REVERSE TAG SCROLL
 section .scroll2{
   width: 100%;
@@ -100,6 +148,7 @@ section .scroll2 div:nth-child(2){
   animation: animate4 50s linear infinite;
   animation-delay: -25s; 
 }
+
 @keyframes animate3{
   0%
   {
@@ -156,26 +205,8 @@ section .scroll2 div:nth-child(2){
     transform: scale(0.9);
   }
 }
-.hvr-pulse {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-}
-.hvr-pulse:hover, .hvr-pulse:focus, .hvr-pulse:active {
-  -webkit-animation-name: hvr-pulse;
-  animation-name: hvr-pulse;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-}
-
-/* Shrink */
-.hvr-shrink {
+/* Forward */
+.hvr-forward {
   display: inline-block;
   vertical-align: middle;
   -webkit-transform: perspective(1px) translateZ(0);
@@ -186,9 +217,41 @@ section .scroll2 div:nth-child(2){
   -webkit-transition-property: transform;
   transition-property: transform;
 }
-.hvr-shrink:hover, .hvr-shrink:focus, .hvr-shrink:active {
-  -webkit-transform: scale(0.9);
-  transform: scale(0.9);
+.hvr-forward:hover, .hvr-forward:focus, .hvr-forward:active {
+  -webkit-transform: translateX(8px);
+  transform: translateX(8px);
+}
+
+/* Outline In */
+.hvr-outline-in {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+}
+.hvr-outline-in:before {
+  pointer-events: none;
+  content: '';
+  position: absolute;
+  border: $link solid 2px;
+  top: -16px;
+  right: -16px;
+  bottom: -16px;
+  left: -16px;
+  opacity: 0;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: top, right, bottom, left;
+  transition-property: top, right, bottom, left;
+}
+.hvr-outline-in:hover:before, .hvr-outline-in:focus:before, .hvr-outline-in:active:before {
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -8px;
+  opacity: 1;
 }
 
 

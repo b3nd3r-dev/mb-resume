@@ -31,17 +31,55 @@ You have to set some environment variables by using `export ENVAR=VALUE` or crea
 2. To confirm reload page and ensure is down
 
 ## Todo
+V2.0
+Dyanmic Resume download
+Index elements in database
+
+Questions for max
+need resume for download button
+
+
+AS OF 9/7/20 - REVEIW WITH MAX
+Sticky footer
+ticker on hover scroll stops 
+collaborators field on right side = project details - link to github profiles little avatar or their name like discord TP in circle
+show tags and collabs already in use on update page
+
+COMPLETED -- click email copies to clipboard - footer
+COMPLETED -- open link to new tabs not current
+COMPLETED -- sticky footer
+COMPLETED -- ticker links to tag detail page 
+COMPLETED -- padding to index picture at small resolution
+COMPLETED -- space under principal engineer needs to be fixed - centered
+COMPLETED -- signify featured on projects page 
+COMPLETED -- limit featured projects to three per row
+COMPLETED -- link to pages on education/experience
+COMPLETED -- footer: linked in icon
+
+PROJECT PAGE
+COMPLETED -- don't like blocks of green - less green
+COMPLETED -- tags under title
+COMPLETED -- place link elsewhere - with a standard link icon
+
+PROJECT DESCRIPTION:
+COMPLETED -- no green hero 
+COMPELTED -- project link with icon // do both to see icon looks weird
+
+TAG DETAIL:
+COMPLETED -- same as project list no green
+
+Project CRUD:
+editor with text - bold, underlineable, etc  wysiwyg editor
+----
 AS OF 9/2/20
-Need twitter profile link
-any other links in footer
-Login to view CRUD menus
+COMPLETED -- Need twitter profile link
+COMPLETED -- any other links in footer
+COMPLETED -- Login to view CRUD menus
 COMPLETED -- .textarea updates - spacing and vertical align
-Logo
-Updated Picture
-click email copies to clipboard - footer
-download button for resume
-tag page - create it
-links need to be actual links around page for external sites - project pages 
+COMPELTED -- Logo
+COMPLETED -- Updated Picture
+COMPLETED -- tag page - create it
+COMPLETED -- links need to be actual links around page for external sites - project pages 
 
 ----
 single page to show topics 

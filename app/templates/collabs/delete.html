@@ -1,0 +1,26 @@
+{% extends "bulma-base.html" %}
+{% set active_page = "collabs_delete" %}
+{% block head %}{% endblock %}
+
+{% block content %}
+<div class="title has-text-centered has-text-primary">Delete Collaborator</div>
+<form action="{{url_for('collabs.delete')}}" method="POST" novalidate>
+  {{ form.hidden_tag() }}
+  <div class="columns pt-6">
+    <div class="column is-6  is-offset-2">
+      <div class="field">
+        <div class="control">
+          {{ form.fname.label(class_='subtitle has-text-primary')}}<br>
+          {{ form.fname (class_='input has-background-link has-text-primary my-2')}}
+        </div>
+        <div class="field">
+          <div class="control">
+            {{ form.lname.label(class_='subtitle has-text-primary')}}<br>
+            {{ form.lname (class_='input has-background-link has-text-primary my-2')}}
+          </div>
+          <div class="control ">
+            {{ form.submit (class_='button is-success')}}
+          </div>
+        </div>
+</form>
+{% endblock %}

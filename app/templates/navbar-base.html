@@ -81,6 +81,21 @@
                     </a>
                 </div>
             </div>
+            <!-- COLLABS CRUD -->
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link has-text-primary">Collabs</a>
+                <div class="navbar-dropdown">
+                    <a href="{{ url_for('collabs.create') }}" class="navbar-item has-text-primary">
+                        Create
+                    </a>
+                    <a href="{{ url_for('collabs.search') }}" class="navbar-item has-text-primary">
+                        Update
+                    </a>
+                    <a href="{{ url_for('collabs.delete') }}" class="navbar-item has-text-primary">
+                        Delete
+                    </a>
+                </div>
+            </div>
             <a href="{{ url_for('user.logout') }}" class="navbar-item has-text-primary">
                 Logout
             </a>

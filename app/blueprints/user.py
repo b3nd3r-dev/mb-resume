@@ -20,16 +20,13 @@ def register():
         if form.validate():
 
             new_username = form.username.data
-            new_email = form.email.data
             new_password = form.password.data
 
             user_exist_username = User.query.filter_by(username=new_username).first()
-            user_exist_email = User.query.filter_by(email=new_email).first()
 
             # if user does not exist
-            if not user_exist_username and not user_exist_email:
+            if not user_exist_username:
                 new_user = User(username=new_username,
-                                email=new_email,
                                 password=new_password
                                 )
                 db.session.add(new_user)
