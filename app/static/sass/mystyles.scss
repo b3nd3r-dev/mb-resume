@@ -39,6 +39,20 @@ $input-shadow: none;
 $dimensions: 16 24 32 48 64 96 128 200 256;
 $primary-light: findLightColor($primary);
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper{
+  min-height: 100%;
+  margin-bottom: -50px;
+}
+
+.footer,
+.push {
+  height: 30px;
+}
+
 .is-vertical-center {
   display: flex;
   align-items: center;

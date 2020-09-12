@@ -40,10 +40,10 @@ need resume for download button
 
 
 AS OF 9/7/20 - REVEIW WITH MAX
-Sticky footer
 ticker on hover scroll stops 
 show tags and collabs already in use on update page
 
+COMPLETED -- Sticky footer
 COMPELTED -- collaborators field on right side = project details - link to github profiles little avatar or their name like discord TP in circle
 COMPLETED -- click email copies to clipboard - footer
 COMPLETED -- open link to new tabs not current
