@@ -27,7 +27,6 @@ def make_shell_context():
     seed_projects(db)
     seed_collabs(db)
     return dict(db=db, Project=Project, Tag=Tag, ProjectTag=ProjectTag, Collab=Collab, ProjectCollab=ProjectCollab)
-    # Collab = Collab, ProjectCollab = ProjectCollab
 
 
 @app.cli.command()
