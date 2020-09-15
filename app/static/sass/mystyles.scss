@@ -105,17 +105,27 @@ section .scroll{
   width: 100%;
   display: flex;
 }
+
+
+
 section .scroll div{
   font-size: 4em;
   white-space: nowrap;
   text-transform: uppercase;
-  animation: animate 50s linear infinite;
-  animation-delay: -50s;
+  animation: animate 60s linear infinite;
+  animation-delay: -60s;
 }
 section .scroll div:nth-child(2){
-  animation: animate2 50s linear infinite;
-  animation-delay: -25s; 
+  animation: animate2 60s linear infinite;
+  animation-delay: -30s;
 }
+
+// section .scroll div:hover{
+//   animation-play-state: paused;
+//   div:nth-child(2){
+//     animate2: animation-play-state: paused;
+//   }
+// }
 
 // section .scroll {
 //   @for $i from 1 through 2{
@@ -127,11 +137,11 @@ section .scroll div:nth-child(2){
 
 @keyframes animate{
   0%
-  {
+  { 
     transform:translatex(100%);
   }
   100%
-  {
+  { 
     transform:translatex(-100%);
   }
 }
@@ -155,12 +165,12 @@ section .scroll2 div{
   font-size: 4em;
   white-space: nowrap;
   text-transform: uppercase;
-  animation: animate3 50s linear infinite;
-  animation-delay: -50s; 
+  animation: animate3 60s linear infinite;
+  animation-delay: -60s; 
 }
 section .scroll2 div:nth-child(2){
-  animation: animate4 50s linear infinite;
-  animation-delay: -25s; 
+  animation: animate4 60s linear infinite;
+  animation-delay: -30s; 
 }
 
 @keyframes animate3{

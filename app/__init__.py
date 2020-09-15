@@ -4,11 +4,11 @@ from os import environ
 from os.path import dirname, exists, join
 
 from config import config
-from flask_login import LoginManager
 
 # Flask
 from flask import Flask, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 db = SQLAlchemy()
 login = LoginManager()
@@ -17,6 +17,7 @@ login = LoginManager()
 def createApp(configName):
     app = Flask(__name__)
     app.config.from_object(config[configName])
+    app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 
     config[configName].init_app(app)
     db.init_app(app)

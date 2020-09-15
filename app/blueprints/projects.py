@@ -54,8 +54,6 @@ def create():
 
                 # APPENDING COLLABS TO PROJECT
                 for collab in new_project_collabs:
-                    print(collab)
-                    print(type(collab))
                     collabtoadd = Collab.query.filter(func.lower(Collab.name) == collab).first()
                     if collabtoadd:
                         new_project.collabs.append(collabtoadd)
@@ -139,10 +137,14 @@ def update(projectid):
         else:
             flash(f"Project { project.title} was not updated", "error")
     else:
-        print('Update form did not validate')
         print(form.errors.items())
 
+    # query tag list for tags already attached
+
     cur_proj = Project.query.filter_by(id=projectid).first()
+    print('this thing here')
+    print(cur_proj.tags)
+    print(type(cur_proj.tags))
 
     # Initial : User -> View -> Form Gets updated from DB -> If Post or If Get this was with the cur project grabs at the top of function
     # POST : User -> View -> POSTING (DON'T UPDATE FORM) -> Update Object
@@ -154,6 +156,7 @@ def update(projectid):
     form.long_description.data = cur_proj.long_description
     form.featured.data = cur_proj.featured
     form.project_link.data = cur_proj.project_link
+
     form.tag_name.data = cur_proj.tags
     form.collab_name.data = cur_proj.collabs
     return render_template('projects/update.html', form=form, projectid=projectid)
@@ -195,3 +198,16 @@ def GetCollabChoices(all_collabs):
         collab_choices.append((collab.name.lower(), collab.name))
 
     return collab_choices
+
+
+def FilterTagChoices(all_tags, cur_tags):
+    filter_tag_choices = []
+    print(type(cur_tags))
+    for tag in all_tags:
+        tagss = Tag.query.filter_by(name == (tag.name.lower(), tag.name)).first()
+        print(tagss)
+        # if tagss:
+        #     filter_tag_choices.append(tag)
+        # else:
+        #     pass
+    return filter_tag_choices

@@ -59,12 +59,9 @@
             <span class="has-text-primary ml-5">PROFICIENT </span>
             <span class="has-text-secondary ml-5">FAMILAR</span>
         </div>
-        <div id='scroll1' class="scroll text1 has-text-primary">
-            <div id="scrollingdiv1">
-                {% for tag in first_tag_list %}{% include 'elements/tag.html' %}{% endfor %}
-            </div>
-            <div id="scrollingdiv2"> {% for tag in first_tag_list %}{% include 'elements/tag.html' %}{% endfor %}
-            </div>
+        <div class="scroll text1 has-text-primary">
+            <div>{% for tag in first_tag_list %}{% include 'elements/tag.html' %}{% endfor %}</div>
+            <div>{% for tag in first_tag_list %}{% include 'elements/tag.html' %}{% endfor %}</div>
         </div>
         <div class="scroll2 text1 has-text-primary">
             <div>{% for tag in second_tag_list %}{% include 'elements/tag.html' %}{% endfor %}</div>

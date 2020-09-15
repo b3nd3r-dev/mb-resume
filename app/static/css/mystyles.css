@@ -59,12 +59,12 @@ section .scroll div {
   font-size: 4em;
   white-space: nowrap;
   text-transform: uppercase;
-  animation: animate 50s linear infinite;
-  animation-delay: -50s; }
+  animation: animate 60s linear infinite;
+  animation-delay: -60s; }
 
 section .scroll div:nth-child(2) {
-  animation: animate2 50s linear infinite;
-  animation-delay: -25s; }
+  animation: animate2 60s linear infinite;
+  animation-delay: -30s; }
 
 @keyframes animate {
   0% {
@@ -86,12 +86,12 @@ section .scroll2 div {
   font-size: 4em;
   white-space: nowrap;
   text-transform: uppercase;
-  animation: animate3 50s linear infinite;
-  animation-delay: -50s; }
+  animation: animate3 60s linear infinite;
+  animation-delay: -60s; }
 
 section .scroll2 div:nth-child(2) {
-  animation: animate4 50s linear infinite;
-  animation-delay: -25s; }
+  animation: animate4 60s linear infinite;
+  animation-delay: -30s; }
 
 @keyframes animate3 {
   0% {
