@@ -1,8 +1,9 @@
 from . import db
 from sqlalchemy.orm import relationship
-from flask_login import UserMixin
+from flask_login import UserMixin, current_user
 from app.utils.password import hash_password, check_password
 from app import login
+from flask_admin.contrib.sqla import ModelView
 
 
 class Project(db.Model):
@@ -137,3 +138,8 @@ class User(UserMixin, db.Model):
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
+
+class AdminModelView(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated

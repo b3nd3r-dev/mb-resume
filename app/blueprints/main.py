@@ -1,10 +1,11 @@
 from random import shuffle
 
 from flask import Blueprint, redirect, render_template, request, url_for, flash
-
+from flask_login import logout_user, login_user, current_user
 from app import db
-from app.models import Project, Tag
+from app.models import Project, Tag, User
 from app.forms import LoginForm
+from app.utils.password import check_password
 
 main = Blueprint('main', __name__, template_folder='../templates')
 
@@ -17,7 +18,6 @@ def chunks(lst, n):
 
 @main.route('/')
 def index():
-
     # Project Splitting
     feat_proj = Project.query.filter_by(featured=True).all()
     print(len(feat_proj))
@@ -36,7 +36,8 @@ def index():
         all_tags = Tag.query.all()
         shuffle(all_tags)
 
-        # Split tags into 3 different lists https://stackoverflow.com/questions/312443/how-do-you-split-a-list-into-evenly-sized-chunks
+        # Split tags into 3 different lists
+        # https://stackoverflow.com/questions/312443/how-do-you-split-a-list-into-evenly-sized-chunks
         split_tag_list = list(chunks(all_tags, int(len(all_tags) / 3)))
 
         first_tag_list = split_tag_list[0]
@@ -53,11 +54,6 @@ def index():
                            first_project_list=first_project_list,
                            second_project_list=second_project_list
                            )
-
-
-@ main.route('/contact')
-def contact():
-    return render_template('contact.html')
 
 
 @ main.route('/project')
@@ -95,31 +91,33 @@ def tagdetail(tagid):
     return render_template('tag-base.html', tag=tag, project=project)
 
 
-@ main.route('/login')
+@ main.route('/login', methods=['GET', 'POST'])
 def login():
-    form = LoginForm()
+    if current_user.is_authenticated:
+        flash('Already logged in')
+        return redirect(url_for("main.index"))
 
-    if form.validate_on_submit():
-        login_username = form.username.data
-        login_password = form.password.data
-        login_remember = form.remember_me.data
+    else:
+        form = LoginForm()
 
-        # user_exists = Users.query.filter_by(username=login_username).first()
+        if form.validate_on_submit():
+            print('validated on login')
+            user = User.query.filter_by(username=form.username.data).first()
 
-        # if user_exists:
-        #     pass_exists = Users.query.filter_by(
-        #         password=login_password).first()
-        # else:
-        #     flash('Username or password is incorrect. Please try again')
-        #     return redirect(url_for('main.login'))
+            if user and check_password(user, form.password.data):
+                login_user(user, remember=form.remember_me.data)
+                print('password works')
+                return redirect(url_for("main.index"))
 
-        flash(f'Login requested for { login_username }')
+            else:
+                flash('Invalid username or password', 'error')
+                return redirect(url_for("main.index"))
 
-    return render_template('login.html', title='Sign In', form=form)
+    return render_template('login.html', form=form)
 
-    # @main.route('/test')
-    # @main.route('/test/<poopy>')
-    # def test(poopy='biatch'):
-    #     somelist = [1,2,3,4,5]
-    #     print (poopy)
-    #     return render_template('test.html', somelist=somelist, peepee=poopy)
+
+@main.route('/logout')
+def logout():
+    logout_user()
+    flash('Logged out')
+    return redirect(url_for('main.index'))

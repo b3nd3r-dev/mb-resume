@@ -24,15 +24,15 @@ def createApp(configName):
     login.init_app(app)
 
     from app.blueprints.main import main as main_blueprint
-    from app.blueprints.projects import projects as projects_blueprint
-    from app.blueprints.tag import tag as tag_blueprint
+    # from app.blueprints.projects import projects as projects_blueprint
+    # from app.blueprints.tag import tag as tag_blueprint
     from app.blueprints.user import user as user_blueprint
-    from app.blueprints.collab import collab as collab_blueprint
+    # from app.blueprints.collab import collab as collab_blueprint
 
     app.register_blueprint(main_blueprint)
-    app.register_blueprint(projects_blueprint, url_prefix='/projects')
-    app.register_blueprint(tag_blueprint, url_prefix='/tags')
+    # app.register_blueprint(projects_blueprint, url_prefix='/projects')
+    # app.register_blueprint(tag_blueprint, url_prefix='/tags')
     app.register_blueprint(user_blueprint, url_prefix='/users')
-    app.register_blueprint(collab_blueprint, url_prefix='/collabs')
+    # app.register_blueprint(collab_blueprint, url_prefix='/collabs')
 
     return app

@@ -4,19 +4,22 @@ import click
 from app import createApp, db
 
 from flask_admin import Admin
-from flask_admin.contrib.sqla import ModelView
+# from flask_admin.contrib.sqla import ModelView
+from flask_login import LoginManager
+from app.models import User, AdminModelView
 
 app = createApp(os.getenv('FLASK_CONFIG') or 'default')
+
 
 with app.app_context():
     from app.models import Project, ProjectTag, Tag, Collab, ProjectCollab
     db.create_all()
 
     # admin things
-    admin = Admin(app, name='MB Resume', template_mode='bootstrap3')
-    admin.add_view(ModelView(Project, db.session))
-    admin.add_view(ModelView(Tag, db.session))
-    admin.add_view(ModelView(Collab, db.session))
+    admin = Admin(app, name='MB Resume')
+    admin.add_view(AdminModelView(Project, db.session))
+    admin.add_view(AdminModelView(Tag, db.session))
+    admin.add_view(AdminModelView(Collab, db.session))
 
 
 @app.shell_context_processor

@@ -2,11 +2,7 @@
     ('main.index', 'index', 'Home'),
     ('main.project', 'project', 'Projects'),
 ] -%}
-<!-- ('user.login', 'login', 'Login'), -->
-{% set navigation_bar_logged_in = [
-    ('main.index', 'index', 'Home'),
-    ('main.project', 'project', 'Projects'),
-] -%}
+
 
 {% set active_page = active_page|default('index') -%}
 <nav class="navbar py-5 px-6 is-transparent" role="navigation">
@@ -24,83 +20,23 @@
             <span></span>
         </span>
     </div>
-    <div class="navbar-start"></div>
+    <div class="navbar-start">
+        {% if not current_user.is_authenticated %}
+        {% endif %}
+        {% if current_user.is_authenticated %}
+        <div class="title has-text-primary px-6">**AS ADMIN**</div>
+        {% endif %}
+    </div>
 
 
     <div id="navbarMenuHeroB" class="navbar-menu navbar-end">
         <div class="navbar-end pr-6">
-            {% if current_user %}
-
-
-            <!-- !!!!!!IF NOT LOGGED IN !!!!!!-->
-            {% if not current_user.is_authenticated %}
             {% for href, id, caption in navigation_bar %}
             <a href="{{ url_for(href|e) }}"
                 class="navbar-item{% if id == active_page %} is-active{% endif %} has-text-primary">
                 {{ caption|e }}
             </a>
             {% endfor %}
-
-
-            <!-- !!!!!! IF LOGGED IN !!!!!!-->
-            {% else %}
-            {% for href, id, caption in navigation_bar_logged_in %}
-            <a href="{{ url_for(href|e) }}"
-                class="navbar-item{% if id == active_page %} is-active{% endif %} has-text-primary">
-                {{ caption|e }}
-            </a>
-
-            {% endfor %}
-            <!-- TAGS CRUD -->
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link has-text-primary">Tags</a>
-                <div class="navbar-dropdown">
-                    <a href="{{ url_for('tags.create') }}" class="navbar-item has-text-primary">
-                        Create
-                    </a>
-                    <a href="{{ url_for('tags.update') }}" class="navbar-item has-text-primary">
-                        Update
-                    </a>
-                    <a href="{{ url_for('tags.delete') }}" class="navbar-item has-text-primary">
-                        Delete
-                    </a>
-                </div>
-            </div>
-            <!-- PROJECTS CRUD -->
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link has-text-primary">Projects</a>
-                <div class="navbar-dropdown">
-                    <a href="{{ url_for('projects.create') }}" class="navbar-item has-text-primary">
-                        Create
-                    </a>
-                    <a href="{{ url_for('projects.search') }}" class="navbar-item has-text-primary">
-                        Update
-                    </a>
-                    <a href="{{ url_for('projects.delete') }}" class="navbar-item has-text-primary">
-                        Delete
-                    </a>
-                </div>
-            </div>
-            <!-- COLLABS CRUD -->
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link has-text-primary">Collabs</a>
-                <div class="navbar-dropdown">
-                    <a href="{{ url_for('collabs.create') }}" class="navbar-item has-text-primary">
-                        Create
-                    </a>
-                    <a href="{{ url_for('collabs.search') }}" class="navbar-item has-text-primary">
-                        Update
-                    </a>
-                    <a href="{{ url_for('collabs.delete') }}" class="navbar-item has-text-primary">
-                        Delete
-                    </a>
-                </div>
-            </div>
-            <a href="{{ url_for('user.logout') }}" class="navbar-item has-text-primary">
-                Logout
-            </a>
-            {% endif %}
-            {% endif %}
         </div>
     </div>
 </nav>
