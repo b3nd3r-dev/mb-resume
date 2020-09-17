@@ -3,6 +3,12 @@
     ('main.project', 'project', 'Projects'),
 ] -%}
 
+{% set navigation_bar_logged_in = [
+    ('main.index', 'index', 'Home'),
+    ('main.project', 'project', 'Projects'),
+    ('main.logout', 'logout', 'Logout')
+] -%}
+
 
 {% set active_page = active_page|default('index') -%}
 <nav class="navbar py-5 px-6 is-transparent" role="navigation">
@@ -31,12 +37,23 @@
 
     <div id="navbarMenuHeroB" class="navbar-menu navbar-end">
         <div class="navbar-end pr-6">
+            {% if not current_user.is_authenticated %}
             {% for href, id, caption in navigation_bar %}
             <a href="{{ url_for(href|e) }}"
                 class="navbar-item{% if id == active_page %} is-active{% endif %} has-text-primary">
                 {{ caption|e }}
             </a>
             {% endfor %}
+            {% endif %}
+            {% if current_user.is_authenticated %}
+            {% for href, id, caption in navigation_bar_logged_in %}
+            <a href="{{ url_for(href|e) }}"
+                class="navbar-item{% if id == active_page %} is-active{% endif %} has-text-primary">
+                {{ caption|e }}
+            </a>
+            {% endfor %}
+            {% endif %}
+
         </div>
     </div>
 </nav>
