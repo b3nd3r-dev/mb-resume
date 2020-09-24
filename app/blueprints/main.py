@@ -101,13 +101,11 @@ def login():
         form = LoginForm()
 
         if form.validate_on_submit():
-            print('validated on login')
             user = User.query.filter_by(username=form.username.data).first()
 
             if user and check_password(user, form.password.data):
                 login_user(user, remember=form.remember_me.data)
-                print('password works')
-                return redirect(url_for("main.index"))
+                return redirect('/admin')
 
             else:
                 flash('Invalid username or password', 'error')
