@@ -1,11 +1,14 @@
 {% extends "bulma-base.html" %}
 {% set active_page = "index" %}
-{% block head %}{% endblock %}
+{% block head %}
+<link type="text/css" rel="stylesheet"
+    href="{{ url_for('static', filename='node_modules/jquery-conveyor-ticker/dist/css/jquery.jConveyorTicker.min.css')}}" />
+{% endblock %}
 
 {% block content %}
 <!-- INTRO -->
 <div class="columns has-background-black is-bold pt-6">
-    <div class="column is-5 is-offset-1 has-text-vert-centered">
+    <div class="column is-5 is-offset-1 has-text-vert-centered smallscreens">
         <div class="title is-size-2 has-text-primary has-text-centered">Principal Engineer</div>
         <br>
         <div class="title is-size-3 has-text-primary has-text-centered">
@@ -52,28 +55,26 @@
 </div>
 
 <!-- SKILLS -->
-<section class="hero has-background- pt-6">
-    <div class="hero-body">
-        <div class="title has-text-centered">
-            <span class="has-text-link ml-5">FLUENT </span>
-            <span class="has-text-primary ml-5">PROFICIENT </span>
-            <span class="has-text-secondary ml-5">FAMILAR</span>
-        </div>
-        <div class="scroll text1 has-text-primary">
-            <div>{% for tag in first_tag_list %}{% include 'elements/tag.html' %}{% endfor %}</div>
-            <div>{% for tag in first_tag_list %}{% include 'elements/tag.html' %}{% endfor %}</div>
-        </div>
-        <div class="scroll2 text1 has-text-primary">
-            <div>{% for tag in second_tag_list %}{% include 'elements/tag.html' %}{% endfor %}</div>
-            <div>{% for tag in second_tag_list %}{% include 'elements/tag.html' %}{% endfor %}</div>
-        </div>
-        <div class="scroll text1 has-text-primary">
-            <div>{% for tag in third_tag_list %}{% include 'elements/tag.html' %}{% endfor %}</div>
-            <div>{% for tag in third_tag_list %}{% include 'elements/tag.html' %}{% endfor %}</div>
-        </div>
-    </div>
-</section>
-
+<div class="title has-text-centered">
+    <span class="has-text-link ml-5">FLUENT </span>
+    <span class="has-text-primary ml-5">PROFICIENT </span>
+    <span class="has-text-secondary ml-5">FAMILAR</span>
+</div>
+<div class="js-conveyor-1 jctkr-wrapper" style="height: 80px;">
+    <ul>
+        {% for tag in first_tag_list %}{% include 'elements/tag2.html' %}{% endfor %}
+    </ul>
+</div>
+<div class="js-conveyor-2 jctkr-wrapper" style="height: 80px;">
+    <ul>
+        {% for tag in second_tag_list %}{% include 'elements/tag2.html' %}{% endfor %}
+    </ul>
+</div>
+<div class="js-conveyor-3 jctkr-wrapper" style="height: 80px;">
+    <ul>
+        {% for tag in third_tag_list %}{% include 'elements/tag2.html' %}{% endfor %}
+    </ul>
+</div>
 
 <!-- FEATURED PROJECTS -->
 <section class="hero is-bold">
@@ -193,16 +194,23 @@
 
 {% endblock %}
 
-{% block scripts %}
-<script>
+{% block script %}
+<script
+    src="{{ url_for('static', filename='node_modules/jquery-conveyor-ticker/dist/js/jquery.jConveyorTicker.js')}}"></script>
+<script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
-        $('#scroll1').hover(function () {
-            $("#scrollingdiv1").css("animation-play-state", "paused");
-            $("#scrollingdiv2").css("animation-play-state", "paused");
-        }, function () {
-            $("#scrollingdiv1").css("animation-play-state", "running");
-            $("#scrollingdiv2").css("animation-play-state", "running");
-        });
+        /*! Default options:
+         *  
+         *  anim_duration:  200
+         *  reverse_elm:    false
+         *  force_loop:     false
+         *  start_paused:   false
+         * 
+         */
+        $('.js-conveyor-1').jConveyorTicker();
+        $('.js-conveyor-2').jConveyorTickerRev();
+        $('.js-conveyor-3').jConveyorTicker();
+
     });
 </script>
 {% endblock %}

@@ -6,50 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Max Bender</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyles.css')}}" />
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
+
     {% block style %}{% endblock %}
-    {% block headblock %}{% endblock %}
+    {% block head %}{% endblock %}
 </head>
 
 <body>
-    <div class="wrapper">
-        {% include 'navbar-base.html' %}
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category, message in messages %}
-        {% if category == 'message' %}
-        <div class="columns">
-            <div class="column is-6 is-offset-3">
-                <div class="flashes has-text-primary has-text-centered notification is-info">
-                    <button class="delete"></button>
-                    {{ message }}
-                </div>
+    <!-- <div class="wrapper"> -->
+    {% include 'navbar-base.html' %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'message' %}
+    <div class="columns">
+        <div class="column is-6 is-offset-3">
+            <div class="flashes has-text-primary has-text-centered notification is-info">
+                <button class="delete"></button>
+                {{ message }}
             </div>
         </div>
-
-        {% elif category == 'error' %}
-        <div class="columns">
-            <div class="column is-6 is-offset-3">
-                <div class="flashes has-text-primary has-text-centered notification is-danger">
-                    <button class="delete"></button>
-                    {{ message }}
-                </div>
-            </div>
-        </div>
-
-        {% endif %}
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
-        {% block content %}
-        {% endblock %}
-        <div class="push"></div>
     </div>
+
+    {% elif category == 'error' %}
+    <div class="columns">
+        <div class="column is-6 is-offset-3">
+            <div class="flashes has-text-primary has-text-centered notification is-danger">
+                <button class="delete"></button>
+                {{ message }}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    {% block content %}
+    {% endblock %}
+    <div class="push"></div>
+    <!-- </div> -->
     {% include 'footer-base.html' %}
-    <script src="{{url_for('static', filename='node_modules/jquery/dist/jquery.min.js')}}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="{{ url_for('static', filename='node_modules/jquery/dist/jquery.js')}}"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
@@ -109,6 +107,7 @@
             alert("Copied the text: " + copyText.value);
         }
     </script>
+
     {% block script %}{% endblock %}
 </body>
 

@@ -89,8 +89,6 @@ def seed_tags(db):
         new_tag = Tag(tag['name'], tag['knowledge'])
         tag_list.append(new_tag)
 
-    print(tag_list)
-
     # Add Tags to Database
     for tag in tag_list:
 
@@ -117,8 +115,6 @@ def seed_projects(db):
                               )
         project_list.append(new_project)
 
-        print(project_list)
-
         # Add Project to Database
         for project in project_list:
 
@@ -143,8 +139,6 @@ def seed_collabs(db):
                             collab['clink']
                             )
         collab_list.append(new_collab)
-
-        print(collab_list)
 
         # Add Project to Database
         for collab in collab_list:
