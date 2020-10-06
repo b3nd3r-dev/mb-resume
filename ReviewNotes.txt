@@ -9,7 +9,7 @@ need resume for download button
 
 
 AS OF 9/7/20 - REVEIW WITH MAX
-ticker on hover scroll stops 
+COMPLETED -- ticker on hover scroll stops 
 COMPLETED -- show tags and collabs already in use on update page ***replaced with admin page***
 
 COMPLETED -- Sticky footer
