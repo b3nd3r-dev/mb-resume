@@ -7,17 +7,38 @@
 
 {% block content %}
 <!-- INTRO -->
-<div class="columns has-background-black is-bold pt-6">
-    <div class="column is-5 is-offset-1 has-text-vert-centered is-10-touch">
-        <div class="title is-size-2 has-text-primary has-text-centered">Principal Engineer</div>
-        <br>
-        <div class="title is-size-3 has-text-primary has-text-centered">
+<div class="columns is-mobile has-background-black is-bold pt-6 is-hidden-mobile">
+    <div class="column is-5 is-offset-1 has-text-vert-centered is-10-touch is-4-tablet ">
+        <div class="title is-size-2 is-size-4-mobile has-text-primary has-text-centered">Principal Engineer</div>
+        <div class="title is-size-3 is-size-5-mobile has-text-primary has-text-centered">
             I'm Max Bender a Principal Engineer specializing in CICD and DevOps solutions.
         </div>
     </div>
-    <figure class='image padding-image'>
-        <img class="is-rounded" src="{{ url_for('static', filename='images/max-headshot.jpg') }}">
-    </figure>
+    <div class="column is-5-tablet">
+        <figure class='image padding-image'>
+            <img class="is-rounded" src="{{ url_for('static', filename='images/max-headshot.jpg') }}">
+        </figure>
+    </div>
+</div>
+<div class="columns">
+    <div class="column is-6">
+        <figure class='image padding-image-mobile is-hidden-tablet'>
+            <img class="is-rounded" src="{{ url_for('static', filename='images/max-headshot.jpg') }}">
+        </figure>
+    </div>
+</div>
+<div class="columns is-mobile has-background-black is-bold is-hidden-tablet">
+    <div class="column is-8 is-offset-2 has-text-vert-centered is-10-touch is-4-tablet ">
+        <div class="title is-size-2 is-size-4-mobile has-text-primary has-text-centered">Principal Engineer</div>
+        <div class="title is-size-3 is-size-5-mobile has-text-primary has-text-centered">
+            I'm Max Bender a Principal Engineer specializing in CICD and DevOps solutions.
+        </div>
+    </div>
+    <!-- <div class="column is-5-tablet">
+        <figure class='image padding-image-tablet'>
+            <img class="is-rounded" src="{{ url_for('static', filename='images/max-headshot.jpg') }}">
+        </figure>
+    </div> -->
 </div>
 
 <!-- ABOUT ME -->
