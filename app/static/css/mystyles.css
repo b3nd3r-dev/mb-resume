@@ -1989,16 +1989,16 @@ a.box:active {
   .table.is-fullwidth {
     width: 100%; }
   .table.is-hoverable tbody tr:not(.is-selected):hover {
-    background-color: #fafafa; }
+    background-color: #479761; }
   .table.is-hoverable.is-striped tbody tr:not(.is-selected):hover {
-    background-color: #fafafa; }
+    background-color: #479761; }
     .table.is-hoverable.is-striped tbody tr:not(.is-selected):hover:nth-child(even) {
       background-color: whitesmoke; }
   .table.is-narrow td,
   .table.is-narrow th {
     padding: 0.25em 0.5em; }
   .table.is-striped tbody tr:not(.is-selected):nth-child(even) {
-    background-color: #fafafa; }
+    background-color: #479761; }
 
 .table-container {
   -webkit-overflow-scrolling: touch;
@@ -4143,7 +4143,7 @@ a.navbar-item,
   .navbar-link:focus-within,
   .navbar-link:hover,
   .navbar-link.is-active {
-    background-color: #fafafa;
+    background-color: #479761;
     color: #479761; }
 
 .navbar-item {
@@ -4372,7 +4372,7 @@ a.navbar-item,
   .navbar-link.is-active:not(:focus):not(:hover) {
     background-color: transparent; }
   .navbar-item.has-dropdown:focus .navbar-link, .navbar-item.has-dropdown:hover .navbar-link, .navbar-item.has-dropdown.is-active .navbar-link {
-    background-color: #fafafa; } }
+    background-color: #479761; } }
 
 .hero.is-fullheight-with-navbar {
   min-height: calc(100vh - 3.25rem); }
