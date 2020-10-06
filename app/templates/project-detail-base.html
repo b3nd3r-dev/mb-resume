@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="columns pt-6">
-    <div class="column is-8 is-offset-1 has-text-centered">
+    <div class="column is-8 is-offset-1 has-text-centered is-10-touch is-offset-1-touch">
         <div class="title has-text-primary is-size-2">
             {{ project.title }}
         </div>
@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="columns">
-    <div class="column is-8 is-offset-1">
+    <div class="column is-8 is-offset-1 is-10-touch is-offset-1-touch">
         <div class="subtitle has-text-info">
             <!-- style="white-space: pre-line" -->
             <div class="content">
@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    <div class="column is-2">
+    <div class="column is-2 is-10-touch is-offset-1-touch">
         <div class="card">
             {% if project.tags %}
             <div class="media py-3">
@@ -28,7 +28,7 @@
                     <div class="card-header-title">
                         <div class="title has-text-primary is-size-4">Project Technologies:</div>
                     </div>
-                    <div class="card-content">
+                    <div class="card-content has-text-centered">
                         {% for tag in project.tags %}
                         <a href="{{url_for('main.tagdetail', tagid=tag.id)}}"
                             class="tag is-small has-background-link is-success">
