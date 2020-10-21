@@ -10,24 +10,34 @@
         </div>
         <hr>
     </div>
+    <div class="column is-3 is-hidden-touch">
+        {% if project.project_link %}
+        <div class="media pt-5">
+            <div class="media-content has-text-centered">
+                <div class="card-header-title">
+                    <a href="https://{{ project.project_link}}" target="_blank" class="button is-link ">Project
+                        Link</a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        {% endif %}
+    </div>
 </div>
 <div class="columns">
     <div class="column is-8 is-offset-1 is-10-touch is-offset-1-touch">
         <div class="subtitle has-text-info">
-            <!-- style="white-space: pre-line" -->
-            <div class="content">
-                {{ project.long_description | safe}}
-            </div>
+            {{ project.long_description | safe}}
         </div>
     </div>
-    <!-- DESKTOP -->
+    <!-- DESKTOP sidebar -->
     <div class="column is-2 is-10-touch is-offset-1-touch is-hidden-touch">
         <div class="card">
             {% if project.tags %}
-            <div class="media py-3">
+            <div class="media">
                 <div class="media-content">
                     <div class="card-header-title">
-                        <div class="title has-text-primary is-size-4">Project Technologies:</div>
+                        <div class="title has-text-primary is-size-5">Project Technologies:</div>
                     </div>
                     <div class="card-content has-text-centered">
                         {% for tag in project.tags %}
@@ -45,18 +55,18 @@
             <div class="media py-3">
                 <div class="media-content has-text-centered">
                     <div class="card-header-title ">
-                        <div class="title  has-text-primary is-size-4">Project Collaborators:</div>
+                        <div class="title  has-text-primary is-size-5">Project Collaborators:</div>
                     </div>
                     <div class="card-content">
                         <!-- https://ui-avatars.com/ -->
                         {% for collab in project.collabs %}
                         {% if collab.clink %}
-                        <a href="https://{{ collab.clink }}">
-                            <img src="https://ui-avatars.com/api/?name={{ collab.fname }}+{{ collab.lname }}&rounded=true&background=479761&color=bfbfbf"
+                        <a href="https://{{ collab.clink }}" target="_blank">
+                            <img src="https://ui-avatars.com/api/?name={{ collab.fname }}+{{ collab.lname }}&rounded=true&background=479761&color=bfbfbf&size=48"
                                 alt="">
                         </a>
                         {% else %}
-                        <img src="https://ui-avatars.com/api/?name={{ collab.fname }}+{{ collab.lname }}&rounded=true&background=479761&color=bfbfbf"
+                        <img src="https://ui-avatars.com/api/?name={{ collab.fname }}+{{ collab.lname }}&rounded=true&background=479761&color=bfbfbf&size=48"
                             alt="">
                         {% endif %}
                         {% endfor %}
@@ -65,11 +75,11 @@
             </div>
             {% else %}
             {% endif %}
-            {% if project.project_link %}
+            <!-- {% if project.project_link %}
             <div class="media py-3">
                 <div class="media-content has-text-centered">
                     <div class="card-header-title ">
-                        <div class="title  has-text-primary is-size-4">Project Link:</div>
+                        <div class="title  has-text-primary is-size-5">Project Link:</div>
                     </div>
                     <div class="card-content">
                         <a href="https://{{ project.project_link}}" target="_blank"
@@ -80,16 +90,28 @@
                 </div>
             </div>
             {% else %}
-            {% endif %}
-
+            {% endif %} -->
         </div>
     </div>
 </div>
 <!-- TABLET -->
 <div class="columns is-hidden-desktop">
+    {% if project.project_link %}
+    <div class="column">
+        <div class="media">
+            <div class="media-content has-text-centered">
+                <div class="card-content ">
+                    <a href="https://{{ project.project_link}}" target="_blank" class="button is-link">Project
+                        Link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    {% endif %}
     {% if project.tags %}
     <div class="column ">
-        <div class="media py-3">
+        <div class="media">
             <div class="media-content has-text-centered">
                 <div class="card-content">
                     <div class="title has-text-primary is-size-4">Project Technologies:</div>
@@ -109,7 +131,7 @@
     {% endif %}
     {% if project.collabs %}
     <div class="column">
-        <div class="media py-3">
+        <div class="media">
             <div class="media-content has-text-centered">
                 <div class="card-content">
                     <div class="title has-text-primary is-size-4">Project Collaborators:</div>
@@ -133,7 +155,7 @@
     </div>
     {% else %}
     {% endif %}
-    {% if project.project_link %}
+    <!-- {% if project.project_link %}
     <div class="column">
         <div class="media py-3">
             <div class="media-content has-text-centered">
@@ -150,6 +172,8 @@
         </div>
     </div>
     {% else %}
-    {% endif %}
+    {% endif %} -->
+
+
 </div>
 {% endblock %}

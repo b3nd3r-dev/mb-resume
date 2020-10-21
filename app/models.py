@@ -30,7 +30,7 @@ class Project(db.Model):
         self.featured = featured
 
     def __repr__(self):
-        return f"Project {self.title} has link {self.project_link}"
+        return f"{self.title}"
 
 
 class Tag(db.Model):
@@ -49,7 +49,7 @@ class Tag(db.Model):
         self.knowledge = knowledge
 
     def __repr__(self):
-        return f"Tag {self.name}"
+        return f"{self.name}"
 
 
 class ProjectTag(db.Model):
@@ -76,8 +76,8 @@ class Collab(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fname = db.Column(db.String(30), nullable=False)
     lname = db.Column(db.String(30), nullable=False)
-    name = db.Column(db.String(61), nullable=False)
     clink = db.Column(db.String, nullable=True)
+    name = fname + ' ' + lname
 
     # Relationships
     projects = relationship(
@@ -89,7 +89,7 @@ class Collab(db.Model):
         self.name = name
 
     def __repr__(self):
-        return f"Collaborator {self.fname} last name is {self.lname} which is { self.name }"
+        return f"{self.fname} {self.lname}"
 
 
 class ProjectCollab(db.Model):
