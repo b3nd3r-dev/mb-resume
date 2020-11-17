@@ -1,11 +1,49 @@
 
 ## Todo
-V2.0
-Dyanmic Resume download
-Index elements in database
-
 Questions for max
 need resume for download button
+
+AS OF 11/13/20 - REVEIW WITH MAX
+
+Index elements in database
+ COMPLETED -- title, subtitle, derscript
+ COMPLETED -- eductation
+
+Home
+-- ticker starts halfway through page
+
+  MOBILE:
+    COMPELTED -- ticker size down 
+    COMPELTED -- fluent proficient familiar on its own line
+    COMPELTED -- bring down 4-5 points on ticker
+
+
+
+
+Projects:
+COMPELTED -- link then star 
+COMPELTED -- star should gold 
+--possibile move to right side
+
+Project Detail
+COMPELTED-- rework sidebar: 
+                  horizontal line 
+                  tech 
+                  link 
+                  collab
+COMPLETED -- add buffer column to both sides 
+COMPELTED -- drop project for technologies and collaborators
+COMPELTED -- link down below - written out form create hyperlkink off of title
+
+tag detail 
+COMPELTED -- needs header
+
+COMPLETED -- basic contact page 
+                  Photo and email 
+
+Dyanmic Resume download
+
+
 
 
 AS OF 9/7/20 - REVEIW WITH MAX

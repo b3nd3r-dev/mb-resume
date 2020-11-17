@@ -143,3 +143,45 @@ def load_user(id):
 class AdminModelView(ModelView):
     def is_accessible(self):
         return current_user.is_authenticated
+
+
+class Index(db.Model):
+    __tablename__ = 'indexs'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String)
+    subtitle = db.Column(db.String)
+    description = db.Column(db.Text)
+    quote = db.Column(db.Text)
+
+    def __init__(self, title, subtitle, description, quote):
+        self.title = title
+        self.subtitle = subtitle
+        self.description = description
+        self.quote = quote
+
+    def __repr__(self):
+        return f"{self.title}"
+
+
+class Achievement(db.Model):
+    __tablename__ = 'achievements'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    start_date = db.Column(db.String, nullable=False)
+    end_date = db.Column(db.String, nullable=False)
+    desc = db.Column(db.Text, nullable=False)
+    link = db.Column(db.String)
+    link_n = db.Column(db.String)
+    icon = db.Column(db.String, nullable=False)
+
+    def __init__(self, name, start_date, end_date, desc, link, link_n, icon):
+        self.name = name
+        self.start_date = start_date
+        self.end_date = end_date
+        self.desc = desc
+        self.link = link
+        self.link_n = link_n
+        self.icon = icon
+
+    def __repr__(self):
+        return f"{self.name}"

@@ -3,7 +3,7 @@ from random import shuffle
 from flask import Blueprint, redirect, render_template, request, url_for, flash
 from flask_login import logout_user, login_user, current_user
 from app import db
-from app.models import Project, Tag, User
+from app.models import Project, Tag, User, Index, Achievement
 from app.forms import LoginForm
 from app.utils.password import check_password
 
@@ -18,6 +18,9 @@ def chunks(lst, n):
 
 @main.route('/')
 def index():
+    indexs = Index.query.all()
+    achievements = Achievement.query.all()
+
     # Project Splitting
     feat_proj = Project.query.filter_by(featured=True).all()
     print(len(feat_proj))
@@ -52,8 +55,9 @@ def index():
                            second_tag_list=second_tag_list,
                            third_tag_list=third_tag_list,
                            first_project_list=first_project_list,
-                           second_project_list=second_project_list
-                           )
+                           second_project_list=second_project_list,
+                           indexs=indexs,
+                           achievements=achievements)
 
 
 @ main.route('/project')
@@ -114,8 +118,13 @@ def login():
     return render_template('login.html', form=form)
 
 
-@main.route('/logout')
+@ main.route('/logout')
 def logout():
     logout_user()
     flash('Logged out')
     return redirect(url_for('main.index'))
+
+
+@ main.route('/contact')
+def contact():
+    return render_template('contact.html')

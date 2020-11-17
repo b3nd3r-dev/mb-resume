@@ -1,11 +1,13 @@
 {% set navigation_bar = [
     ('main.index', 'index', 'Home'),
     ('main.project', 'project', 'Projects'),
+    ('main.contact', 'contact', 'Contact')
 ] -%}
 
 {% set navigation_bar_logged_in = [
     ('main.index', 'index', 'Home'),
     ('main.project', 'project', 'Projects'),
+    ('main.contact', 'contact', 'Contact'),
     ('main.logout', 'logout', 'Logout')
 ] -%}
 
@@ -46,6 +48,7 @@
             {% endfor %}
             {% endif %}
             {% if current_user.is_authenticated %}
+            <a href="/admin" class="navbar-item has-text-primary">Admin</a>
             {% for href, id, caption in navigation_bar_logged_in %}
             <a href="{{ url_for(href|e) }}"
                 class="navbar-item{% if id == active_page %} is-active{% endif %} has-text-primary">

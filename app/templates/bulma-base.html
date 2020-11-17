@@ -12,37 +12,39 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        {% include 'navbar-base.html' %}
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category, message in messages %}
-        {% if category == 'message' %}
-        <div class="columns">
-            <div class="column is-6 is-offset-3">
-                <div class="flashes has-text-primary has-text-centered notification is-info">
-                    <button class="delete"></button>
-                    {{ message }}
+    <div id="wrap">
+        <div id="main">
+            {% include 'navbar-base.html' %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            {% if category == 'message' %}
+            <div class="columns">
+                <div class="column is-6 is-offset-3">
+                    <div class="flashes has-text-primary has-text-centered notification is-info">
+                        <button class="delete"></button>
+                        {{ message }}
+                    </div>
                 </div>
             </div>
-        </div>
 
-        {% elif category == 'error' %}
-        <div class="columns">
-            <div class="column is-6 is-offset-3">
-                <div class="flashes has-text-primary has-text-centered notification is-danger">
-                    <button class="delete"></button>
-                    {{ message }}
+            {% elif category == 'error' %}
+            <div class="columns">
+                <div class="column is-6 is-offset-3">
+                    <div class="flashes has-text-primary has-text-centered notification is-danger">
+                        <button class="delete"></button>
+                        {{ message }}
+                    </div>
                 </div>
             </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            {% block content %}
+            {% endblock %}
+            <div class="push"></div>
         </div>
-        {% endif %}
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
-        {% block content %}
-        {% endblock %}
-        <div class="push"></div>
     </div>
     {% include 'footer-base.html' %}
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>

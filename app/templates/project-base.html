@@ -1,10 +1,5 @@
 <div class="box hvr-forward">
-  {% if project.featured %}
-  <!-- variable is not empty -->
-  <a href="" class="title">*</a>
-  {% else %}
-  <!-- variable is empty -->
-  {% endif %}
+
   <a href="{{url_for('main.projectdetail', projectid=project.id)}}" class="title has-text-primary ">
     {{ project.title }}
   </a>
@@ -15,7 +10,12 @@
   {% else %}
   <!-- variable is empty -->
   {% endif %}
-
+  {% if project.featured %}
+  <!-- variable is not empty -->
+  <span class="title pl-2" style="color: gold; vertical-align: -6px;">*</span>
+  {% else %}
+  <!-- variable is empty -->
+  {% endif %}
 
   <div class="py-2">
     {% for tag in project.tags %}

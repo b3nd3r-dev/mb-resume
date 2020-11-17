@@ -35,7 +35,8 @@ projects = [
      'long_description': 'The first real website I made for someone other than myself. Written in PHP in a summer alongside working at the Marist College HelpDesk, this website was part of a research project that funded me to present at INTED in Madrid, Spain. Alongside two professors, I gave a presentation on using technology to enhance learning in an un-obtrusive fashion with a concentration in learning foreign languages.'
 
      'Backed by a MySQL database this is where I learned a lot about security in the modern age of web-development. Certain vulnerabilities such as SQL Injections and XSS were ones that I focused on researching because I knew they were some of the more common avenues of attack. Looking back on it however I have already noticed some mistakes but I was happy with how it came out.',
-     'featured': True
+     'featured': True,
+     'tags': 'PHP'
      },
 
     {'title': 'Let\'s Talk',
@@ -48,27 +49,32 @@ projects = [
      'See some changes to the travis-build scripts which also needed some configuartions.'
 
      'Once I moved to the LXD based builds I was able to automate the deployment of LXD and the Travis Worker on a Ubuntu Bionic host using Ansible. Still using the previous OpenStack environment we could now provision infrastructure with Terraform and configure workers using Ansible.',
-     'featured': False
+     'featured': False,
      },
 
     {'title': 'NexNest',
      'project_link': 'github.com/maxbbender/nexnest',
      'short_description': 'Student housing portal built with love by @Max Bender and @Mike Mcginnis',
      'long_description': 'I had written a couple websites with Flask in school, but wanted to learn more and read up on Miguel Grinberg’s Flask tutorial and was exposed to a new set of best practices. Approached with an idea for a rental website targeted at students we designed and implemented a website written in Python. Backed by a fairly complex database that featured notifications and recursive comments, SQLAlchemy handles most of the direct SQL queries the complex JOINs.',
-     'featured': True
+     'featured': True,
+     'tags': 'Kubernetes,Python'
      },
 
     {'title': 'IBM Cloud Private',
      'short_description': 'IBM Cloud™ Private is a reliable and scalable cloud platform that runs on your infrastructure. It’s built on open source frameworks, like containers, Kubernetes and Cloud Foundry.',
      'long_description': 'IBM Cloud™ Private is a reliable and scalable cloud platform that runs on your infrastructure. It’s built on open source frameworks, like containers, Kubernetes and Cloud Foundry.LONG VERSION',
      'project_link': 'https://www.ibm.com/cloud/private',
-     'featured': True
+     'featured': True,
+     'tags': 'Kubernetes,Docker'
      },
 
     {'title': 'Travis on Z',
      'project_link': 'github.com/bendermIBM/travis-cookbooks',
      'short_description': 'Enabling the tool that enables the tools - on Linux on Z.',
-     'long_description': 'Enabling the tool that enables the tools - on Linux on Z.LONG VERSION', 'featured': True}
+     'long_description': 'Enabling the tool that enables the tools - on Linux on Z.LONG VERSION',
+     'featured': True,
+     'tags': 'Travis'
+     }
 ]
 
 collabs = [
@@ -76,6 +82,52 @@ collabs = [
     {'fname': 'Zac', 'lname': 'Bender', 'name': 'ZacBender', 'clink': 'linkZB'},
     {'fname': 'Kasey', 'lname': 'Leahy', 'name': 'KaseyLeahy', 'clink': 'linkKL'},
     {'fname': 'Tom', 'lname': 'Rowles', 'name': 'TomRowles', 'clink': 'linkTR'},
+]
+
+indexs = [
+    {'title': 'Principal Engineer',
+     'subtitle': "I'm Max Bender a Principal Engineer specializing in CICD and DevOps solutions.",
+     'description': 'Primarily, my work has been on CICD and DevOps solutions, but I often get this itch to create something new. Python is my go-to scripting language but I’m not afraid of a little Bash or Ruby if the use-case calls for it or I am trying to work with a library that requires the aforementioned (i.e Chef). The instant gratification of making websites and working with complex relational database setups is a puzzle that I relish. Using Flask and SQLAlchemy I have put together some complex websites as a consultant on the side. See the NexNest project as an example.',
+     'quote': '[being a Principal Engineer] is far more strategic, it’s far more business oriented, it’s involving a lot more influence, being an influencer without having the management title. [during the time becoming a Principal Engineer you] need to be a force multiplier. There was a clear transition from me writing code to teaching others how to write code that’s actually clean and doesn’t cause us trouble too fast down the line. One of the big parts of Principal Engineering in my mind is you teach more than you actually do yourself.'}
+]
+
+achievements = [
+    {'name': 'Moses Brown',
+     'start_date': '2011',
+     'end_date': '2014',
+     'desc': 'Moses Brown School is a Quaker school located in Providence, Rhode Island offering pre-kindergarten through secondary school classes.',
+     'link': '',
+     'link_n': '',
+     'icon': 'fas fa-school'
+     },
+
+    {'name': 'Marist College',
+     'start_date': '2014',
+     'end_date': '2017',
+     'desc': 'Participated in the MCCS and many other community activities which strengthend my value as a teamate and leader. Graduated w/ my Major’s GPA at 3.8 with Honors and Deans List.',
+     'link': '',
+     'link_n': '',
+     'icon': 'fas fa-school'
+     },
+
+    {'name': 'Help Desk Operator',
+     'start_date': '2014',
+     'end_date': '2015',
+     'desc': 'While my time at the Help Desk wasn’t the most glamorous, I valued it a lot. I was resetting passwords and helping people out with basic technology issues but during that I was gaining so much experience in talking with customers. We were on the phone or helping people in person and looking back on it this experience has strengthened my ability to interact with customers in the field at IBM',
+     'link': 'https://www.marist.edu/',
+     'link_n': 'Marist',
+     'icon': 'fas fa-info'
+     },
+
+    {'name': 'Principal Test Engineer',
+     'start_date': '2015',
+     'end_date': 'Present',
+     'desc': 'At IBM I started on the zPET solution test organization which tests the mainframe in a full stack customer-like configuration. Shortly after I moved to a team called the Linux Center of Competence which focused on testing Linux on Z with a similar configuration as on zPET. Part of the teams mission was to remove excuses when it came to running software on Linux on Z.',
+     'link': 'https://www.ibm.com/us-en/',
+     'link_n': 'IBM',
+     'icon': 'fas fa-server'
+     },
+
 ]
 
 
@@ -150,3 +202,38 @@ def seed_collabs(db):
                 db.session.add(new_collab)
 
         db.session.commit()
+
+
+def seed_index(db):
+    for index in indexs:
+        index_check = Index.query.filter_by(title=index['title']).first()
+        if not index_check:
+            new_index = Index(
+                index['title'],
+                index['subtitle'],
+                index['description'],
+                index['quote']
+            )
+            db.session.add(new_index)
+            db.session.commit()
+
+
+def seed_achievements(db):
+    for achievement in achievements:
+        achievement_check = Achievement.query.filter_by(name=achievement['name'],
+                                                        start_date=achievement['start_date']).first()
+        if not achievement_check:
+            new_ach = Achievement(
+                achievement['name'],
+                achievement['start_date'],
+                achievement['end_date'],
+                achievement['desc'],
+                achievement['link'],
+                achievement['link_n'],
+                achievement['icon']
+            )
+            db.session.add(new_ach)
+            db.session.commit()
+
+        else:
+            print('Achievement already exists')
