@@ -2,7 +2,6 @@ import os
 from os import getenv
 import click
 from app import createApp, db
-
 from flask_admin import Admin
 from flask_admin.menu import MenuLink
 from flask_login import LoginManager

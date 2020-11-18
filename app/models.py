@@ -28,7 +28,7 @@ class Project(db.Model):
         self.short_description = short_description
         self.long_description = long_description
         self.featured = featured
-
+ 
     def __repr__(self):
         return f"{self.title}"
 

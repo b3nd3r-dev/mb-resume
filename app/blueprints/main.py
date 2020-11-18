@@ -3,10 +3,11 @@ from random import shuffle
 from flask import Blueprint, redirect, render_template, request, url_for, flash
 from flask_login import logout_user, login_user, current_user
 from app import db
-from app.models import Project, Tag, User, Index, Achievement
+from app.models import Project, Tag, User, Index, Achievement, Collab
 from app.forms import LoginForm
 from app.utils.password import check_password
-
+import pdfkit
+from pathlib import Path
 main = Blueprint('main', __name__, template_folder='../templates')
 
 
@@ -16,8 +17,19 @@ def chunks(lst, n):
         yield lst[i:i + n]
 
 
+def resume():
+    resume = pdfkit.from_file('resume.html', False)
+
+
 @main.route('/')
 def index():
+    folder = Path('app/templates/')
+    resumeh = folder / "resume.html"
+    # # print(resumeh.read_text()) #Debugging
+    # resume = pdfkit.from_file('resume.html', False)
+
+    with open(resumeh) as f:
+        pdfkit.from_file(f, 'out.pdf')
     indexs = Index.query.all()
     achievements = Achievement.query.all()
 
@@ -128,3 +140,14 @@ def logout():
 @ main.route('/contact')
 def contact():
     return render_template('contact.html')
+
+
+@ main.route('/resume')
+def resume():
+    projects = Project.query.all()
+    indexs = Index.query.all()
+    tags = Tag.query.all()
+    collabs = Collab.query.all()
+    achievements = Achievement.query.all()
+    achievements.reverse()
+    return render_template('resumeLM.html', projects=projects, indexs=indexs, tags=tags, collabs=collabs, achievements=achievements)
