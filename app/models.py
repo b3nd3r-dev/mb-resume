@@ -28,7 +28,7 @@ class Project(db.Model):
         self.short_description = short_description
         self.long_description = long_description
         self.featured = featured
- 
+
     def __repr__(self):
         return f"{self.title}"
 
@@ -145,8 +145,8 @@ class AdminModelView(ModelView):
         return current_user.is_authenticated
 
 
-class Index(db.Model):
-    __tablename__ = 'indexs'
+class AboutMe(db.Model):
+    __tablename__ = 'AboutMes'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
     subtitle = db.Column(db.String)
@@ -171,16 +171,16 @@ class Achievement(db.Model):
     end_date = db.Column(db.String, nullable=False)
     desc = db.Column(db.Text, nullable=False)
     link = db.Column(db.String)
-    link_n = db.Column(db.String)
+    link_name = db.Column(db.String)
     icon = db.Column(db.String, nullable=False)
 
-    def __init__(self, name, start_date, end_date, desc, link, link_n, icon):
+    def __init__(self, name, start_date, end_date, desc, link, link_name, icon):
         self.name = name
         self.start_date = start_date
         self.end_date = end_date
         self.desc = desc
         self.link = link
-        self.link_n = link_n
+        self.link_name = link_name
         self.icon = icon
 
     def __repr__(self):

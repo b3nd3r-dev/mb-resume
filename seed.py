@@ -82,7 +82,7 @@ collabs = [
     {'fname': 'Tom', 'lname': 'Rowles', 'name': 'TomRowles', 'clink': 'linkTR'},
 ]
 
-indexs = [
+aboutmes = [
     {'title': 'Principal Engineer',
      'subtitle': "I'm Max Bender a Principal Engineer specializing in CICD and DevOps solutions.",
      'description': 'Primarily, my work has been on CICD and DevOps solutions, but I often get this itch to create something new. Python is my go-to scripting language but I’m not afraid of a little Bash or Ruby if the use-case calls for it or I am trying to work with a library that requires the aforementioned (i.e Chef). The instant gratification of making websites and working with complex relational database setups is a puzzle that I relish. Using Flask and SQLAlchemy I have put together some complex websites as a consultant on the side. See the NexNest project as an example.',
@@ -95,7 +95,7 @@ achievements = [
      'end_date': '2014',
      'desc': 'Moses Brown School is a Quaker school located in Providence, Rhode Island offering pre-kindergarten through secondary school classes.',
      'link': '',
-     'link_n': '',
+     'link_name': '',
      'icon': 'fas fa-school'
      },
 
@@ -104,7 +104,7 @@ achievements = [
      'end_date': '2017',
      'desc': 'Participated in the MCCS and many other community activities which strengthend my value as a teamate and leader. Graduated w/ my Major’s GPA at 3.8 with Honors and Deans List.',
      'link': '',
-     'link_n': '',
+     'link_name': '',
      'icon': 'fas fa-school'
      },
 
@@ -113,7 +113,7 @@ achievements = [
      'end_date': '2015',
      'desc': 'While my time at the Help Desk wasn’t the most glamorous, I valued it a lot. I was resetting passwords and helping people out with basic technology issues but during that I was gaining so much experience in talking with customers. We were on the phone or helping people in person and looking back on it this experience has strengthened my ability to interact with customers in the field at IBM',
      'link': 'https://www.marist.edu/',
-     'link_n': 'Marist',
+     'link_name': 'Marist',
      'icon': 'fas fa-info'
      },
 
@@ -122,7 +122,7 @@ achievements = [
      'end_date': 'Present',
      'desc': 'At IBM I started on the zPET solution test organization which tests the mainframe in a full stack customer-like configuration. Shortly after I moved to a team called the Linux Center of Competence which focused on testing Linux on Z with a similar configuration as on zPET. Part of the teams mission was to remove excuses when it came to running software on Linux on Z.',
      'link': 'https://www.ibm.com/us-en/',
-     'link_n': 'IBM',
+     'link_name': 'IBM',
      'icon': 'fas fa-server'
      },
 
@@ -130,25 +130,16 @@ achievements = [
 
 
 def seed_tags(db):
-
-    # Generate a List of Tags to be seeded
-    tag_list = []
-
-    # A tag has attributes
     for tag in tags:
-        new_tag = Tag(tag['name'], tag['knowledge'])
-        tag_list.append(new_tag)
-
-    # Add Tags to Database
-    for tag in tag_list:
-
-        # First check if Tag exists
-        tag_query = Tag.query.filter_by(name=tag.name).first()
-
-        if not tag_query:
-            db.session.add(tag)
-
-    db.session.commit()
+        tag_to_check = Tag.query.filter_by(name=tag['name']).first()
+        if not tag_to_check:
+            new_tag = Tag(tag['name'],
+                          tag['knowledge'])
+            db.session.add(new_tag)
+            db.session.commit()
+            print(tag['name'] + ' commited')
+        else:
+            print('Tag already exists')
 
 
 def seed_projects(db):
@@ -165,56 +156,48 @@ def seed_projects(db):
 
             db.session.add(new_project)
             db.session.commit()
+            print(project['title'] + ' commited')
 
             tags_list = project['tags'].split(',')
             for a_tag in tags_list:
-                print('each tag:')
-                print(a_tag)
                 tag_to_add = Tag.query.filter_by(name=a_tag).first()
-                print('check')
-                print(tag_to_add)
                 if tag_to_add:
                     new_project.tags.append(tag_to_add)
                     db.session.commit()
+        else:
+            print('Project already exists')
 
 
 def seed_collabs(db):
-
-    # Generate a list of tags to be seeded
-    collab_list = []
-
     for collab in collabs:
-        new_collab = Collab(collab['fname'],
-                            collab['lname'],
-                            collab['name'],
-                            collab['clink']
-                            )
-        collab_list.append(new_collab)
-
-        # Add Project to Database
-        for collab in collab_list:
-
-            # First check if Project exists
-            collab = Collab.query.filter_by(name=collab.name).first()
-
-            if not collab:
-                db.session.add(new_collab)
-
-        db.session.commit()
-
-
-def seed_index(db):
-    for index in indexs:
-        index_check = Index.query.filter_by(title=index['title']).first()
-        if not index_check:
-            new_index = Index(
-                index['title'],
-                index['subtitle'],
-                index['description'],
-                index['quote']
-            )
-            db.session.add(new_index)
+        collab_to_check = Collab.query.filter_by(fname=collab['fname'],
+                                                 lname=collab['lname']).first()
+        if not collab_to_check:
+            new_collab = Collab(collab['fname'],
+                                collab['lname'],
+                                collab['name'],
+                                collab['clink']
+                                )
+            db.session.add(new_collab)
             db.session.commit()
+        else:
+            print('Collab already exists')
+
+
+def seed_aboutme(db):
+    for aboutme in aboutmes:
+        aboutme_check = AboutMe.query.filter_by(title=aboutme['title']).first()
+        if not aboutme_check:
+            new_aboutme = AboutMe(
+                aboutme['title'],
+                aboutme['subtitle'],
+                aboutme['description'],
+                aboutme['quote']
+            )
+            db.session.add(new_aboutme)
+            db.session.commit()
+        else:
+            print('Homepage item already exists')
 
 
 def seed_achievements(db):
@@ -228,7 +211,7 @@ def seed_achievements(db):
                 achievement['end_date'],
                 achievement['desc'],
                 achievement['link'],
-                achievement['link_n'],
+                achievement['link_name'],
                 achievement['icon']
             )
             db.session.add(new_ach)

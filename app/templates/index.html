@@ -13,10 +13,13 @@
         <!-- TEXT -->
         <div class="columns is-mobile has-background-black is-bold pt-6 is-hidden-mobile">
             <div class="column is-5 is-offset-1 has-text-vert-centered is-10-touch is-4-tablet ">
-                <div class="title is-size-2 is-size-4-mobile has-text-primary has-text-centered">
-                    {% for index in indexs %}{{index.title}}{%endfor%}</div>
-                <div class="title is-size-3 is-size-5-mobile has-text-primary has-text-centered">
-                    {% for index in indexs %}{{index.subtitle}}{% endfor %}
+                <div class="title is-size-1 is-size-4-mobile has-text-primary has-text-centered">
+                    Max Bender</div>
+                <div class="title is-size-3 is-size-4-mobile has-text-primary has-text-centered">
+                    {{aboutme.title}}
+                </div>
+                <div class="title is-size-4 is-size-5-mobile has-text-primary has-text-centered">
+                    {{aboutme.subtitle}}
                 </div>
             </div>
             <div class="column is-5-tablet">
@@ -40,20 +43,22 @@
         <!-- TEXT -->
         <div class="columns is-mobile has-background-black is-bold is-hidden-tablet">
             <div class="column is-8 is-offset-2 has-text-vert-centered is-10-touch is-4-tablet ">
+                <div class="title is-size-1 is-size-3-mobile has-text-primary has-text-centered">
+                    Max Bender</div>
                 <div class="title is-size-2 is-size-4-mobile has-text-primary has-text-centered">
-                    {% for index in indexs %}{{index.title}}{%endfor%}</div>
+                    {{aboutme.title}}</div>
                 <div class="title is-size-3 is-size-5-mobile has-text-primary has-text-centered">
-                    {% for index in indexs %}{{index.subtitle}}{%endfor%}
+                    {{aboutme.subtitle}}
                 </div>
             </div>
         </div>
         <div class="columns has-background-black">
             <div class="column is-10 is-offset-1 pb-6 is-10-touch is-offset-1-touch">
                 <div class="subtitle is-italic has-text-primary is-family-secondary">
-                    {% for index in indexs %}{{index.quote}}{%endfor%}
+                    {{ aboutme.quote }}
                 </div>
                 <div class="subtitle has-text-primary is-family-secondary">
-                    {% for index in indexs %}{{index.description}}{%endfor%}
+                    {{aboutme.description | safe}}
                 </div>
             </div>
         </div>
@@ -131,7 +136,7 @@
                         <div class="title has-text-primary">
                             {{achievement.name}}
                             {% if achievement.link %}
-                            - <a href="{{achievement.link}}" target="_blank">{{achievement.link_n}}</a>
+                            - <a href="{{achievement.link}}" target="_blank">{{achievement.link_name}}</a>
                             {% endif %}
                         </div>
                         <div class="subtitle is-6 has-text-info">{{achievement.start_date}}-{{achievement.end_date}}

@@ -1,9 +1,10 @@
 from random import shuffle
 
-from flask import Blueprint, redirect, render_template, request, url_for, flash
+from flask import Blueprint, redirect, render_template, request, url_for, flash, make_response
+from flask import current_app as app
 from flask_login import logout_user, login_user, current_user
 from app import db
-from app.models import Project, Tag, User, Index, Achievement, Collab
+from app.models import Project, Tag, User, AboutMe, Achievement, Collab
 from app.forms import LoginForm
 from app.utils.password import check_password
 import pdfkit
@@ -17,20 +18,9 @@ def chunks(lst, n):
         yield lst[i:i + n]
 
 
-def resume():
-    resume = pdfkit.from_file('resume.html', False)
-
-
 @main.route('/')
 def index():
-    folder = Path('app/templates/')
-    resumeh = folder / "resume.html"
-    # # print(resumeh.read_text()) #Debugging
-    # resume = pdfkit.from_file('resume.html', False)
-
-    with open(resumeh) as f:
-        pdfkit.from_file(f, 'out.pdf')
-    indexs = Index.query.all()
+    aboutme = AboutMe.query.first()
     achievements = Achievement.query.all()
 
     # Project Splitting
@@ -68,7 +58,7 @@ def index():
                            third_tag_list=third_tag_list,
                            first_project_list=first_project_list,
                            second_project_list=second_project_list,
-                           indexs=indexs,
+                           aboutme=aboutme,
                            achievements=achievements)
 
 
@@ -151,3 +141,31 @@ def resume():
     achievements = Achievement.query.all()
     achievements.reverse()
     return render_template('resumeLM.html', projects=projects, indexs=indexs, tags=tags, collabs=collabs, achievements=achievements)
+
+
+@main.route('/nothing', methods=['GET'])
+def nothing():
+    # yo shit is broken
+    aboutme = AboutMe.query.first()
+    achievements = Achievement.query.all()
+    projects = Project.query.all()
+
+    options = {'page-size': 'Letter',
+               'encoding': "UTF-8",
+               'margin-top': '0.5in',
+               'margin-right': '0.5in',
+               'margin-bottom': '0.5in',
+               'margin-left': '0.5in',
+               'no-outline': None,
+               'no-background': True}
+
+    # options = {'disable-javascript': True}
+
+    resume_html = render_template('resume.html.j2', aboutme=aboutme, achievements=achievements, projects=projects)
+    pdf = pdfkit.from_string(resume_html, False, options=options)
+
+    response = make_response(pdf)
+    response.headers['Content-Type'] = 'application/pdf'
+    response.headers['Content-Disposition'] = 'inline; filename=MaxBender.pdf'
+
+    return response

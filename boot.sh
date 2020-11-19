@@ -10,4 +10,4 @@ while true; do
     sleep 5
 done
 
-exec gunicorn -b :5000 --access-logfile - --error-logfile - flask_app:app
+exec gunicorn -t 120 -b :5000 --workers 3 --access-logfile - --error-logfile - flask_app:app

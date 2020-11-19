@@ -6,6 +6,7 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'poopy'
     FLASK_ADMIN_SWATCH = 'cerulean'
     SECURITY_PASSWORD_SALT = os.environ.get('SECURITY_PASSWORD_SALT')
+    SERVER_NAME = '0.0.0.0:5000'
 
     @staticmethod
     def init_app(app):
