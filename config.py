@@ -6,7 +6,7 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'poopy'
     FLASK_ADMIN_SWATCH = 'cerulean'
     SECURITY_PASSWORD_SALT = os.environ.get('SECURITY_PASSWORD_SALT')
-    SERVER_NAME = '0.0.0.0:5000'
+    SQLALCHEMY_TRACK_MODIFACTIONS = False
 
     @staticmethod
     def init_app(app):
@@ -55,13 +55,6 @@ class UnixConfig(ProductionConfig):
     @classmethod
     def init_app(cls, app):
         ProductionConfig.init_app(app)
-
-        # log to syslog
-        import logging
-        from logging.handlers import SysLogHandler
-        syslog_handler = SysLogHandler(address='/var/log/nexnest.log')
-        syslog_handler.setLevel(logging.WARNING)
-        app.logger.addHandler(syslog_handler)
 
 
 config = {

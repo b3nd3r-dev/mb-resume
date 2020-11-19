@@ -125,7 +125,10 @@ achievements = [
      'link_name': 'IBM',
      'icon': 'fas fa-server'
      },
+]
 
+users = [
+    {'username': 'admin', 'password': 'asdf1234'}
 ]
 
 
@@ -219,3 +222,15 @@ def seed_achievements(db):
 
         else:
             print('Achievement already exists')
+
+
+def seed_users(db):
+    for user in users:
+        user_to_check = User.query.filter_by(username=user['username']).first()
+
+        password_hash = setPassword(user['password'])
+        if not user_to_check:
+            new_user = User(user['username'],
+                            password_hash)
+            db.session.add(new_user)
+            db.session.commit()

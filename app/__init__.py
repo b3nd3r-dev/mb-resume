@@ -8,10 +8,12 @@ from config import config
 # Flask
 from flask import Flask, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_login import LoginManager
 
 db = SQLAlchemy()
 login = LoginManager()
+migrate = Migrate()
 
 
 def createApp(configName):
@@ -22,6 +24,7 @@ def createApp(configName):
     config[configName].init_app(app)
     db.init_app(app)
     login.init_app(app)
+    migrate.init_app(app, db)
 
     from app.blueprints.main import main as main_blueprint
     from app.blueprints.user import user as user_blueprint
