@@ -132,23 +132,15 @@ def contact():
     return render_template('contact.html')
 
 
-@ main.route('/resume')
+@main.route('/resume', methods=['GET'])
 def resume():
-    projects = Project.query.all()
-    indexs = Index.query.all()
-    tags = Tag.query.all()
-    collabs = Collab.query.all()
-    achievements = Achievement.query.all()
-    achievements.reverse()
-    return render_template('resumeLM.html', projects=projects, indexs=indexs, tags=tags, collabs=collabs, achievements=achievements)
-
-
-@main.route('/nothing', methods=['GET'])
-def nothing():
-    # yo shit is broken
     aboutme = AboutMe.query.first()
     achievements = Achievement.query.all()
     projects = Project.query.all()
+    tags = Tag.query.all()
+    fluent_tags = Tag.query.filter_by(knowledge='fluent').all()
+    proficient_tags = Tag.query.filter_by(knowledge='proficient').all()
+    familiar_tags = Tag.query.filter_by(knowledge='familiar').all()
 
     options = {'page-size': 'Letter',
                'encoding': "UTF-8",
@@ -157,11 +149,18 @@ def nothing():
                'margin-bottom': '0.5in',
                'margin-left': '0.5in',
                'no-outline': None,
-               'no-background': True}
+               'no-background': True
+               }
 
     # options = {'disable-javascript': True}
 
-    resume_html = render_template('resume.html.j2', aboutme=aboutme, achievements=achievements, projects=projects)
+    resume_html = render_template('resume.html.j2',
+                                  aboutme=aboutme,
+                                  achievements=achievements,
+                                  projects=projects,
+                                  fluent_tags=fluent_tags,
+                                  proficient_tags=proficient_tags,
+                                  familiar_tags=familiar_tags)
     pdf = pdfkit.from_string(resume_html, False, options=options)
 
     response = make_response(pdf)

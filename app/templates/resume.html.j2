@@ -11,6 +11,7 @@
 
 <body>
   <div class="mx-5 my-5">
+    <!-- HEADER -->
     <section>
       <div class="columns" style="width: 100%;">
         <div class="column is-5 is-offset-1 ">
@@ -18,7 +19,8 @@
             This is a programaticaly generated resume, for an update to date & formatted version vist
             <a href="">Bender.io</a>
           </div>
-          <div class="title has-text-primary pt-3">Max Bender</div>
+          <div class="title has-text-primary pt-3">Max Bender
+          </div>
           <div class="title is-size-4 has-text-primary">{{aboutme.title}}</div>
           <div class="subtitle has-text-primary" style="margin-bottom:5px;">Email: maxbbender@gmail.com
           </div>
@@ -32,6 +34,7 @@
         </div>
       </div>
     </section>
+    <!-- PROJECTS -->
     <section>
       <div class="title has-text-primary has-text-centered is-size-2">Projects</div>
       {% for project in projects %}
@@ -51,6 +54,7 @@
         </div>
       </div>
     </section>
+    <!-- EXPERIENCE -->
     <section>
       <div class="title has-text-primary has-text-centered is-size-2 pt-2">Experience</div>
       {% for achievement in achievements %}
@@ -64,6 +68,36 @@
       </div>
       {% endfor %}
     </section>
+    <!-- SKILLS -->
+    <section>
+      <div class="columns" style="width: 100%;">
+        <div class="column has-text-centered py-5">
+          <div class="title has-text-primary has-text-centered is-size-2 pt-2">Skills</div>
+          <div class="subtitle has-text-primary has-text-centered pb-1">My expereinces have exposed me to the
+            languages and skills listed below, some in greater detail than others.</div>
+          <div class="title has-text-primary has-text-centered pb-2">Fluent:</div>
+          <div class="subtitle has-text-primary pb-3">{% for fluent_tag in fluent_tags %}{{fluent_tag.name}}<span
+              class="px-1"> </span>
+            {% endfor %}
+          </div>
+
+          <div class="title has-text-primary has-text-centered pb-2">Profient:</div>
+          <div class="subtitle has-text-primary pb-3">
+            {% for proficient_tag in proficient_tags %}{{proficient_tag.name}}<span class="px-1">
+            </span>
+            {% endfor %}
+          </div>
+          <div class="title has-text-primary has-text-centered pb-2">Familiar:</div>
+          <div class="subtitle has-text-primary pb-3">{% for familiar_tag in familiar_tags %}{{familiar_tag.name}}<span
+              class="px-1"> </span>
+            {% endfor %}
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <!-- FOOTER -->
     <section class="mb-6">
       <div class="columns" style="width: 100%;">
         <div class="column has-text-centered py-5">
