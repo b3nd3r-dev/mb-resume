@@ -133,3 +133,5 @@ dmypy.json
 # Logo File
 *.psd
 node_modules
+
+*.env

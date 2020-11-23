@@ -3,12 +3,12 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'poopy'
+    SECRET_KEY = os.environ.get('SECRET_KEY')
     FLASK_ADMIN_SWATCH = 'cerulean'
     SECURITY_PASSWORD_SALT = os.environ.get('SECURITY_PASSWORD_SALT')
     SQLALCHEMY_TRACK_MODIFACTIONS = False
 
-    @staticmethod
+    @ staticmethod
     def init_app(app):
         app.logger.handlers = []
         # log to syslog
@@ -24,25 +24,23 @@ class Config:
 
 
 class DevelopmentConfig(Config):
-    @classmethod
+    @ classmethod
     def init_app(cls, app):
         Config.init_app(app)
 
     DEBUG = True
-    MAIL_SUPPRESS_SEND = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
 
 
 class TestingConfig(Config):
     TESTING = True
-    MAIL_SUPPRESS_SEND = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'data-test.sqlite')
 
 
 class ProductionConfig(Config):
-    @classmethod
+    @ classmethod
     def init_app(cls, app):
         Config.init_app(app)
 
@@ -52,7 +50,7 @@ class ProductionConfig(Config):
 
 
 class UnixConfig(ProductionConfig):
-    @classmethod
+    @ classmethod
     def init_app(cls, app):
         ProductionConfig.init_app(app)
 

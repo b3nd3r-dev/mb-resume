@@ -27,7 +27,6 @@ tags = [
     {'name': 'OpenStack', 'knowledge': 'familiar'},
 ]
 
-
 projects = [
     {'title': 'IBM Cloud Private',
      'short_description': 'IBM Cloud™ Private is a reliable and scalable cloud platform that runs on your infrastructure. It’s built on open source frameworks, like containers, Kubernetes and Cloud Foundry.',
