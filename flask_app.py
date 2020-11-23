@@ -9,6 +9,7 @@ from app.models import User
 from wtforms import TextAreaField
 from wtforms.widgets import TextArea
 from flask_admin.contrib.sqla import ModelView
+from flask_migrate import upgrade
 
 app = createApp(os.getenv('FLASK_CONFIG') or 'default')
 
@@ -75,4 +76,5 @@ def deploy():
     seed_collabs(db)
     seed_achievements(db)
     seed_aboutme(db)
+    upgrade()
     pass
