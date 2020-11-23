@@ -37,7 +37,6 @@ class WYSIWYGModelView(ModelView):
 
 with app.app_context():
     from app.models import Project, ProjectTag, Tag, Collab, ProjectCollab, AboutMe, Achievement
-    db.create_all()
 
     # admin things
     admin = Admin(app, name='MB Resume')
@@ -70,11 +69,13 @@ def make_shell_context():
 
 @app.cli.command()
 def deploy():
-    from seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements
+    from seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements, seed_users
+    upgrade()
     seed_tags(db)
     seed_projects(db)
     seed_collabs(db)
     seed_achievements(db)
     seed_aboutme(db)
-    upgrade()
+    seed_users(db)
+
     pass

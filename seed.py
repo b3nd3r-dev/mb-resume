@@ -228,9 +228,8 @@ def seed_users(db):
     for user in users:
         user_to_check = User.query.filter_by(username=user['username']).first()
 
-        password_hash = setPassword(user['password'])
         if not user_to_check:
             new_user = User(user['username'],
-                            password_hash)
+                            user['password'])
             db.session.add(new_user)
             db.session.commit()

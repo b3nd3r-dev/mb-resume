@@ -32,6 +32,8 @@ def createApp(configName):
     app.register_blueprint(main_blueprint)
     app.register_blueprint(user_blueprint, url_prefix='/users')
 
+    from app.models import Project, Tag, ProjectTag, Collab, ProjectCollab, User, AboutMe, Achievement
+
     return app
 
 
