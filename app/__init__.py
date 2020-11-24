@@ -27,10 +27,8 @@ def createApp(configName):
     migrate.init_app(app, db)
 
     from app.blueprints.main import main as main_blueprint
-    from app.blueprints.user import user as user_blueprint
 
     app.register_blueprint(main_blueprint)
-    app.register_blueprint(user_blueprint, url_prefix='/users')
 
     return app
 

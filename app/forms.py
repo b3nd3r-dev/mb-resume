@@ -69,16 +69,6 @@ class DeleteProjectForm(FlaskForm):
 # --------------- USERS ---------------
 
 
-class RegisterForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[
-        DataRequired(),
-        EqualTo('confirm_p', message="Passwords must match"),
-        Length(min=8, max=24, message="Password must be 8 characters")])
-    confirm_p = PasswordField('Confirm Password', validators=[DataRequired()])
-    submit = SubmitField('Register')
-
-
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
