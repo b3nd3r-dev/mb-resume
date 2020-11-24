@@ -1,6 +1,0 @@
-  # clear: password123
-  # create a hash - hashed_password = hash(password123)
-  # hash: 'pbkdf2:sha256:50000$vT9fkZM8$04dfa35c6476acf7e788a1b5b3c35e217c78dc04539d295f011f01f18cd2175f'
-
-  # def hash(string_to_encrypt, our_secret_key, salt):
-  #   return hash_value
