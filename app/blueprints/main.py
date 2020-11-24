@@ -26,7 +26,7 @@ def index():
 
     # Project Splitting
     feat_proj = Project.query.filter_by(featured=True).all()
-    print(len(feat_proj))
+    # print(len(feat_proj))
     if len(feat_proj) > 6:
         flash('There can only be 6 featured projects, please correct on update page')
         return redirect(url_for('main.project'))
@@ -118,7 +118,7 @@ def login():
                 flash('Invalid username or password', 'error')
                 return redirect(url_for("main.index"))
 
-    return render_template('login.html', form=form)
+    return render_template('/users/login.html', form=form)
 
 
 @ main.route('/logout')

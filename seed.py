@@ -139,9 +139,10 @@ def seed_tags(db):
                           tag['knowledge'])
             db.session.add(new_tag)
             db.session.commit()
-            print(tag['name'] + ' commited')
+            # print(tag['name'] + ' commited')
         else:
-            print('Tag already exists')
+            pass
+            # print('Tag already exists')
 
 
 def seed_projects(db):
@@ -158,7 +159,7 @@ def seed_projects(db):
 
             db.session.add(new_project)
             db.session.commit()
-            print(project['title'] + ' commited')
+            # print(project['title'] + ' commited')
 
             tags_list = project['tags'].split(',')
             for a_tag in tags_list:
@@ -167,7 +168,8 @@ def seed_projects(db):
                     new_project.tags.append(tag_to_add)
                     db.session.commit()
         else:
-            print('Project already exists')
+            pass
+            # print('Project already exists')
 
 
 def seed_collabs(db):
@@ -183,7 +185,8 @@ def seed_collabs(db):
             db.session.add(new_collab)
             db.session.commit()
         else:
-            print('Collab already exists')
+            pass
+            # print('Collab already exists')
 
 
 def seed_aboutme(db):
@@ -199,7 +202,8 @@ def seed_aboutme(db):
             db.session.add(new_aboutme)
             db.session.commit()
         else:
-            print('Homepage item already exists')
+            pass
+            # print('Homepage item already exists')
 
 
 def seed_achievements(db):
@@ -220,7 +224,8 @@ def seed_achievements(db):
             db.session.commit()
 
         else:
-            print('Achievement already exists')
+            pass
+            # print('Achievement already exists')
 
 
 def seed_users(db):
