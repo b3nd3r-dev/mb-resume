@@ -9,6 +9,7 @@ from app.forms import LoginForm
 from app.utils.password import check_password
 import pdfkit
 from pathlib import Path
+
 main = Blueprint('main', __name__, template_folder='../templates')
 
 
@@ -132,29 +133,30 @@ def contact():
     return render_template('contact.html')
 
 
-@main.route('/resume', methods=['GET'])
+@main.route('/resume')
 def resume():
     aboutme = AboutMe.query.first()
     achievements = Achievement.query.all()
-    projects = Project.query.all()
+    projects = Project.query.filter_by(featured=True).all()
     tags = Tag.query.all()
     fluent_tags = Tag.query.filter_by(knowledge='fluent').all()
     proficient_tags = Tag.query.filter_by(knowledge='proficient').all()
     familiar_tags = Tag.query.filter_by(knowledge='familiar').all()
 
-    options = {'page-size': 'Letter',
-               'encoding': "UTF-8",
-               'margin-top': '0.5in',
-               'margin-right': '0.5in',
-               'margin-bottom': '0.5in',
-               'margin-left': '0.5in',
-               'no-outline': None,
-               'no-background': True
-               }
+    options = {
+        'page-size': 'A4',
+        # 'encoding': "UTF-8",
+        # 'margin-top': '0.5in',
+        # 'margin-right': '0.5in',
+        # 'margin-bottom': '0.5in',
+        # 'margin-left': '0.5in',
+        # 'no-outline': None,
+        # 'no-background': True
+    }
 
     # options = {'disable-javascript': True}
 
-    resume_html = render_template('resume.html.j2',
+    resume_html = render_template('resume.html',
                                   aboutme=aboutme,
                                   achievements=achievements,
                                   projects=projects,

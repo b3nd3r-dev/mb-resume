@@ -2,11 +2,8 @@
 <html>
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Max Bender</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyles.css', _external=True)}}" />
-
+  <title>Max Bender | Resume</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyles-resume.css', _external=True)}}" />
 </head>
 
 <body>
@@ -75,21 +72,24 @@
           <div class="title has-text-primary has-text-centered is-size-2 pt-2">Skills</div>
           <div class="subtitle has-text-primary has-text-centered pb-1">My expereinces have exposed me to the
             languages and skills listed below, some in greater detail than others.</div>
-          <div class="title has-text-primary has-text-centered pb-2">Fluent:</div>
+          <div class="title is-size-4 has-text-primary has-text-centered pb-2" style="text-decoration: underline;">
+            Fluent</div>
           <div class="subtitle has-text-primary pb-3">{% for fluent_tag in fluent_tags %}{{fluent_tag.name}}<span
               class="px-1"> </span>
             {% endfor %}
           </div>
 
-          <div class="title has-text-primary has-text-centered pb-2">Profient:</div>
+          <div class="title is-size-4 has-text-primary has-text-centered pb-2" style="text-decoration: underline;">
+            Profient</div>
           <div class="subtitle has-text-primary pb-3">
             {% for proficient_tag in proficient_tags %}{{proficient_tag.name}}<span class="px-1">
             </span>
             {% endfor %}
           </div>
-          <div class="title has-text-primary has-text-centered pb-2">Familiar:</div>
-          <div class="subtitle has-text-primary pb-3">{% for familiar_tag in familiar_tags %}{{familiar_tag.name}}<span
-              class="px-1"> </span>
+          <div class="title is-size-4 is-underlined has-text-primary has-text-centered pb-2"
+            style="text-decoration: underline;">Familiar</div>
+          <div class="subtitle has-text-primary pb-3">
+            {% for familiar_tag in familiar_tags %}{{familiar_tag.name}}<span class="px-1"> </span>
             {% endfor %}
           </div>
 
@@ -107,8 +107,6 @@
       </div>
     </section>
   </div>
-
-  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </body>
 
 </html>

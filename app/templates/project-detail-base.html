@@ -8,6 +8,12 @@
     <div class="column is-8 is-offset-2 has-text-centered is-8-touch is-offset-2-touch">
         <div class="title has-text-primary is-size-2">
             {{ project.title }}
+            {% if project.project_link %}
+            <!-- variable is not empty -->
+            <a href="https://{{ project.project_link }}" target="_blank"> <i class="fas fa-link fa-xs"></i></a>
+            {% else %}
+            <!-- variable is empty -->
+            {% endif %}
         </div>
         <hr>
     </div>
@@ -33,18 +39,6 @@
                             {{ tag.name }}
                         </a>
                         {% endfor %}
-                    </div>
-                </div>
-            </div>
-            {% else %}
-            {% endif %}
-            {% if project.project_link %}
-            <div class="media" style="margin: 0px; padding: 0;">
-                <div class="media-content has-text-centered">
-                    <div class="card-content">
-                        <div class="title has-text-primary is-size-5">Link:</div>
-                        <a href="https://{{ project.project_link}}" target="_blank" class="button is-link">Project
-                        </a>
                     </div>
                 </div>
             </div>
