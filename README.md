@@ -3,20 +3,19 @@ Max Bender's Online Website Resume
 
 ## Pre-Requisites
 
-The mb-resume website is written in Flask which is a web framework written in Python. This was developed on Python 3.7.8 so one way or another... install python 3.7.8!
+The mb-resume website is written in Flask which is a web framework written in Python. This was developed on Python 3.8.5 so one way or another... install python 3.8.5!
 
 There is a package required to generate ERD diagarams automatically. If you want this then you will need to install graphviz before installing your python requirements. See [GraphViz](http://graphviz.org/download/) for instructions on how to install. *THEN* if you want to generate ERDs run `pip install -r requirements-dev.txt`
 
 Next create a virtual environment by running `python3 -m venv venv` inside the root directory for this project. Then install the project's dependencies by running `pip install -r requirements.txt`.
 
-Navigate to app/static then run npm install 
+Navigate to app/static then run npm install for sass - css updates
 
 ## Environment Variables
 You have to set some environment variables by using `export ENVAR=VALUE` or creating a file with the variables in it, then `source environment_file.env` before running. 
-<!-- See the [Dockerfile](Dockerfile) for an example.  -->
 
 1. FLASK_APP=flask_app.py
-<!-- 2. FLASK_CONFIG=development/production -->
+2. FLASK_CONFIG=development/testing/production
 
 ## How to Start
 
