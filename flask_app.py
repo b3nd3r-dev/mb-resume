@@ -11,8 +11,8 @@ from wtforms.widgets import TextArea
 from flask_admin.contrib.sqla import ModelView
 from flask_migrate import upgrade
 
-app = createApp(os.getenv('FLASK_CONFIG') or 'default')
 
+app = createApp(os.getenv('FLASK_CONFIG') or 'default')
 
 class CKTextAreaWidget(TextArea):
     def __call__(self, field, **kwargs):
@@ -58,7 +58,7 @@ def make_shell_context():
     achievements = Achievement.query.all()
     projects = Project.query.all()
     context = app.test_request_context()
-    from seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements
+    from app.seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements
     seed_tags(db)
     seed_projects(db)
     seed_collabs(db)
@@ -69,7 +69,7 @@ def make_shell_context():
 
 @app.cli.command()
 def deploy():
-    from seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements, seed_users
+    from app.seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements, seed_users
     upgrade()
     seed_tags(db)
     seed_projects(db)
