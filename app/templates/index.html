@@ -2,7 +2,7 @@
 {% set active_page = "index" %}
 {% block head %}
 <link type="text/css" rel="stylesheet"
-    href="{{ url_for('static', filename='node_modules/jquery-conveyor-ticker/dist/css/jquery.jConveyorTicker.min.css')}}" />
+    href="{{ url_for('static', filename='css/jquery-conveyor-ticker/css/jquery.jConveyorTicker.min.css')}}" />
 {% endblock %}
 
 {% block content %}
@@ -180,14 +180,12 @@
 {% endblock %}
 
 {% block script %}
-<script
-    src="{{ url_for('static', filename='node_modules/jquery-conveyor-ticker/dist/js/jquery.jConveyorTicker.js')}}"></script>
+<script src="{{ url_for('static', filename='css/jquery-conveyor-ticker/js/jquery.jConveyorTicker.js')}}"></script>
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
         $('.js-conveyor-1').jConveyorTicker();
         $('.js-conveyor-2').jConveyorTickerRev();
         $('.js-conveyor-3').jConveyorTicker();
-
     });
 </script>
 {% endblock %}
