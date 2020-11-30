@@ -10,4 +10,4 @@ while true; do
     sleep 5
 done
 
-exec gunicorn -t 120 -b 0.0.0.0:5000 --workers 3 --access-logfile - --error-logfile - flask_app:app
+exec gunicorn -t 120 -b 0.0.0.0:5000 --workers 3 --access-logfile - --error-logfile - --forwarded-allow-ips="192.168.1.19" flask_app:app
