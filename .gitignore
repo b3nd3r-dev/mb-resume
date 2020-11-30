@@ -136,3 +136,5 @@ dmypy.json
 *.env
 
 ReviewNotes.txt
+
+app/static/node_modules/*

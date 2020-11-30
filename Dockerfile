@@ -3,8 +3,7 @@ FROM python:3.8-alpine
 ENV FLASK_APP flask_app.py
 ENV FLASK_CONFIG production
 
-RUN apk add build-base python3-dev py-pip jpeg-dev zlib-dev
-RUN apk add pkgconfig graphviz graphviz-dev gcc musl-dev
+RUN apk add build-base python3-dev py-pip jpeg-dev zlib-dev pkgconfig graphviz graphviz-dev gcc musl-dev nodejs npm
 ENV LIBRARY_PATH=/lib:/usr/lib
 
 RUN adduser -D bender
@@ -22,6 +21,12 @@ RUN venv/bin/pip install -r requirements.txt
 COPY app app
 COPY migrations migrations
 COPY flask_app.py config.py boot.sh ./
+
+WORKDIR /home/bender/app/static/node_modules
+
+RUN npm install
+
+WORKDIR /home/bender
 
 # run-time configuration
 EXPOSE 5000
