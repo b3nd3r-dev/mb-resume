@@ -245,7 +245,7 @@
         var settings = {
             anim_duration: 200,
             reverse_elm: false,
-            force_loop: false,
+            force_loop: true,
             start_paused: false,
         };
         var cycle_duration = settings.anim_duration;
@@ -434,7 +434,7 @@
                 }
 
                 $list.stop().animate({
-                    left: operator + '=10px'
+                    left: operator + '=-10px'
                 }, cycle_duration, 'linear', function () {
                     output.conveyorAnimate(direction);
                 });
