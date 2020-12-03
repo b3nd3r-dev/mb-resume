@@ -19,13 +19,9 @@ RUN venv/bin/pip install wheel
 RUN venv/bin/pip install pygraphviz --install-option="--library-path=/usr/lib/graphviz/"
 RUN venv/bin/pip install -r requirements.txt
 
-COPY app app
-COPY migrations migrations
-COPY flask_app.py config.py boot.sh ./
-
-USER root
-RUN chown -R bender:bender /home/bender
-USER bender
+COPY --chown=bender:bender app app 
+COPY --chown=bender:bender migrations migrations
+COPY --chown=bender:bender flask_app.py config.py boot.sh ./
 
 WORKDIR /home/bender/app/static/node_modules
 
