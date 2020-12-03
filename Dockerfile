@@ -16,7 +16,7 @@ USER bender
 WORKDIR /home/bender
 
 COPY requirements.txt requirements.txt
-RUN python3 -m venv venv
+RUN python -m venv venv
 RUN venv/bin/python -m pip install -U --force-reinstall pip
 RUN venv/bin/pip install wheel
 RUN venv/bin/pip install pygraphviz --install-option="--library-path=/usr/lib/graphviz/"

@@ -1,5 +1,5 @@
 #!/bin/sh
-source opt/venv/bin/activate
+source venv/bin/activate
 
 while true; do
     flask deploy
