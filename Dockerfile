@@ -1,7 +1,8 @@
 FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 
-
+ENV FLASK_APP=/home/bender/flask_app.py
+ENV FLASK_CONFIG=production
 
 
 RUN apt-get update
@@ -31,8 +32,7 @@ RUN npm install
 
 WORKDIR /home/bender
 
-ENV FLASK_APP=flask_app.py
-ENV FLASK_CONFIG=production
+
 
 
 # run-time configuration
