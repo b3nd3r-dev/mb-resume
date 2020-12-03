@@ -2,8 +2,8 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 
-ENV FLASK_APP flask_app.py
-ENV FLASK_CONFIG production
+ENV FLASK_APP=flask_app.py
+ENV FLASK_CONFIG=production
 
 RUN apt-get update
 RUN apt-get install -y python3-dev python3 libjpeg-dev zlib1g-dev pkg-config graphviz graphviz-dev gcc musl-dev nodejs npm wkhtmltopdf tzdata python3-venv
