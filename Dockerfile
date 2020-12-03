@@ -1,4 +1,5 @@
 FROM ubuntu:20.04
+ENV TZ=US/New_York
 
 ENV FLASK_APP flask_app.py
 ENV FLASK_CONFIG production
