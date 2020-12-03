@@ -1,5 +1,6 @@
 FROM ubuntu:20.04
 ENV TZ=US/New_York
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 ENV FLASK_APP flask_app.py
 ENV FLASK_CONFIG production
