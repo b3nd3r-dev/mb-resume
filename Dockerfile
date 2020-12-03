@@ -16,11 +16,11 @@ USER bender
 WORKDIR /home/bender
 
 COPY requirements.txt requirements.txt
-RUN python3 -m venv venv
-RUN venv/bin/python -m pip install -U --force-reinstall pip
-RUN venv/bin/pip install wheel
-RUN venv/bin/pip install pygraphviz --install-option="--library-path=/usr/lib/graphviz/"
-RUN venv/bin/pip install -r requirements.txt
+RUN python3 -m venv opt/venv
+RUN opt/venv/bin/python -m pip install -U --force-reinstall pip
+RUN opt/venv/bin/pip install wheel
+RUN opt/venv/bin/pip install pygraphviz --install-option="--library-path=/usr/lib/graphviz/"
+RUN opt/venv/bin/pip install -r requirements.txt
 
 COPY --chown=bender:bender app app 
 COPY --chown=bender:bender migrations migrations
