@@ -3,6 +3,7 @@ FROM ubuntu:20.04
 ENV FLASK_APP flask_app.py
 ENV FLASK_CONFIG production
 
+RUN apt-get update
 RUN apt-get install python3-dev python3 py-pip jpeg-dev zlib-dev pkgconfig graphviz graphviz-dev gcc musl-dev nodejs npm wkhtmltopdf
 ENV LIBRARY_PATH=/lib:/usr/lib
 
