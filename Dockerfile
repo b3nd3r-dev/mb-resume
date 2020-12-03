@@ -6,7 +6,7 @@ ENV FLASK_APP=flask_app.py
 ENV FLASK_CONFIG=production
 
 RUN apt-get update
-RUN apt-get install -y python3-dev python3 libjpeg-dev zlib1g-dev pkg-config graphviz graphviz-dev gcc musl-dev nodejs npm wkhtmltopdf tzdata python-venv
+RUN apt-get install -y python3-dev python3 libjpeg-dev zlib1g-dev pkg-config graphviz graphviz-dev gcc musl-dev nodejs npm wkhtmltopdf tzdata python3-venv
 ENV LIBRARY_PATH=/lib:/usr/lib
 
 
@@ -16,7 +16,7 @@ USER bender
 WORKDIR /home/bender
 
 COPY requirements.txt requirements.txt
-RUN python -m venv venv
+RUN python3 -m venv venv
 RUN venv/bin/python -m pip install -U --force-reinstall pip
 RUN venv/bin/pip install wheel
 RUN venv/bin/pip install pygraphviz --install-option="--library-path=/usr/lib/graphviz/"
