@@ -6,7 +6,7 @@ ENV FLASK_APP flask_app.py
 ENV FLASK_CONFIG production
 
 RUN apt-get update
-RUN apt-get install -y python3-dev python3 libjpeg-dev zlib1g-dev pkg-config graphviz graphviz-dev gcc musl-dev nodejs npm wkhtmltopdfpu tzdata
+RUN apt-get install -y python3-dev python3 libjpeg-dev zlib1g-dev pkg-config graphviz graphviz-dev gcc musl-dev nodejs npm wkhtmltopdf tzdata
 ENV LIBRARY_PATH=/lib:/usr/lib
 
 
