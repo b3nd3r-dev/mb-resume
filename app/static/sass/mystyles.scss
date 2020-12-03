@@ -44,23 +44,16 @@ html, body {
   height: 100%;
   margin: 0;
 }
-// .wrapper{
-//   min-height: 100%;
-//   margin-bottom: -50px;
-// }
-
-// .footer,
-// .push {
-//   height: 30px;
-// }
 
 /* FOOTER */
 #wrap {
   min-height: 100%;
+  width: 100%;
 }
 #main {
-  overflow: auto;
-  padding-bottom: 150px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: 170px;
 }
 
 .footer {

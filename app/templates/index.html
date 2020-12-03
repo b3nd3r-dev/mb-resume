@@ -2,7 +2,7 @@
 {% set active_page = "index" %}
 {% block head %}
 <link type="text/css" rel="stylesheet"
-    href="{{ url_for('static', filename='node_modules/jquery-conveyor-ticker/dist/css/jquery.jConveyorTicker.min.css')}}" />
+    href="{{ url_for('static', filename='css/jquery-conveyor-ticker/css/jquery.jConveyorTicker.css')}}" />
 {% endblock %}
 
 {% block content %}
@@ -85,7 +85,7 @@
             {% for tag in first_tag_list %}{% include 'elements/tag2.html' %}{% endfor %}
         </ul>
     </div>
-    <div class="js-conveyor-2 jctkr-wrapper" style="height: 80px;">
+    <div class=" js-conveyor-2 jctkr-wrapper" style="height: 80px;">
         <ul>
             {% for tag in second_tag_list %}{% include 'elements/tag2.html' %}{% endfor %}
         </ul>
@@ -180,14 +180,12 @@
 {% endblock %}
 
 {% block script %}
-<script
-    src="{{ url_for('static', filename='node_modules/jquery-conveyor-ticker/dist/js/jquery.jConveyorTicker.js')}}"></script>
+<script src="{{ url_for('static', filename='css/jquery-conveyor-ticker/js/jquery.jConveyorTicker.min.js')}}"></script>
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
         $('.js-conveyor-1').jConveyorTicker();
         $('.js-conveyor-2').jConveyorTickerRev();
         $('.js-conveyor-3').jConveyorTicker();
-
     });
 </script>
 {% endblock %}
