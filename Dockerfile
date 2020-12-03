@@ -22,6 +22,8 @@ COPY app app
 COPY migrations migrations
 COPY flask_app.py config.py boot.sh ./
 
+RUN chown -R bender:bender /home/bender
+
 WORKDIR /home/bender/app/static/node_modules
 
 RUN npm install
