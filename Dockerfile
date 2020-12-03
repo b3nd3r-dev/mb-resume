@@ -6,6 +6,7 @@ ENV FLASK_CONFIG production
 RUN apk add build-base python3-dev py-pip jpeg-dev zlib-dev pkgconfig graphviz graphviz-dev gcc musl-dev nodejs npm wkhtmltopdf
 ENV LIBRARY_PATH=/lib:/usr/lib
 
+
 RUN adduser -D bender
 USER bender
 
@@ -22,7 +23,9 @@ COPY app app
 COPY migrations migrations
 COPY flask_app.py config.py boot.sh ./
 
+USER root
 RUN chown -R bender:bender /home/bender
+USER bender
 
 WORKDIR /home/bender/app/static/node_modules
 
