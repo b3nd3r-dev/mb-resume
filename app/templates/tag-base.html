@@ -5,7 +5,7 @@
 {% block content %}
 <div class="columns" style="width:100%">
     <div class="column is-10 is-offset-1 is-10-touch is-offset-1-touch pt-6">
-        <div class="title has-text-primary has-text-cenetered">Projects utitlizing {{ tag.name }} include:</div>
+        <div class="title has-text-primary has-text-cenetered">Projects utilizing {{ tag.name }} include:</div>
         <hr>
     </div>
 </div>
@@ -19,8 +19,7 @@
                 </a>
                 {% if project.project_link %}
                 <!-- variable is not empty -->
-                <a href="https://{{ project.project_link }}" target="_blank"> <i class="fas fa-link"
-                        style="vertical-align: 3px;"></i></a>
+                <a href="https://{{ project.project_link }}" target="_blank"> <i class="fas fa-link" style="vertical-align: 3px;"></i></a>
                 {% else %}
                 <!-- variable is empty -->
                 {% endif %}
