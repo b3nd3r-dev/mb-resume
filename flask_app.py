@@ -16,7 +16,10 @@ app = createApp(os.getenv('FLASK_CONFIG') or 'default')
 
 class CKTextAreaWidget(TextArea):
     def __call__(self, field, **kwargs):
-        kwargs.setdefault('class_', 'ckeditor')
+        if kwargs.get('class'):
+            kwargs['class'] += " ckeditor"
+        else:
+            kwargs.setdefault('class', 'ckeditor')
         return super(CKTextAreaWidget, self).__call__(field, **kwargs)
 
 
@@ -27,12 +30,17 @@ class CKTextAreaField(TextAreaField):
 class WYSIWYGModelView(ModelView):
     form_overrides = dict(description=CKTextAreaField, quote=CKTextAreaField, desc=CKTextAreaField, short_description=CKTextAreaField, long_description=CKTextAreaField)
 
-    create_template = 'edit.html'
-    edit_template = 'edit.html'
+    
+
+    create_template = 'admin/templates/edit.html'
+    edit_template = 'admin/templates/edit.html'
 
     def is_accessible(self):
         from flask_login import current_user
         return current_user.is_authenticated
+
+class ProjectTagView(ModelView):
+    column_searchable_list = ['tag_id', 'project_id']
 
 
 with app.app_context():
@@ -45,12 +53,14 @@ with app.app_context():
     admin.add_view(WYSIWYGModelView(Achievement, db.session))
     admin.add_view(WYSIWYGModelView(Project, db.session))
     admin.add_view(WYSIWYGModelView(Tag, db.session))
+    admin.add_view(ProjectTagView(ProjectTag, db.session))
     admin.add_view(WYSIWYGModelView(Collab, db.session))
 
 
 @app.shell_context_processor
 def make_shell_context():
     import pdfkit
+    from os import getenv
     from flask import render_template
     ctx = app.test_request_context('/nothing')
     ctx.push()
@@ -58,24 +68,29 @@ def make_shell_context():
     achievements = Achievement.query.all()
     projects = Project.query.all()
     context = app.test_request_context()
-    from app.seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements
-    seed_tags(db)
-    seed_projects(db)
-    seed_collabs(db)
-    seed_achievements(db)
-    seed_aboutme(db)
+
+    if getenv('FLASK_CONFIG') != 'production':
+        from app.seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements
+        upgrade()
+        seed_tags(db)
+        seed_projects(db)
+        seed_collabs(db)
+        seed_achievements(db)
+        seed_aboutme(db)
     return dict(db=db, Project=Project, Tag=Tag, ProjectTag=ProjectTag, Collab=Collab, ProjectCollab=ProjectCollab, Achievement=Achievement, AboutMe=AboutMe)
 
 
 @app.cli.command()
 def deploy():
-    from app.seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements, seed_users
+    from os import getenv
     upgrade()
-    seed_tags(db)
-    seed_projects(db)
-    seed_collabs(db)
-    seed_achievements(db)
-    seed_aboutme(db)
-    seed_users(db)
+    if getenv('FLASK_CONFIG') != 'production':
+        from app.seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements, seed_users
+        seed_tags(db)
+        seed_projects(db)
+        seed_collabs(db)
+        seed_achievements(db)
+        seed_aboutme(db)
+        seed_users(db)
 
     pass

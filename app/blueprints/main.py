@@ -4,11 +4,12 @@ from flask import Blueprint, redirect, render_template, request, url_for, flash,
 from flask import current_app as app
 from flask_login import logout_user, login_user, current_user
 from app import db
-from app.models import Project, Tag, User, AboutMe, Achievement, Collab
+from app.models import Project, Tag, User, AboutMe, Achievement, Collab, ProjectTag
 from app.forms import LoginForm
 from app.utils.password import check_password
 import pdfkit
 from pathlib import Path
+from sqlalchemy import desc, asc
 
 main = Blueprint('main', __name__, template_folder='../templates')
 
@@ -22,10 +23,12 @@ def chunks(lst, n):
 @main.route('/')
 def index():
     aboutme = AboutMe.query.first()
-    achievements = Achievement.query.all()
+    achievements = Achievement.query.order_by(asc(Achievement.order)).all()
 
     # Project Splitting
     feat_proj = Project.query.filter_by(featured=True).all()
+
+
     # print(len(feat_proj))
     if len(feat_proj) > 6:
         flash('There can only be 6 featured projects, please correct on update page')
@@ -66,7 +69,7 @@ def index():
 @ main.route('/project')
 def project():
     all_projects = Project.query.all()
-    all_projects.reverse()
+    all_projects.sort(key=lambda x: (-x.featured, x.title))
     split_project_list = list(chunks(all_projects, int(len(all_projects) / 2)))
 
     first_project_list = split_project_list[0]

@@ -12,13 +12,15 @@ class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(30), unique=True, nullable=False)
     project_link = db.Column(db.String, nullable=True)
-    short_description = db.Column(db.Text, nullable=False)
-    long_description = db.Column(db.Text, nullable=False)
+    short_description = db.Column(db.UnicodeText)
+    long_description = db.Column(db.UnicodeText)
     featured = db.Column(db.Boolean, default=False)
 
     # Relationships
     tags = relationship("Tag", secondary='project_tags',
-                        back_populates='projects')
+                        backref=db.backref('projects', lazy='dynamic'))
+    achievements = relationship("Achievement", secondary='achievement_projects',
+                        backref=db.backref('projects', lazy='joined'))
     collabs = relationship("Collab", secondary='project_collabs',
                            back_populates='projects')
 
@@ -39,14 +41,12 @@ class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(10), unique=True, nullable=False)
     knowledge = db.Column(db.String(15), nullable=False)
+    show_on_front = db.Column(db.Boolean)
 
-    # Relationships
-    projects = relationship(
-        'Project', secondary='project_tags', back_populates="tags")
-
-    def __init__(self, name, knowledge):
+    def __init__(self, name, knowledge, show_on_front=True):
         self.name = name
         self.knowledge = knowledge
+        self.show_on_front = show_on_front
 
     def __repr__(self):
         return f"{self.name}"
@@ -59,12 +59,19 @@ class ProjectTag(db.Model):
     tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), primary_key=True)
 
     # Relationships
+    tag = db.relationship('Tag', backref=db.backref('projtags', lazy='dynamic'))
+    project = db.relationship('Project', backref=db.backref('projtags', lazy='dynamic'))
     # tag = relationship("Tag", backref='projects')
     # project = relationship("Project", backref='tags')
 
-    def __init__(self, project, tag):
+    def __init__(self, project, tag, show_on_front=True):
         self.tag = tag
         self.project = project
+        self.show_on_front = show_on_front
+        self.shortname = str(self.project_id) + " " + str(self.tag_id)
+
+    def __unicode__(self):
+        return f"ProjectTag {self.project.title} with tag {self.tag.name}"
 
     def __repr__(self):
         return f"ProjectTag {self.project.title} with tag {self.tag.name}"
@@ -165,16 +172,18 @@ class AboutMe(db.Model):
 
 class Achievement(db.Model):
     __tablename__ = 'achievements'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String, nullable=False)
     start_date = db.Column(db.String, nullable=False)
     end_date = db.Column(db.String, nullable=False)
-    desc = db.Column(db.Text, nullable=False)
+    desc = db.Column(db.Text)
     link = db.Column(db.String)
     link_name = db.Column(db.String)
     icon = db.Column(db.String, nullable=False)
+    order = db.Column(db.Integer, nullable=False, default=1)
 
-    def __init__(self, name, start_date, end_date, desc, link, link_name, icon):
+
+    def __init__(self, name, start_date, end_date, desc, link, link_name, icon, order=1):
         self.name = name
         self.start_date = start_date
         self.end_date = end_date
@@ -182,6 +191,23 @@ class Achievement(db.Model):
         self.link = link
         self.link_name = link_name
         self.icon = icon
+        self.order = order
 
     def __repr__(self):
         return f"{self.name}"
+
+class AchievementProject(db.Model):
+    # Attributes
+    __tablename__ = "achievement_projects"
+    project_id = db.Column(db.Integer, db.ForeignKey('projects.id'), primary_key=True)
+    achievement_id = db.Column(db.Integer, db.ForeignKey('achievements.id'), primary_key=True)
+
+    # Relationships
+    # achievement = db.relationship('Achievement', backref=db.backref('achivprojects', lazy='dynamic'))
+    # project = db.relationship('Project', backref=db.backref('achivprojects', lazy='dynamic'))
+    # tag = relationship("Tag", backref='projects')
+    # project = relationship("Project", backref='tags')
+
+    def __init__(self, project, achievement):
+        self.achievement = achievement
+        self.project = project
