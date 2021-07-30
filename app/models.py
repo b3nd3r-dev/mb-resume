@@ -39,7 +39,7 @@ class Tag(db.Model):
     # Attributes
     __tablename__ = 'tags'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(10), unique=True, nullable=False)
+    name = db.Column(db.String(28), unique=True, nullable=False)
     knowledge = db.Column(db.String(15), nullable=False)
     show_on_front = db.Column(db.Boolean)
 
@@ -59,8 +59,8 @@ class ProjectTag(db.Model):
     tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), primary_key=True)
 
     # Relationships
-    tag = db.relationship('Tag', backref=db.backref('projtags', lazy='dynamic'))
-    project = db.relationship('Project', backref=db.backref('projtags', lazy='dynamic'))
+    tag = db.relationship('Tag', backref=db.backref('projtags', lazy='joined',  cascade="all, delete-orphan"))
+    project = db.relationship('Project', backref=db.backref('projtags', lazy='joined',  cascade="all, delete-orphan"))
     # tag = relationship("Tag", backref='projects')
     # project = relationship("Project", backref='tags')
 
@@ -68,7 +68,6 @@ class ProjectTag(db.Model):
         self.tag = tag
         self.project = project
         self.show_on_front = show_on_front
-        self.shortname = str(self.project_id) + " " + str(self.tag_id)
 
     def __unicode__(self):
         return f"ProjectTag {self.project.title} with tag {self.tag.name}"

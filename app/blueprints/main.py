@@ -136,10 +136,14 @@ def contact():
     return render_template('contact.html')
 
 
+@main.route('/resume/static')
+def resumestatic():
+    return redirect(url_for('static', filename='files/resume.pdf'))
+
 @main.route('/resume')
 def resume():
     aboutme = AboutMe.query.first()
-    achievements = Achievement.query.all()
+    achievements = Achievement.query.order_by(asc(Achievement.order)).all()
     projects = Project.query.filter_by(featured=True).all()
     tags = Tag.query.all()
     fluent_tags = Tag.query.filter_by(knowledge='fluent').all()
@@ -148,6 +152,7 @@ def resume():
 
     options = {
         'page-size': 'A4',
+        # 'no-images': True,
         # 'encoding': "UTF-8",
         # 'margin-top': '0.5in',
         # 'margin-right': '0.5in',

@@ -13,8 +13,8 @@
       <div class="columns" style="width: 100%;">
         <div class="column is-5 is-offset-1 ">
           <div class="subtitle has-text-primary is-size-5 has-text-centered">
-            This is a programaticaly generated resume, for an update to date & formatted version vist
-            <a href="">Bender.io</a>
+            This is a programaticaly generated resume, for an up to date & formatted version please visit
+            <a href="maxbbender.com">maxbbender.com</a>
           </div>
           <div class="title has-text-primary pt-3">Max Bender
           </div>
@@ -30,6 +30,20 @@
           <hr>
         </div>
       </div>
+    </section>
+     <!-- EXPERIENCE -->
+     <section>
+      <div class="title has-text-primary has-text-centered is-size-2 pt-2">Experience</div>
+      {% for achievement in achievements %}
+      <div class="columns" style="width: 100%;">
+        <div class="column is-10 is-offset-1">
+          <div class="title has-text-primary">{{achievement.name}}</div>
+          <div class="subtitle has-text-primary">{{achievement.start_date}} - {{achievement.end_date | safe}} <span
+              class="subtitle is-size-6 has-text-link">{{achievement.link}}</span></div>
+          <div class="info has-text-primary">{{achievement.desc | safe}}</div>
+        </div>
+      </div>
+      {% endfor %}
     </section>
     <!-- PROJECTS -->
     <section>
@@ -50,20 +64,6 @@
           <hr>
         </div>
       </div>
-    </section>
-    <!-- EXPERIENCE -->
-    <section>
-      <div class="title has-text-primary has-text-centered is-size-2 pt-2">Experience</div>
-      {% for achievement in achievements %}
-      <div class="columns" style="width: 100%;">
-        <div class="column is-10 is-offset-1">
-          <div class="title has-text-primary">{{achievement.name}}</div>
-          <div class="subtitle has-text-primary">{{achievement.start_date}} - {{achievement.end_date}} <span
-              class="subtitle is-size-6 has-text-link">{{achievement.link}}</span></div>
-          <div class="info has-text-primary">{{achievement.desc}}</div>
-        </div>
-      </div>
-      {% endfor %}
     </section>
     <!-- SKILLS -->
     <section>
