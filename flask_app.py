@@ -54,28 +54,35 @@ def make_shell_context():
     from flask import render_template
     ctx = app.test_request_context('/nothing')
     ctx.push()
+    context = app.test_request_context()
+
+    if not app.config['DEBUG'] and not app.config['TESTING']:
+        from app.seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements
+        seed_tags(db)
+        seed_projects(db)
+        seed_collabs(db)
+        seed_achievements(db)
+        seed_aboutme(db)
+
     aboutmes = AboutMe.query.all()
     achievements = Achievement.query.all()
     projects = Project.query.all()
-    context = app.test_request_context()
-    from app.seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements
-    seed_tags(db)
-    seed_projects(db)
-    seed_collabs(db)
-    seed_achievements(db)
-    seed_aboutme(db)
+    
     return dict(db=db, Project=Project, Tag=Tag, ProjectTag=ProjectTag, Collab=Collab, ProjectCollab=ProjectCollab, Achievement=Achievement, AboutMe=AboutMe)
 
 
 @app.cli.command()
 def deploy():
-    from app.seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements, seed_users
     upgrade()
-    seed_tags(db)
-    seed_projects(db)
-    seed_collabs(db)
-    seed_achievements(db)
-    seed_aboutme(db)
-    seed_users(db)
+
+
+    if not os.getenv('FLASK_CONFIG').lower() == 'production':
+        from app.seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements, seed_users
+        seed_tags(db)
+        seed_projects(db)
+        seed_collabs(db)
+        seed_achievements(db)
+        seed_aboutme(db)
+        seed_users(db)
 
     pass
