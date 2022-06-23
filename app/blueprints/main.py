@@ -178,3 +178,16 @@ def resume():
     response.headers['Content-Disposition'] = 'inline; filename=MaxBender.pdf'
 
     return response
+
+
+@main.route('/seeddump')
+def seeddump():
+    projects = Project.query.all()
+    tags = Tag.query.all()
+    users = User.query.all()
+    about_me = AboutMe.query.all()
+    achievements = Achievement.query.all()
+    collabs = Collab.query.all()
+    project_tags = ProjectTag.query.all()
+
+    return render_template('seeddump.html', projects=projects, tags=tags, users=users, about_me=about_me, achievements=achievements, collabs=collabs, project_tags=project_tags)

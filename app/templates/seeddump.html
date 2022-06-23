@@ -1,0 +1,9 @@
+projects = [
+{% for project in projects %}
+{
+{% for attribute in dir(obj) if not attribute.startswith('__') and not callable(getattr(obj, attribute)) %}
+{{ attribute }} : {{ project[attribute] }}
+{% endfor %}
+},
+{% endfor %}
+]
