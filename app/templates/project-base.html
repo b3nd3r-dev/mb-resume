@@ -3,19 +3,14 @@
   <a href="{{url_for('main.projectdetail', projectid=project.id)}}" class="title has-text-primary ">
     {{ project.title }}
   </a>
-  {% if project.project_link %}
-  <!-- variable is not empty -->
+  <!-- {% if project.project_link %}
   <a href="https://{{ project.project_link }}" target="_blank"> <i class="fas fa-link"
       style="vertical-align: 3px;"></i></a>
-  {% else %}
-  <!-- variable is empty -->
-  {% endif %}
-  {% if project.featured %}
-  <!-- variable is not empty -->
+  {% endif %} -->
+  
+  <!-- {% if project.featured %}
   <span class="title pl-2" style="color: gold; vertical-align: -6px;">*</span>
-  {% else %}
-  <!-- variable is empty -->
-  {% endif %}
+  {% endif %} -->
 
   <div class="py-2">
     {% for tag in project.tags %}

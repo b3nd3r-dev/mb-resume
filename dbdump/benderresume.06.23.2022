@@ -1,0 +1,669 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.6 (Ubuntu 13.6-1.pgdg20.04+1)
+-- Dumped by pg_dump version 13.7 (Ubuntu 13.7-1.pgdg20.04+1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: AboutMes; Type: TABLE; Schema: public; Owner: bender
+--
+
+CREATE TABLE public."AboutMes" (
+    id integer NOT NULL,
+    title character varying,
+    subtitle character varying,
+    description text,
+    quote text
+);
+
+
+ALTER TABLE public."AboutMes" OWNER TO bender;
+
+--
+-- Name: AboutMes_id_seq; Type: SEQUENCE; Schema: public; Owner: bender
+--
+
+CREATE SEQUENCE public."AboutMes_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."AboutMes_id_seq" OWNER TO bender;
+
+--
+-- Name: AboutMes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bender
+--
+
+ALTER SEQUENCE public."AboutMes_id_seq" OWNED BY public."AboutMes".id;
+
+
+--
+-- Name: achievement_projects; Type: TABLE; Schema: public; Owner: bender
+--
+
+CREATE TABLE public.achievement_projects (
+    project_id integer NOT NULL,
+    achievement_id integer NOT NULL
+);
+
+
+ALTER TABLE public.achievement_projects OWNER TO bender;
+
+--
+-- Name: achievements; Type: TABLE; Schema: public; Owner: bender
+--
+
+CREATE TABLE public.achievements (
+    id bigint NOT NULL,
+    name text NOT NULL,
+    start_date text NOT NULL,
+    end_date text NOT NULL,
+    "desc" text,
+    link text,
+    link_name text,
+    icon text NOT NULL,
+    "order" integer DEFAULT 1 NOT NULL
+);
+
+
+ALTER TABLE public.achievements OWNER TO bender;
+
+--
+-- Name: achievements_id_seq; Type: SEQUENCE; Schema: public; Owner: bender
+--
+
+CREATE SEQUENCE public.achievements_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.achievements_id_seq OWNER TO bender;
+
+--
+-- Name: achievements_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bender
+--
+
+ALTER SEQUENCE public.achievements_id_seq OWNED BY public.achievements.id;
+
+
+--
+-- Name: alembic_version; Type: TABLE; Schema: public; Owner: bender
+--
+
+CREATE TABLE public.alembic_version (
+    version_num character varying(32) NOT NULL
+);
+
+
+ALTER TABLE public.alembic_version OWNER TO bender;
+
+--
+-- Name: collabs; Type: TABLE; Schema: public; Owner: bender
+--
+
+CREATE TABLE public.collabs (
+    id bigint NOT NULL,
+    fname text NOT NULL,
+    lname text NOT NULL,
+    clink text
+);
+
+
+ALTER TABLE public.collabs OWNER TO bender;
+
+--
+-- Name: collabs_id_seq; Type: SEQUENCE; Schema: public; Owner: bender
+--
+
+CREATE SEQUENCE public.collabs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.collabs_id_seq OWNER TO bender;
+
+--
+-- Name: collabs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bender
+--
+
+ALTER SEQUENCE public.collabs_id_seq OWNED BY public.collabs.id;
+
+
+--
+-- Name: project_collabs; Type: TABLE; Schema: public; Owner: bender
+--
+
+CREATE TABLE public.project_collabs (
+    project_id bigint NOT NULL,
+    collab_id bigint NOT NULL
+);
+
+
+ALTER TABLE public.project_collabs OWNER TO bender;
+
+--
+-- Name: project_tags; Type: TABLE; Schema: public; Owner: bender
+--
+
+CREATE TABLE public.project_tags (
+    project_id bigint NOT NULL,
+    tag_id bigint NOT NULL
+);
+
+
+ALTER TABLE public.project_tags OWNER TO bender;
+
+--
+-- Name: projects; Type: TABLE; Schema: public; Owner: bender
+--
+
+CREATE TABLE public.projects (
+    id bigint NOT NULL,
+    title text NOT NULL,
+    project_link text,
+    short_description text,
+    long_description text,
+    featured boolean
+);
+
+
+ALTER TABLE public.projects OWNER TO bender;
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE; Schema: public; Owner: bender
+--
+
+CREATE SEQUENCE public.projects_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.projects_id_seq OWNER TO bender;
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bender
+--
+
+ALTER SEQUENCE public.projects_id_seq OWNED BY public.projects.id;
+
+
+--
+-- Name: tags_id_seq; Type: SEQUENCE; Schema: public; Owner: bender
+--
+
+CREATE SEQUENCE public.tags_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tags_id_seq OWNER TO bender;
+
+--
+-- Name: tags; Type: TABLE; Schema: public; Owner: bender
+--
+
+CREATE TABLE public.tags (
+    id bigint DEFAULT nextval('public.tags_id_seq'::regclass) NOT NULL,
+    name text NOT NULL,
+    knowledge text NOT NULL,
+    show_on_front boolean
+);
+
+
+ALTER TABLE public.tags OWNER TO bender;
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: bender
+--
+
+CREATE TABLE public.users (
+    id bigint NOT NULL,
+    username text NOT NULL,
+    password_hash text NOT NULL,
+    salt text NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO bender;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: bender
+--
+
+CREATE SEQUENCE public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO bender;
+
+--
+-- Name: AboutMes id; Type: DEFAULT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public."AboutMes" ALTER COLUMN id SET DEFAULT nextval('public."AboutMes_id_seq"'::regclass);
+
+
+--
+-- Name: achievements id; Type: DEFAULT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.achievements ALTER COLUMN id SET DEFAULT nextval('public.achievements_id_seq'::regclass);
+
+
+--
+-- Name: collabs id; Type: DEFAULT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.collabs ALTER COLUMN id SET DEFAULT nextval('public.collabs_id_seq'::regclass);
+
+
+--
+-- Name: projects id; Type: DEFAULT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.projects ALTER COLUMN id SET DEFAULT nextval('public.projects_id_seq'::regclass);
+
+
+--
+-- Data for Name: AboutMes; Type: TABLE DATA; Schema: public; Owner: bender
+--
+
+COPY public."AboutMes" (id, title, subtitle, description, quote) FROM stdin;
+1	Principal Engineer	Curiosity of the Unknown and Unacknowledged		
+\.
+
+
+--
+-- Data for Name: achievement_projects; Type: TABLE DATA; Schema: public; Owner: bender
+--
+
+COPY public.achievement_projects (project_id, achievement_id) FROM stdin;
+1	5
+2	4
+3	4
+5	4
+4	3
+7	3
+8	7
+\.
+
+
+--
+-- Data for Name: achievements; Type: TABLE DATA; Schema: public; Owner: bender
+--
+
+COPY public.achievements (id, name, start_date, end_date, "desc", link, link_name, icon, "order") FROM stdin;
+7	Internship/Co-Op	December 2015	July 2017	<p>During my schooling at Marist College, I worked for IBM during the school year and summer. It was a challenge to balance school work with my job's responsibilities but gave me a lot of opportunities to practice balancing priorities from different sources. I learned a lot during this experience, and it gave me a great jumpstart into my future career at IBM</p>	https://www.ibm.com/us-en/	IBM	fas fa-chalkboard	3
+2	Marist College	2014	2017	<p>Graduated with a bachelors in Computer Science with GPA of 3.8 and honors. During my time at Marist I participated in the MCCS and many other community activities which strengthend my value as a teammate and leader.&nbsp;</p>	\N	\N	fas fa-school	10
+5	KVM Solution Test Lead	July 2020	April 2022	<p>In July I took over a new position as a technical team lead for the KVM Solution test project with a team of 5 people. This position's responsibilities mainly revolved around project management but also involved architecting a new automation framework to achieve our goal of 100% automation coverage. Working on KVM (a Linux hypervisor) we utilized Ansible to manage system configurations as it is a very powerful tool due to the idempotency it implements.&nbsp;</p><p>&nbsp;</p><p>While in the position, I learned a lot about how to balance business requirements &amp; deadlines with neccesary technical innovation. We worked with the 3 major Linux distributions (RHEL/SLES/Ubuntu) engineers to test &amp; verify KVM on their platform, so there was a lot of external deadlines &amp; processes I had to take into account with our test plan. Since starting this position I have helped reduce our overall test cycle length by 25% and shifted it to be 5+ months earlier by leveraging the previously mentioned end to end automation framework built to verify KVM on Z.</p>	https://www.ibm.com/us-en/	IBM	fas fa-server	1
+4	Principal Test Engineer	July 2017	July 2020	<p>My first full time career at IBM was on the Linux Center of Competence team which focused on testing Linux on Z with a similar context as my internship. &nbsp;Part of the team's mission was to remove excuses when it came to running software on Linux on Z. I had the chance to work and architect many different CICD solutions, and participated in workshops with our customers, advocating open source software solutions on the Z platform.</p>	https://www.ibm.com/us-en/	IBM	fas fa-server	2
+3	Help Desk Operator	2014	2015	<p>While my time at the Help Desk wasn’t the most glamorous, I valued it a lot. I was resetting passwords and helping people out with basic technology issues but during that I was gaining so much experience in talking with customers. We were on the phone or helping people in person and looking back on it this experience has strengthened my ability to interact with customers in the field.</p>	https://www.marist.edu/	Marist	fas fa-info	5
+\.
+
+
+--
+-- Data for Name: alembic_version; Type: TABLE DATA; Schema: public; Owner: bender
+--
+
+COPY public.alembic_version (version_num) FROM stdin;
+263f6a301d2f
+\.
+
+
+--
+-- Data for Name: collabs; Type: TABLE DATA; Schema: public; Owner: bender
+--
+
+COPY public.collabs (id, fname, lname, clink) FROM stdin;
+1	Mike	Mcginnis	\N
+\.
+
+
+--
+-- Data for Name: project_collabs; Type: TABLE DATA; Schema: public; Owner: bender
+--
+
+COPY public.project_collabs (project_id, collab_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: project_tags; Type: TABLE DATA; Schema: public; Owner: bender
+--
+
+COPY public.project_tags (project_id, tag_id) FROM stdin;
+1	11
+8	27
+1	24
+1	6
+2	5
+1	2
+1	7
+1	15
+4	2
+4	4
+5	3
+5	5
+5	6
+5	15
+2	6
+2	14
+1	9
+7	7
+7	8
+7	13
+7	21
+3	3
+3	7
+3	23
+3	11
+3	6
+3	9
+3	8
+3	10
+4	12
+4	26
+7	26
+\.
+
+
+--
+-- Data for Name: projects; Type: TABLE DATA; Schema: public; Owner: bender
+--
+
+COPY public.projects (id, title, project_link, short_description, long_description, featured) FROM stdin;
+2	Travis on Z	github.com/bendermIBM/travis-cookbooks	<p>Enabling the CICD that enables the tools - on Linux on Z</p>	<p>A big part of my voyage in OpenSource has been learning how to use CICD tools to build automation around a product. For me it was a necessity, because the tediousness of re-running builds had gotten to vast. Travis offers a free CICD mechanism hooked natively into GitHub and many of the projects I was looking at were using it in their pipelines.&nbsp;</p><p>&nbsp;</p><p>Internally we had a Travis environment for x86 and ppc64le, but none for s390x. I was tasked with supporting Travis on Linux on Z and so began a month dive into the source code of Travis. With this we were able to enable a regression pipeline for the release for IBM Cloud Private (ICP) on Z, a Kubernetes offering by IBM.&nbsp;</p><p>&nbsp;</p><p>In collaboration with my team lead and STSM @ IBM, Jay Brenneman, we built and ported the Travis codebase to `s390x`. Jay focused on the hypervisor end, initially hooking OpenStack up to z/VM and eventually moving to KVM on Linux on Z. Meanwhile I focused on the provisioning tools that largely make up the magic of Travis. Largely this consisted of Chef cookbooks and custom bash scripts and took some 3 weeks to get our first working build, but it was glorious.&nbsp;</p><p>&nbsp;</p><p>For the first time ever our developers were able to modify their Travis pipelines and run their builds on Linux on Z. However as they integrated the s390x builds, all of a sudden Travis on Z became mission critical to all of ICP development due to the nature of Travis and GitHub. If even one architecture fails to pass, Travis will block code from being merged into the master branch. When Travis on Z took an outage, the messages and alerts quickly started flooding in. After our second extended outage we quickly realized that we had to come up with a highly available solution for the tool.</p><p>&nbsp;</p><p>Utilizing a load balancing feature in RabbitMQ we stood up another OpenStack instance located in Hursley, United Kingdom and replicated our port of Travis on Z to those systems. Since then we have been able to take independent outages without affecting an ever growing demand for Travis on Z.</p><p>&nbsp;</p><p>&nbsp;</p><p>— &nbsp;Extra Info</p><p>It began with connecting the <a href="https://github.com/travis-ci/worker/network/members">travis-ci worker</a> to an Openstack instance hosted on z/KVM. However we ran into issues with big bursts of builds which caused the networking layer in Openstack to intermittently not initiate. Eventually we upgraded to use LXD to run the builds which gave a huge speed increase and more portability. Using Packer I built <a href="https://github.com/bendermIBM/packer-templates/tree/lxd-templates-travonz">xenial/bionic base images</a> for Linux on Z and deployed a production configuration supporting 20,000+ builds a year. See some changes to the <a href="https://github.com/bendermIBM/travis-build">travis-build scripts</a> which also needed some configurations</p><p>&nbsp;</p><p>Once I moved to the LXD based builds I was able to automate the deployment of LXD and the Travis Worker on a Ubuntu Bionic host using Ansible. Still using the previous OpenStack environment we could now provision infrastructure with Terraform and configure workers using Ansible.</p>	t
+4	NexNest	github.com/maxbbender/nexnest	<p>A housing portal for college students</p>	<p>I had written a couple websites with Flask in school, but wanted to learn more and read up on <a href="https://blog.miguelgrinberg.com/">Miguel Grinberg</a>'s Flask tutorial and was exposed to a new set of best practices. Approached with an idea for a rental website targeted at students we designed and implemented a website written in Python. Backed by a fairly complex database that featured notifications and recursive comments, SQLAlchemy handles most of the direct SQL queries the complex `JOIN`s. See the ERD <a href="https://github.com/maxbbender/nexnest/blob/master/docs/erd.pdf">here</a>.</p><p>&nbsp;</p><p>Building websites scratches my itch for creativity, allowing me a venue for architecting and implementing an idea from the ground up. This project in particular gave me an opportunity to explore modern web frameworks unlike the PHP ones I had worked on before. It's great to see frameworks like Laravel, Flask and Django becoming more popular and widely adopted.&nbsp;</p>	f
+3	IBM Cloud Private	ibm.com/cloud/private	<p>IBM Cloud™ Private - a Kubernetes offering on Z</p>	<p>My team was tasked with supporting a release of IBM Cloud Private (ICP), a Kubernetes offering by IBM, on Linux on Z. Our goal was to have full support by the 3.1.2 release and to do this we ported Travis to the Mainframe as mentioned above.&nbsp;</p><p>&nbsp;</p><p>Alongside these efforts we saw an opportunity to further drive our teams mission, to remove excuses; specifically surrounding running your application on Linux on Z. I was responsible for provisioning and supporting 3 production ICP clusters that served as a Content Development portal and hosting utility for around 25 teams at IBM, 200+ people.&nbsp;</p><p>&nbsp;</p><p>Our goal was to stay current with the releases of ICP so we supported an N-1, N and N+1 configuration where N was the current GA version of ICP. About once a quarter we had to cycle our clusters so quickly I realized that automation was necessary for my own sanity. Using Terraform we would interact with OpenStack to provision around 10 s390x (Z) nodes and 3 `x86` nodes. After the nodes were provisioned I would utilize Ansible to configure those nodes with some packages, custom security policies, users and files required for the install.</p><p>&nbsp;</p><p>Post install I once again utilized Ansible to configure RBAC roles for the 25 teams part of the Content Development Clusters. Manually it took about an hour and a half to click through the web-ui, but with Ansible to interact with APIs and a little custom Python it only took around 6 minutes running in the background.&nbsp;</p><p>&nbsp;</p><p>Our team also used these clusters to host and port many different open source applications to Linux on Z. Using Travis on Z I containerized applications like Jenkins, OpenFaaS, Postgres, Redis, as well as custom application written in Python and Bash in regression. We use these examples to write public build scripts released by the <a href="https://github.com/linux-on-ibm-z)">Linux on Z</a> outreach team on GitHub.</p>	t
+7	Viral Education / TALOS	github.com/maxbbender/Viral-Education	<p>TALOS (Textual Augmentation Learning of Semantics), a Web-based platform for vocabulary acquisition that provides capabilities for analytics to support learning of vocabulary.</p>	<p>The first real website I made for someone other than myself. Written in PHP in a summer alongside working at the Marist College HelpDesk, this website was part of a research project that funded me to present at I<a href="https://iated.org/inted/">NTED</a> in Madrid, Spain. Alongside two professors, I gave a presentation on using technology to enhance learning in an un-obtrusive fashion with a concentration in learning foreign language</p><p>&nbsp;</p><p>Backed by a MySQL database this is where I learned a lot about security in the modern age of web-development. Certain vulnerabilities such as SQL Injections and XSS were ones that I focused on researching because I knew they were some of the more common avenues of attack. Looking back on it however I have already noticed some mistakes but I was happy with how it came out.</p>	f
+5	Let's Talk	\N	<p>A group of educational modules covering a variety of technologies</p>	<p>Teaching others and seeing that<strong> lightbulb</strong> go off is and experience that I get a lot of gratification from. In my effort to educate teams at IBM I realized that giving the same presentation to team after team was an inefficient method. So I created "Let's Talk" which is a group of education modules that have an intense focus on hands-on learning using examples hosted on GitHub. We scheduled live presentations and recorded them for future consumption and they featured code examples accompanied by a tutorial-like presentation.&nbsp;</p><p>&nbsp;</p><p>My main goal with this series was to provide self-sufficient materials for onboarding new-hires and people new to the technology. Hands-on examples were integral for this effort as they gave people the resources &amp; examples they need to get off the ground. External references and documentation were heavily leveraged to demonstrate that all the information is available online, you just need to know where to look.&nbsp;</p><h2>&nbsp;</h2><h2>Education Modules</h2><p>1. Ansible</p><p>2. Kubernetes</p><p>3. Jenkins</p><p>4. Travis</p><p>5. Python</p><p>&nbsp;</p><p>&nbsp;</p>	t
+8	Bookstore	\N	<p>A java-based customer-like application simulating an Amazon bookstore</p>	<p>Bookstore was a legacy application when I joined IBM as a co-op that we already had in use in various test plans. There were some improvements that were identified and I was tasked with developing and implementing those improvements. They mainly revolved around data &amp; statistic gathering APIs.</p><p>&nbsp;</p><p>Written mostly in Java, I wrote <a href="https://www.geeksforgeeks.org/introduction-java-servlets/">Java Servlets</a> which is one of Java's web-socket implementations, to serve API requests and respond with formatted data. Still being a student during this project, I had to do a lot of on the fly learning about data manipulation and XML schema rules. Things like characters in different languages or symbols had huge &amp; sometimes disastrous implications to the functionality of an API. Books are written in many languages across the world, and it turns out supporting all of them is a challenge! Lots of good learning all around and was my first insight into a development lifecycle at an enterprise like IBM.</p>	f
+1	KVM Solution Test	www.linux-kvm.org/page/Main_Page	<p>A customer-like solution test for the KVM Hypervisor</p>	<p>Back in July of 2020, I took over the role as a Technical Team Lead for the KVM Solution Test project. When I joined, there were was a foundation of automation but I quickly identified areas that could be improved on. Over the next 6 months my team and I worked to achieve a goal of 100% automated coverage of the test cases we were responsible for. We have achieved that goal and now are functioning as a mature development organization, evaluating new line items/features as they arise and have begun the process to modularlize &amp; externalize our environment.</p><p><br>We worked with the 3 major Linux distributions (RHEL/SLES/Ubuntu) during their Beta testing periods to verify KVM on their platforms. It was a challenging endeavor maintaining our relationships with 3 different sets of engineers, but I ended up learning a lot from the process about managing priorities and expectations for my team. Where applicable we accommodated large scale testing scenarios <strong>(involving 10TB+ of RAM or 1000+ KVM guests)</strong> which provided a unique value-add to the community, verifying the platform at an enterprise scale.</p><p><br>The DevOps framework was built with Ansible and consisted of <strong>25k+ lines of code.</strong> We approached the framework with an Agile methodology in mind by building an MVP, getting hands on the solution in order to identify the next required evolution. It is going great with over 200 pull requests merged to date, and many more new ones currently open. The power of our collaboration across the team has built in an incredible level of resiliency to the code base, setting the team up to continue to innovate for years to come.</p>	t
+\.
+
+
+--
+-- Data for Name: tags; Type: TABLE DATA; Schema: public; Owner: bender
+--
+
+COPY public.tags (id, name, knowledge, show_on_front) FROM stdin;
+1	Travis	fluent	t
+2	Python	fluent	t
+3	Kubernetes	fluent	t
+4	Flask	fluent	t
+5	Docker	fluent	t
+6	Ansible	fluent	t
+11	Grafana/Prometheus	proficient	t
+12	SQLAlchemy	proficient	t
+13	PHP	proficient	t
+14	Terraform	proficient	t
+15	Jenkins	proficient	t
+16	Ruby	familiar	t
+17	Packer	familiar	t
+18	AWS	familiar	t
+19	Chef	familiar	t
+20	RabbitMQ	familiar	t
+21	Postgres	familiar	t
+22	Redis	familiar	t
+23	OpenStack	familiar	t
+9	KVM	fluent	f
+24	Project-Management	familiar	f
+7	Linux	fluent	f
+8	Git	fluent	f
+26	SQL	proficient	f
+10	ElasticSearch	proficient	t
+27	Java	proficient	t
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: bender
+--
+
+COPY public.users (id, username, password_hash, salt) FROM stdin;
+1	bender	63d14cd813bf42a0b0c56adeaf5ab36c5d9db009a022027002d3f3bf1f821dbf	fa34c10f1bda4245b9ab90f9643d7d2b
+\.
+
+
+--
+-- Name: AboutMes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: bender
+--
+
+SELECT pg_catalog.setval('public."AboutMes_id_seq"', 1, true);
+
+
+--
+-- Name: achievements_id_seq; Type: SEQUENCE SET; Schema: public; Owner: bender
+--
+
+SELECT pg_catalog.setval('public.achievements_id_seq', 7, true);
+
+
+--
+-- Name: collabs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: bender
+--
+
+SELECT pg_catalog.setval('public.collabs_id_seq', 2, true);
+
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: bender
+--
+
+SELECT pg_catalog.setval('public.projects_id_seq', 8, true);
+
+
+--
+-- Name: tags_id_seq; Type: SEQUENCE SET; Schema: public; Owner: bender
+--
+
+SELECT pg_catalog.setval('public.tags_id_seq', 27, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: bender
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 1, false);
+
+
+--
+-- Name: AboutMes AboutMes_pkey; Type: CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public."AboutMes"
+    ADD CONSTRAINT "AboutMes_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: achievement_projects achievement_projects_pkey; Type: CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.achievement_projects
+    ADD CONSTRAINT achievement_projects_pkey PRIMARY KEY (project_id, achievement_id);
+
+
+--
+-- Name: alembic_version alembic_version_pkc; Type: CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.alembic_version
+    ADD CONSTRAINT alembic_version_pkc PRIMARY KEY (version_num);
+
+
+--
+-- Name: achievements idx_17543_achievements_pkey; Type: CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.achievements
+    ADD CONSTRAINT idx_17543_achievements_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: collabs idx_17549_collabs_pkey; Type: CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.collabs
+    ADD CONSTRAINT idx_17549_collabs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: projects idx_17555_projects_pkey; Type: CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.projects
+    ADD CONSTRAINT idx_17555_projects_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tags idx_17561_tags_pkey; Type: CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.tags
+    ADD CONSTRAINT idx_17561_tags_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users idx_17567_users_pkey; Type: CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT idx_17567_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: project_collabs idx_17573_sqlite_autoindex_project_collabs_1; Type: CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.project_collabs
+    ADD CONSTRAINT idx_17573_sqlite_autoindex_project_collabs_1 PRIMARY KEY (project_id, collab_id);
+
+
+--
+-- Name: project_tags idx_17576_sqlite_autoindex_project_tags_1; Type: CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.project_tags
+    ADD CONSTRAINT idx_17576_sqlite_autoindex_project_tags_1 PRIMARY KEY (project_id, tag_id);
+
+
+--
+-- Name: projects projects_title_key; Type: CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.projects
+    ADD CONSTRAINT projects_title_key UNIQUE (title);
+
+
+--
+-- Name: tags tags_name_key; Type: CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.tags
+    ADD CONSTRAINT tags_name_key UNIQUE (name);
+
+
+--
+-- Name: users users_username_key; Type: CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_username_key UNIQUE (username);
+
+
+--
+-- Name: achievement_projects achievement_projects_achievement_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.achievement_projects
+    ADD CONSTRAINT achievement_projects_achievement_id_fkey FOREIGN KEY (achievement_id) REFERENCES public.achievements(id);
+
+
+--
+-- Name: achievement_projects achievement_projects_project_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.achievement_projects
+    ADD CONSTRAINT achievement_projects_project_id_fkey FOREIGN KEY (project_id) REFERENCES public.projects(id);
+
+
+--
+-- Name: project_collabs project_collabs_collab_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.project_collabs
+    ADD CONSTRAINT project_collabs_collab_id_fkey FOREIGN KEY (collab_id) REFERENCES public.collabs(id);
+
+
+--
+-- Name: project_collabs project_collabs_project_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.project_collabs
+    ADD CONSTRAINT project_collabs_project_id_fkey FOREIGN KEY (project_id) REFERENCES public.projects(id);
+
+
+--
+-- Name: project_tags project_tags_project_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.project_tags
+    ADD CONSTRAINT project_tags_project_id_fkey FOREIGN KEY (project_id) REFERENCES public.projects(id);
+
+
+--
+-- Name: project_tags project_tags_tag_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: bender
+--
+
+ALTER TABLE ONLY public.project_tags
+    ADD CONSTRAINT project_tags_tag_id_fkey FOREIGN KEY (tag_id) REFERENCES public.tags(id);
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+--
+
+GRANT ALL ON SCHEMA public TO bender;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
