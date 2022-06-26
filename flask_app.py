@@ -65,28 +65,24 @@ def make_shell_context():
     ctx = app.test_request_context('/nothing')
     ctx.push()
     context = app.test_request_context()
+    upgrade()
 
-    if not app.config['DEBUG'] and not app.config['TESTING']:
-        from app.seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements
+    if getenv('FLASK_CONFIG') != 'production':
+        from app.seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements, seed_users
+        
         seed_tags(db)
         seed_projects(db)
         seed_collabs(db)
         seed_achievements(db)
         seed_aboutme(db)
+        seed_users(db)
 
     aboutmes = AboutMe.query.all()
     achievements = Achievement.query.all()
     projects = Project.query.all()
     context = app.test_request_context()
 
-    if getenv('FLASK_CONFIG') != 'production':
-        from app.seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements
-        upgrade()
-        seed_tags(db)
-        seed_projects(db)
-        seed_collabs(db)
-        seed_achievements(db)
-        seed_aboutme(db)
+    
     return dict(db=db, Project=Project, Tag=Tag, ProjectTag=ProjectTag, Collab=Collab, ProjectCollab=ProjectCollab, Achievement=Achievement, AboutMe=AboutMe)
 
 

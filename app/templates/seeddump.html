@@ -1,9 +1,26 @@
-projects = [
-{% for project in projects %}
-{
-{% for attribute in dir(obj) if not attribute.startswith('__') and not callable(getattr(obj, attribute)) %}
-{{ attribute }} : {{ project[attribute] }}
-{% endfor %}
-},
-{% endfor %}
-]
+projects=[{% for project in projects %}{{ project.serialize }},{% endfor %}]
+
+<br><br>
+tags=[{% for tag in tags %}{{ tag.serialize }},{% endfor %}]
+
+<br><br>
+project_tags=[{% for ptag in project_tags %}{{ ptag.serialize }},{% endfor %}]
+
+<br><br>
+collabs=[{% for collab in collabs %}{{ collab.serialize }},{% endfor %}]
+
+<br><br>
+projectcollabs=[{% for pcollab in projectcollab %}{{ pcollab.serialize }},{% endfor %}]
+
+<br><br>
+about_mes=[{% for aboutme in about_me %}{{ aboutme.serialize }},{% endfor %}]
+
+<br><br>
+achievements=[{% for achievement in achievements %}{{ achievement.serialize }},{% endfor %}]
+
+<br><br>
+achievement_projects=[{% for project in achievement_projects %}{{ project.serialize }},{% endfor %}]
+
+<br><br>
+users=[{% for user in users %}{{ user.serialize }},{% endfor %}]
+

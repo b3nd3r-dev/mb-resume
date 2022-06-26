@@ -24,7 +24,10 @@ class Project(db.Model):
     collabs = relationship("Collab", secondary='project_collabs',
                            back_populates='projects')
 
-    def __init__(self, title, short_description, long_description, featured, project_link=None):
+    def __init__(self, title, short_description, long_description, featured, project_link=None, id=None):
+        if id:
+            self.id = id
+
         self.title = title
         self.project_link = project_link
         self.short_description = short_description
@@ -33,6 +36,31 @@ class Project(db.Model):
 
     def __repr__(self):
         return f"{self.title}"
+
+    @property
+    def serialize(self):
+        return_dict = {
+            'id': self.id,
+            'title': self.title,
+            'project_link': self.project_link,
+            'short_description': self.short_description,
+            'long_description': self.long_description,
+            'featured': self.featured,
+        }
+
+        return_dict['tags'] = []
+        return_dict['achievements'] = []
+        return_dict['collabs'] = []
+        for tag in self.tags:
+            return_dict['tags'].append(tag.id)
+
+        for achievement in self.achievements:
+            return_dict['achievements'].append(achievement.id)
+        
+        for collab in self.collabs:
+            return_dict['collabs'].append(collabs.id)
+
+        return return_dict
 
 
 class Tag(db.Model):
@@ -43,13 +71,24 @@ class Tag(db.Model):
     knowledge = db.Column(db.String(15), nullable=False)
     show_on_front = db.Column(db.Boolean)
 
-    def __init__(self, name, knowledge, show_on_front=True):
+    def __init__(self, name, knowledge, show_on_front=True, id=None):
+        if id:
+            self.id = id
         self.name = name
         self.knowledge = knowledge
         self.show_on_front = show_on_front
 
     def __repr__(self):
         return f"{self.name}"
+
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'knowledge': self.knowledge,
+            'show_on_front': self.show_on_front
+        }
 
 
 class ProjectTag(db.Model):
@@ -75,6 +114,13 @@ class ProjectTag(db.Model):
     def __repr__(self):
         return f"ProjectTag {self.project.title} with tag {self.tag.name}"
 
+    @property
+    def serialize(self):
+        return {
+            'project_id': self.project_id,
+            'tag_id': self.tag_id
+        }
+
 
 class Collab(db.Model):
     __tablename__ = 'collabs'
@@ -83,19 +129,34 @@ class Collab(db.Model):
     fname = db.Column(db.String(30), nullable=False)
     lname = db.Column(db.String(30), nullable=False)
     clink = db.Column(db.String, nullable=True)
-    name = fname + ' ' + lname
 
     # Relationships
     projects = relationship(
         'Project', secondary='project_collabs', back_populates="collabs")
 
-    def __init__(self, fname, lname, name, clink=None):
+    def __init__(self, fname, lname, clink=None, id=None):
+        if id:
+            self.id = id
+
         self.fname = fname
         self.lname = lname
-        self.name = name
+        self.clink = clink
 
     def __repr__(self):
         return f"{self.fname} {self.lname}"
+
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'fname': self.fname,
+            'lname': self.lname,
+            'clink': self.clink
+        }
+
+    @property
+    def name(self):
+        return f"{fname} {lname}"
 
 
 class ProjectCollab(db.Model):
@@ -111,6 +172,13 @@ class ProjectCollab(db.Model):
     def __repr__(self):
         return f"ProjectTag {self.project.title} with collab {self.collab.fname}"
 
+    @property
+    def serialize(self):
+        return {
+            'project_id': self.project_id,
+            'collab_id': self.collab_id
+        }
+
 
 class User(UserMixin, db.Model):
     # Attributes
@@ -120,9 +188,13 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
     salt = db.Column(db.String(128), nullable=False)
 
-    def __init__(self, username, password):
+    def __init__(self, username, password=None, password_hash=None, salt=None):
         self.username = username
-        self.setPassword(password)
+        if not password_hash and not salt:
+            self.setPassword(password)
+        else:
+            self.password_hash = password_hash
+            self.salt = salt
         pass
 
     def setPassword(self, password):
@@ -139,6 +211,15 @@ class User(UserMixin, db.Model):
         self.salt = splitPassword[1]  # <salt>
 
         return self
+
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'password_hash': self.password_hash,
+            'salt': self.salt
+        }
 
 
 @login.user_loader
@@ -159,14 +240,27 @@ class AboutMe(db.Model):
     description = db.Column(db.Text)
     quote = db.Column(db.Text)
 
-    def __init__(self, title, subtitle, description, quote):
+    def __init__(self, title, subtitle, description, quote, id=None):
         self.title = title
         self.subtitle = subtitle
         self.description = description
         self.quote = quote
 
+        if id:
+            self.id = id
+
     def __repr__(self):
         return f"{self.title}"
+
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'subtitle': self.subtitle,
+            'description': self.description,
+            'quote': self.quote
+        }
 
 
 class Achievement(db.Model):
@@ -182,7 +276,7 @@ class Achievement(db.Model):
     order = db.Column(db.Integer, nullable=False, default=1)
 
 
-    def __init__(self, name, start_date, end_date, desc, link, link_name, icon, order=1):
+    def __init__(self, name, start_date, end_date, desc, link, link_name, icon, order=1, id=None):
         self.name = name
         self.start_date = start_date
         self.end_date = end_date
@@ -192,8 +286,25 @@ class Achievement(db.Model):
         self.icon = icon
         self.order = order
 
+        if id:
+            self.id = id
+
     def __repr__(self):
         return f"{self.name}"
+
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'start_date': self.start_date,
+            'end_date': self.end_date,
+            'desc': self.desc,
+            'link': self.link,
+            'link_name': self.link_name,
+            'icon': self.icon,
+            'order': self.order
+        }
 
 class AchievementProject(db.Model):
     # Attributes
@@ -210,3 +321,10 @@ class AchievementProject(db.Model):
     def __init__(self, project, achievement):
         self.achievement = achievement
         self.project = project
+
+    @property
+    def serialize(self):
+        return {
+            'project_id': self.project_id,
+            'achievement_id': self.achievement_id
+        }

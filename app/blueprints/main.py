@@ -4,7 +4,7 @@ from flask import Blueprint, redirect, render_template, request, url_for, flash,
 from flask import current_app as app
 from flask_login import logout_user, login_user, current_user
 from app import db
-from app.models import Project, Tag, User, AboutMe, Achievement, Collab, ProjectTag
+from app.models import Project, Tag, User, AboutMe, Achievement, Collab, ProjectTag, AchievementProject, ProjectCollab
 from app.forms import LoginForm
 from app.utils.password import check_password
 import pdfkit
@@ -189,5 +189,16 @@ def seeddump():
     achievements = Achievement.query.all()
     collabs = Collab.query.all()
     project_tags = ProjectTag.query.all()
+    achievement_projects = AchievementProject.query.all()
+    project_collabs = ProjectCollab.query.all()
 
-    return render_template('seeddump.html', projects=projects, tags=tags, users=users, about_me=about_me, achievements=achievements, collabs=collabs, project_tags=project_tags)
+    # project_list = []
+
+    # for project in projects:
+    #     print(project)
+    #     project_dict = {}
+    #     for attribute in [a for a in dir(project) if not a.startswith('_') and not callable(getattr(project, a)) and a != 'query']:
+    #         project_dict[attribute] = getattr(project, attribute)
+    #     project_list.append(project_dict)
+
+    return render_template('seeddump.html',  projects=projects, tags=tags, users=users, about_me=about_me, achievements=achievements, collabs=collabs, project_tags=project_tags, achievement_projects=achievement_projects,project_collabs=project_collabs)

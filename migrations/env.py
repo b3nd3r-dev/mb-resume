@@ -9,7 +9,7 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from app.models import Project, Tag, ProjectTag, Collab, ProjectCollab, User, AboutMe, Achievement
+from app.models import *
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
