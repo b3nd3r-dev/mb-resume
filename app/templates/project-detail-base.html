@@ -35,7 +35,7 @@
                         <div class="title has-text-primary is-size-5">Technologies:</div>
                         {% for tag in project.tags %}
                         <a href="{{url_for('main.tagdetail', tagid=tag.id)}}"
-                            class="tag is-medium has-background-link is-success">
+                            class="my-1 tag is-medium has-background-link is-success">
                             {{ tag.name }}
                         </a>
                         {% endfor %}

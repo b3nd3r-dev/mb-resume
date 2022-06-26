@@ -64,9 +64,81 @@
     </section>
 </section>
 
+<!-- Timeline -->
+<section>
+    <div class="columns is-vcentered">
+        <div class="column is-10 is-offset-1 is-10-touch is-offset-1-touch">
+            <ul class="steps is-vertical has-content-centered">
+                {% for achievement in achievements %}
+                <li class="steps-segment">
+                    <a href="#" class="steps-marker">
+                        <span class="icon">
+                            <i class="{{achievement.icon}}"></i>
+                        </span>
+                    </a>
+                    <div class="steps-content pl-6 hidden">
+                        <div class="title has-text-primary">
+                            {{achievement.name}}
+                            {% if achievement.link %}
+                            - <a href="{{achievement.link}}" target="_blank">{{achievement.link_name}}</a>
+                            {% endif %}
+                        </div>
+                        <div class="subtitle is-6 has-text-info">{{achievement.start_date}}-{{achievement.end_date}}
+                        </div>
+                        <!-- <div class="subtitle is-6 is-size-5 has-text-info ">
+                            Projects : {% for project in achievement.projects %}<button class="button is-primary mx-1">{{ project.title }}</button>{% endfor %}
+                        </div> -->
+                        <div class="subtitle is-6 is-size-5">
+                            <section class="hero">
+                                <div class="hero-body">
+                                <p class="title">
+                                    <div class="subtitle has-text-info">{{achievement.desc | safe}}</div>
+                                  </p>
+                                  {% if achievement.projects | length > 0 %}
+                                  <p class="subtitle" style="display: flex;
+                                  align-items: center;
+                                  height: 30px;
+                                  width: 100%;">
+                                    
+                                    <span class="has-text-white mr-2">Projects</span>
+                                    {% for project in achievement.projects %}<a href="{{ url_for('main.projectdetail', projectid=project.id) }}"><button class="button is-primary mx-1">{{ project.title }}</button></a>{% endfor %}
+                                    
+                                </p>
+                                {% endif %}
+                                </div>
+                            </section>
+                        </div>
+                       
+                        
+                    </div>
+                </li>
+                {% endfor %}
+                <!-- <li class="steps-segment">
+                    <a href="#" class="steps-marker">
+                        <span class="icon">
+                            <i class="fa fa-arrow-down"></i>
+                        </span>
+                    </a>
+
+                    <div class="steps-content pl-6 hidden">
+                        <div class="title has-text-primary">Your project</div>
+                        <!-- <div class="subtitle is-6 has-text-info">Future</div>
+                        <div class="subtitle has-text-info">What can we build together...</div>
+                    </div>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+</section>
 
 <!-- SKILLS -->
 <section>
+    <div class="columns">
+        <div class="column is-4 is-offset-4 ">
+            <div class="title is-2 is-size-3-mobile has-text-primary has-text-centered mb-3" style="margin-bottom: 10px">Technologies</div>
+            <div style="border-bottom: solid 2px #bfbfbf; width: 87%; margin: auto;"></div>
+        </div>
+    </div>
     <div class="title has-text-centered is-hidden-mobile">
         <span class="has-text-link ml-5">FLUENT </span>
         <span class="has-text-white ml-5">PROFICIENT </span>
@@ -102,7 +174,6 @@
     </div>
 </section>
 
-
 <!-- FEATURED PROJECTS -->
 <section class="hero is-bold">
     <div class="hero-body ">
@@ -125,7 +196,32 @@
     </div>
 </section>
 
-<!-- Timeline -->
+
+
+
+<!-- FEATURED PROJECTS
+<section class="hero is-bold">
+    <div class="hero-body ">
+        <div class="columns">
+            <div class="column is-4 is-offset-4 ">
+                <div class="title is-2 is-size-3-mobile has-text-primary has-text-centered" style="margin-bottom: 10px">FEATURED PROJECTS</div>
+                <div style="border-bottom: solid 2px #bfbfbf; width: 87%; margin: auto;"></div>
+            </div>
+        </div>
+        <div class="columns">
+            {% for project in first_project_list %}
+            {% include 'feat_proj.html' %}
+            {% endfor %}
+        </div>
+        <div class="columns">
+            {% for project in second_project_list %}
+            {% include 'feat_proj.html' %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Timeline
 <section>
     <div class="columns">
         <div class="column is-10 is-offset-1 is-10-touch is-offset-1-touch">
@@ -144,7 +240,7 @@
                             - <a href="{{achievement.link}}" target="_blank">{{achievement.link_name}}</a>
                             {% endif %}
                         </div>
-                        <div class="subtitle is-6 has-text-info">{{achievement.start_date}}-{{achievement.end_date}}
+                        <div class="subtitle is-6 has-text-info">{{achievement.start_date}} - {{achievement.end_date}}
                         </div>
                         <div class="subtitle has-text-info">{{achievement.desc}}</div>
                     </div>
@@ -159,18 +255,18 @@
 
                     <div class="steps-content pl-6 hidden">
                         <div class="title has-text-primary">Your project</div>
-                        <!-- <div class="subtitle is-6 has-text-info">Future</div> -->
+                        <div class="subtitle is-6 has-text-info">Future</div>
                         <div class="subtitle has-text-info">What can we build together...</div>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
-</section>
+</section> -->
 
 
 <!-- Closer -->
-<section>
+<section class="mt-5">
     <div class="columns">
         <div class="column is-10 is-offset-1">
             <div class="has-text-centered">

@@ -1,0 +1,23 @@
+- hosts: localhost
+  tasks: 
+  - name: Install kubernetes collection
+    community.general.ansible_galaxy_install:
+      type: collection
+      name: kubernetes.core
+
+  - name: Create a k8s namespace
+    kubernetes.core.k8s:
+      name: mbresume
+      api_version: v1
+      kind: Namespace
+      state: present
+
+  - name: Apply Deployment
+    kubernetes.core.k8s:
+      state: present
+      src: deployment/deployment.yml
+
+  - name: Apply Service
+    kubernetes.core.k8s:
+      state: present
+      src: deployment/service.yml

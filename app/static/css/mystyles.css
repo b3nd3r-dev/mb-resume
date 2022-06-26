@@ -491,7 +491,7 @@ span {
   font-weight: inherit; }
 
 strong {
-  color: #363636;
+  color: #bfbfbf;
   font-weight: 700; }
 
 fieldset {
@@ -2213,7 +2213,7 @@ a.tag:hover {
   font-weight: 400;
   line-height: 1.25; }
   .subtitle strong {
-    color: #363636;
+    color: #bfbfbf;
     font-weight: 600; }
   .subtitle:not(.is-spaced) + .title {
     margin-top: -1.25rem; }
@@ -3558,7 +3558,6 @@ button.dropdown-item {
   flex-direction: column;
   max-height: calc(100vh - 40px);
   overflow: hidden;
-  overflow-y: hidden;
   -ms-overflow-y: visible; }
 
 .modal-card-head,
@@ -7066,7 +7065,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 .hero-body {
   flex-grow: 1;
   flex-shrink: 0;
-  padding: 3rem 1.5rem; }
+  padding: 0.5rem 0.5rem; }
 
 .section {
   padding: 3rem 1.5rem; }

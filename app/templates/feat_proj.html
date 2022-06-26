@@ -9,16 +9,20 @@
           </div>
           <div class="has-text-centered py-2">
             {% for tag in project.tags %}
+              {% if tag.show_on_front %}
             <a href="{{url_for('main.tagdetail', tagid=tag.id)}}"
               class="tag is-medium has-background-success is-success">
               {{ tag.name }}
             </a>
+              {% endif %}
             {% endfor %}
           </div>
           <div class="has-text-centered pb-1">
             <p class="subtitle is-6 has-text-centered has-text-link">
               <a href="https://{{ project.project_link }}" target="_blank">
+                {% if project.project_link %}
                 {{ project.project_link }}
+                {% endif %}
               </a>
             </p>
           </div>
