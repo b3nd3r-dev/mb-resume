@@ -17,7 +17,14 @@ spec:
     spec:
       containers:
       - name: resume
-        image: mbresume:latest
+        image: mbresume:2
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 5001
+        - containerPort: 5003
+        env:
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: secretkey
+              key: key
+              optional: false
