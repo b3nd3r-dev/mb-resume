@@ -5,6 +5,7 @@ ENV LIBRARY_PATH=/lib:/usr/lib
 RUN apt-get update
 RUN apt-get install -y python3-dev python3 libjpeg-dev zlib1g-dev pkg-config gcc musl-dev nodejs npm wkhtmltopdf tzdata python3-venv python3-pip
 RUN apt-get install -y vim
+RUN apt-get install -y libpq-dev
 
 RUN adduser bender
 USER bender
