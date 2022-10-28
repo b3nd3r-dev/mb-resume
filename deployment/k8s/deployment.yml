@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: resume
-        image: mbresume:2
+        image: mbresume:3
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5003
