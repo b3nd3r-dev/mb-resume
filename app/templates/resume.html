@@ -34,8 +34,7 @@
       <div class="columns" style="width: 100%;">
         <div class="column is-10 is-offset-1">
           <div class="title has-text-primary">{{achievement.name}}</div>
-          <div class="subtitle has-text-primary">{{achievement.start_date}} - {{achievement.end_date | safe}} <span
-              class="subtitle is-size-6 has-text-link">{% if achievement.link %}<a href="{{ achievement.link }}">{{achievement.link}}{% endif %}</a></span></div>
+          <div class="subtitle has-text-primary">{{achievement.start_date}} - {{achievement.end_date | safe}}</div>
           <div class="info has-text-primary">{{achievement.desc | safe}}</div>
           {%if achievement.projects | length > 0 %}
           <div class="content mt-2">
