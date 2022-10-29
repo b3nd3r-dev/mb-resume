@@ -39,20 +39,30 @@
         <div class="column is-10 is-offset-1">
           <div class="title has-text-primary">{{achievement.name}}</div>
           <div class="subtitle has-text-primary">{{achievement.start_date}} - {{achievement.end_date | safe}} <span
-              class="subtitle is-size-6 has-text-link">{{achievement.link}}</span></div>
+              class="subtitle is-size-6 has-text-link">{% if achievement.link %}<a href="{{ achievement.link }}">{{achievement.link}}{% endif %}</a></span></div>
           <div class="info has-text-primary">{{achievement.desc | safe}}</div>
+          {%if achievement.projects | length > 0 %}
+          <div class="content mt-2">
+            <h3>Projects</h3>
+            <ul>
+              {% for project in achievement.projects %}
+              <li><a href="https://maxbbender.com/projectdetail/{{ project.id }}">{{ project.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
         </div>
       </div>
       {% endfor %}
     </section>
     <!-- PROJECTS -->
-    <section>
+    <!-- <section>
       <div class="title has-text-primary has-text-centered is-size-2">Projects</div>
       {% for project in projects %}
       <div class="columns" style="width: 100%;">
         <div class="column is-10 is-offset-1">
           <div class="title has-text-primary">{{project.title}}
-            <span class="subtitle is-size-6 has-text-link pl-3">{{project.project_link}}</span>
+            <span class="subtitle is-size-6 has-text-link pl-3">{% if project.project_link %}{{project.project_link}}{% endif %}</span>
           </div>
           <div class="subtitle has-text-primary">{{project.link}}</div>
           <div class="info has-text-primary">{{project.long_description | safe}}</div>
@@ -64,7 +74,7 @@
           <hr>
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- SKILLS -->
     <section>
       <div class="columns" style="width: 100%;">
