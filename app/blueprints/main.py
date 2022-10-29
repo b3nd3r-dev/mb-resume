@@ -152,6 +152,7 @@ def resume():
 
     options = {
         'page-size': 'A4',
+        'encoding': 'UTF-8',
         # 'no-images': True,
         # 'encoding': "UTF-8",
         # 'margin-top': '0.5in',
