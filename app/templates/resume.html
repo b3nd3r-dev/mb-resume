@@ -12,24 +12,20 @@
     <section>
       <div class="columns" style="width: 100%;">
         <div class="column is-5 is-offset-1 ">
-          <div class="subtitle has-text-primary is-size-5 has-text-centered">
-            This is a programaticaly generated resume, for an up to date & formatted version please visit
-            <a href="maxbbender.com">maxbbender.com</a>
+          <div class="title has-text-primary pt-3">Max Bender <a href="https://maxbbender.com">maxbbender.com</a>
           </div>
-          <div class="title has-text-primary pt-3">Max Bender
-          </div>
-          <div class="title is-size-4 has-text-primary">{{aboutme.title}}</div>
+          <!-- <div class="title is-size-4 has-text-primary">{{aboutme.title}}</div> -->
           <div class="subtitle has-text-primary" style="margin-bottom:5px;">Email: maxbbender@gmail.com
           </div>
           <br>
           <div class="subtitle has-text-primary">{{aboutme.description}}</div>
         </div>
       </div>
-      <div class="columns" style="width: 100%;">
+      <!-- <div class="columns" style="width: 100%;">
         <div class="column is-10 is-offset-1">
           <hr>
         </div>
-      </div>
+      </div> -->
     </section>
      <!-- EXPERIENCE -->
      <section>
@@ -43,7 +39,7 @@
           <div class="info has-text-primary">{{achievement.desc | safe}}</div>
           {%if achievement.projects | length > 0 %}
           <div class="content mt-2">
-            <h3>Projects</h3>
+            <!-- <h3>Projects</h3> -->
             <ul>
               {% for project in achievement.projects %}
               <li><a href="https://maxbbender.com/projectdetail/{{ project.id }}">{{ project.title }}</a></li>
@@ -75,6 +71,11 @@
         </div>
       </div>
     </section> -->
+    <div class="columns" style="width: 100%;">
+        <div class="column is-10 is-offset-1">
+          <hr>
+        </div>
+      </div>
     <!-- SKILLS -->
     <section>
       <div class="columns" style="width: 100%;">
@@ -112,13 +113,21 @@
 
       </div>
     </section>
+    <div class="columns" style="width: 100%;">
+        <div class="column is-10 is-offset-1">
+          <hr>
+        </div>
+    </div>
     <!-- FOOTER -->
     <section class="mb-6">
       <div class="columns" style="width: 100%;">
         <div class="column has-text-centered py-5">
           <div class="subtitle has-text-primary ">References available upon request</div>
         </div>
-
+        <div class="subtitle has-text-primary is-size-5 has-text-centered">
+          This is a programaticaly generated resume, for an up to date & formatted version please visit
+          <a href="maxbbender.com">maxbbender.com</a>
+        </div>
       </div>
     </section>
   </div>
