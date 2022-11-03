@@ -1,7 +1,13 @@
 {% set navigation_bar = [
     ('main.index', 'index', 'Home'),
     ('main.project', 'project', 'Projects'),
-    ('main.contact', 'contact', 'Contact')
+    ('main.contact', 'contact', 'Contact'),
+    ('main.resume', 'resume', '<span class="icon-text button is-link">
+                                    <span>Resume</span>
+                                    <span class="icon">
+                                    <i class="fas fa-download"></i>
+                                    </span>
+                                </span>')
 ] -%}
 
 {% set navigation_bar_logged_in = [
@@ -43,7 +49,7 @@
             {% for href, id, caption in navigation_bar %}
             <a href="{{ url_for(href|e) }}"
                 class="navbar-item{% if id == active_page %} is-active{% endif %} has-text-primary">
-                {{ caption|e }}
+                {{ caption|safe|e }}
             </a>
             {% endfor %}
             {% endif %}
@@ -52,7 +58,7 @@
             {% for href, id, caption in navigation_bar_logged_in %}
             <a href="{{ url_for(href|e) }}"
                 class="navbar-item{% if id == active_page %} is-active{% endif %} has-text-primary">
-                {{ caption|e }}
+                {{ caption|safe|e }}
             </a>
             {% endfor %}
             {% endif %}

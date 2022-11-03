@@ -140,3 +140,6 @@ ReviewNotes.txt
 app/static/node_modules/*
 
 envvars*
+
+.DS_Store
+.DS_Store
