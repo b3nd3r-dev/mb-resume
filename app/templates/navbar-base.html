@@ -20,48 +20,52 @@
 
 {% set active_page = active_page|default('index') -%}
 <nav class="navbar py-5 px-6 is-transparent" role="navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item">
-            <div class="">
-                <a href="{{ url_for('main.index') }}" class="image is-square is-64x64">
-                    <img src="{{ url_for('static', filename='images/MBlogo.png', _external=True) }}">
+    <div class="columns is-vcentered">
+        <div class="column">
+            <div class="navbar-brand">
+                <a class="navbar-item">
+                    <div class="">
+                        <a href="{{ url_for('main.index') }}" class="image is-square is-48x48">
+                            <img src="{{ url_for('static', filename='images/MBlogo.png', _external=True) }}">
+                        </a>
+                    </div>
                 </a>
+                <span class="mt-3 navbar-burger" style="transform: scale(2) translateX(-10%);" data-target="navbarMenuHeroB">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
             </div>
-        </a>
-        <span class="navbar-burger" data-target="navbarMenuHeroB">
-            <span></span>
-            <span></span>
-            <span></span>
-        </span>
-    </div>
-    <div class="navbar-start">
-        {% if not current_user.is_authenticated %}
-        {% endif %}
-        {% if current_user.is_authenticated %}
-        <div class="title has-text-primary px-6">**AS ADMIN**</div>
-        {% endif %}
-    </div>
-
-
-    <div id="navbarMenuHeroB" class="navbar-menu navbar-end">
-        <div class="navbar-end pr-6">
-            {% if not current_user.is_authenticated %}
-            {% for href, id, caption in navigation_bar %}
-            <a href="{{ url_for(href|e) }}"
-                class="navbar-item{% if id == active_page %} is-active{% endif %} has-text-primary">
-                {{ caption|safe|e }}
-            </a>
-            {% endfor %}
-            {% endif %}
-            {% if current_user.is_authenticated %}
-            <a href="/admin" class="navbar-item has-text-primary">Admin</a>
-            {% for href, id, caption in navigation_bar_logged_in %}
-            <a href="{{ url_for(href|e) }}"
-                class="navbar-item{% if id == active_page %} is-active{% endif %} has-text-primary">
-                {{ caption|safe|e }}
-            </a>
-            {% endfor %}
-            {% endif %}
+            <div class="navbar-start">
+                {% if not current_user.is_authenticated %}
+                {% endif %}
+                {% if current_user.is_authenticated %}
+                <div class="title has-text-primary px-6">**AS ADMIN**</div>
+                {% endif %}
+            </div>
+        
+        
+            <div id="navbarMenuHeroB" class="navbar-menu navbar-end">
+                <div class="navbar-end pr-6">
+                    {% if not current_user.is_authenticated %}
+                    {% for href, id, caption in navigation_bar %}
+                    <a href="{{ url_for(href|e) }}"
+                        class="navbar-item{% if id == active_page %} is-active{% endif %} has-text-primary">
+                        {{ caption|safe|e }}
+                    </a>
+                    {% endfor %}
+                    {% endif %}
+                    {% if current_user.is_authenticated %}
+                    <a href="/admin" class="navbar-item has-text-primary">Admin</a>
+                    {% for href, id, caption in navigation_bar_logged_in %}
+                    <a href="{{ url_for(href|e) }}"
+                        class="navbar-item{% if id == active_page %} is-active{% endif %} has-text-primary">
+                        {{ caption|safe|e }}
+                    </a>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
 </nav>
