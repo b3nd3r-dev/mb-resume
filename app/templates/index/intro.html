@@ -1,0 +1,51 @@
+<!-- TABLET + -->
+<div class="columns is-hidden-mobile is-centered">
+    <div class="column is-10 is-offset-1 has-background-black is-bold pt-6">
+        <div class="columns">
+            <div class="column has-text-vert-centered">
+                <div class="title is-size-1 is-size-4-mobile has-text-primary has-text-centered">
+                    Max Bender
+                </div>
+                <div class="title is-size-3 is-size-4-mobile has-text-primary has-text-centered">
+                    {{aboutme.title}}
+                </div>
+                <div class="title is-size-4 is-size-5-mobile has-text-primary has-text-centered">
+                    {{aboutme.subtitle}}
+                </div>
+            </div>
+            <div class="column ">
+                <figure class='image padding-image'>
+                    <img class="is-rounded" src="{{ url_for('static', filename='images/max-headshot.jpg') }}">
+                </figure>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MOBILE + DESCRIPTION-->
+<div class="columns is-hidden-tablet mt-1 mx-1">
+    <div class="column">
+        <figure class='image padding-image-mobile is-hidden-tablet'>
+            <img class="is-rounded" src="{{ url_for('static', filename='images/max-headshot.jpg') }}">
+        </figure>
+    </div>
+
+    <div class="column has-text-vert-centered">
+        <div class="title is-size-1 is-size-3-mobile has-text-primary has-text-centered">
+            Max Bender</div>
+        <div class="title is-size-2 is-size-4-mobile has-text-primary has-text-centered">
+            {{aboutme.title}}</div>
+        <div class="title is-size-3 is-size-5-mobile has-text-primary has-text-centered">
+            {{aboutme.subtitle}}
+        </div>
+    </div>
+
+    <div class="column is-10 is-offset-1 pb-6 is-10-touch is-offset-1-touch">
+        <div class="subtitle is-italic has-text-primary is-family-secondary">
+            {{ aboutme.quote }}
+        </div>
+        <div class="subtitle has-text-primary is-family-secondary">
+            {{aboutme.description | safe}}
+        </div>
+    </div>
+</div>

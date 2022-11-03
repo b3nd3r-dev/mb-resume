@@ -1,0 +1,36 @@
+<div class="columns is-centered">
+    <div class="column is-5-desktop is-10-tablet">
+        <div class="title is-2 is-size-3-mobile has-text-primary has-text-centered mb-3" style="margin-bottom: 10px">Technologies</div>
+        <div style="border-bottom: solid 2px #bfbfbf; width: 87%; margin: auto;"></div>
+    </div>
+</div>
+<div class="columns is-centered title has-text-centered">
+    <div class="column is-5-desktop is-10-tablet">
+        <div class="columns has-text-centered">
+            <div class="column"><span class="has-text-link">FLUENT</span></div>
+            <div class="column"><span class="has-text-white">PROFICIENT </span></div>
+            <div class="column"><span class="has-text-grey">FAMILIAR</span></div>
+        </div>
+    </div>
+</div>
+<div class="js-conveyor-1 jctkr-wrapper" style="height: 80px;">
+    <ul>
+        {% for n in range(20)%}
+        {% for tag in first_tag_list %}{% include 'elements/tag2.html' %}{% endfor %}
+        {% endfor %}
+    </ul>
+</div>
+<div class=" js-conveyor-2 jctkr-wrapper" style="height: 80px;">
+    <ul>
+        {% for n in range(20)%}
+        {% for tag in second_tag_list %}{% include 'elements/tag2.html' %}{% endfor %}
+        {% endfor %}
+    </ul>
+</div>
+<div class="js-conveyor-3 jctkr-wrapper" style="height: 80px;">
+    <ul>
+        {% for n in range(20)%}
+        {% for tag in third_tag_list %}{% include 'elements/tag2.html' %}{% endfor %}
+        {% endfor %}
+    </ul>
+</div>
