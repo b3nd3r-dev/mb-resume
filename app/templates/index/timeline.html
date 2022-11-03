@@ -1,0 +1,70 @@
+<div class="column is-three-fifths is-offset-one-fifth">
+    <div class="columns is-vcentered">
+        <div class="column is-hidden-mobile">
+            <ul class="steps is-vertical has-content-centered">
+                {% for achievement in achievements %}
+                <li class="steps-segment">
+                    <a href="#" class="steps-marker">
+                        <span class="icon">
+                            <i class="{{achievement.icon}}"></i>
+                        </span>
+                    </a>
+                    <div class="steps-content pl-6 hidden">
+                        <div class="title has-text-primary">
+                            {{achievement.name}}
+                            {% if achievement.link %}
+                            - <a href="{{achievement.link}}" target="_blank">{{achievement.link_name}}</a>
+                            {% endif %}
+                        </div>
+                        <div class="subtitle is-6 has-text-info">
+                            {{achievement.start_date}}-{{achievement.end_date}}
+                        </div>
+                        <div class="subtitle is-6 is-size-5">
+                            <section class="hero">
+                                <div class="hero-body">
+                                    <p class="title">
+                                        <div class="subtitle has-text-info">
+                                            {{ achievement.desc | safe }}
+                                        </div>
+                                    </p>
+                                    {% if achievement.projects | length > 0 %}
+                                    {% include 'index/project-list.html' %}
+                                    {% endif %}
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="column is-hidden-tablet">
+{% for achievement in achievements %}
+    <div class="title has-text-primary has-text-centered">
+        {{achievement.name}}
+        {% if achievement.link %}
+        - <a href="{{achievement.link}}" target="_blank">{{achievement.link_name}}</a>
+        {% endif %}
+    </div>
+    <div class="subtitle is-6 has-text-info has-text-centered">
+        {{achievement.start_date}}-{{achievement.end_date}}
+    </div>
+    <div class="subtitle is-6 is-size-5 has-text-centered">
+        <section class="hero">
+            <div class="hero-body">
+                <p class="title">
+                    <div class="subtitle has-text-info">
+                        {{ achievement.desc | safe }}
+                    </div>
+                </p>
+                {% if achievement.projects | length > 0 %}
+                {% include 'index/project-list.html' %}
+                {% endif %}
+            </div>
+        </section>
+    </div>
+{% endfor %}
+</div>
