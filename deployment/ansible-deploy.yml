@@ -5,6 +5,7 @@
     loop:
     - python3
     - npm
+    - postgresql-devel
 
   - name: Install requirements & create virtual environment
     pip: 
