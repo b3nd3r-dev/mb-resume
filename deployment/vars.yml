@@ -1,0 +1,9 @@
+# Run Time Variables
+deploy_method: unix
+
+# GitHub
+repository_url: git@github.com:b3nd3r-dev/mb-resume.git
+branch: deploy
+
+# Directories
+project_dir: /opt/www/mb-resume

@@ -1,0 +1,6 @@
+- ansible.builtin.file:
+    path: /opt/www
+    state: directory
+    mode: '0755'
+    owner: bender
+    group: www-data
