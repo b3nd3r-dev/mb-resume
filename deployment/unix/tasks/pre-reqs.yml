@@ -7,4 +7,5 @@
   - libpq-dev
   - nginx
   - python3-certbot-nginx
+  - wkhtmltopdf
   become: yes
