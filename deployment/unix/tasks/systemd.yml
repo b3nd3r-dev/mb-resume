@@ -1,0 +1,10 @@
+- block:
+  - name: Template service file for Gunicorn Socket
+    ansible.builtin.template:
+      src: ../files/gunicorn.service
+      dest: /etc/systemd/system/mb-resume-gunicorn.service
+
+  - ansible.builtin.systemd:
+      state: started
+      name: mb-resume-gunicorn
+  become: yes

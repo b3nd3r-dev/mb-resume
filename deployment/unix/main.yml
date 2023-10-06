@@ -1,6 +1,15 @@
-- ansible.builtin.file:
-    path: /opt/www
-    state: directory
-    mode: '0755'
-    owner: bender
-    group: www-data
+# - name: Install Packages
+#   ansible.builtin.include_tasks:
+#     file: tasks/pre-reqs.yml
+
+- name: Create Directories
+  ansible.builtin.include_tasks:
+    file: tasks/directories.yml
+
+- name: Install and Configure Nginx
+  ansible.builtin.include_tasks:
+    file: tasks/nginx.yml
+
+- name: Create and Start Services
+  ansible.builtin.include_tasks:
+    file: tasks/systemd.yml

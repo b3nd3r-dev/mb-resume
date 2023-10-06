@@ -1,12 +1,8 @@
-- hosts: localhost
+- hosts: maximum
   gather_facts: no
   tasks:
   - ansible.builtin.include_vars:
       file: vars.yml
-
-  - name: Install Packages and Set up Virtual Environment
-    ansible.builtin.include_tasks:
-      file: pre-reqs.yml
   
   - name: Deploy Unix Configuration
     ansible.builtin.include_tasks:

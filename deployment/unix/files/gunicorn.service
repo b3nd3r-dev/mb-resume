@@ -9,9 +9,9 @@ User=bender
 Group=www-data
 
 RuntimeDirectory=gunicorn
-WorkingDirectory=/opt/www/mb-resume
-Environment="PATH=/opt/www/mb-resume/venv/bin"
-ExecStart=/opt/www/mb-resume/venv/bin/gunicorn --workers 3 --bind unix:mbresume.sock -m 007 flask_app:app
+WorkingDirectory={{ project_dir }}
+Environment="PATH={{ project_dir }}/venv/bin"
+ExecStart={{ project_dir }}/venv/bin/gunicorn --workers 3 --bind unix:mbresume.sock -m 007 flask_app:app
 
 [Install]
 WantedBy=multi-user.target

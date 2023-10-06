@@ -1,0 +1,9 @@
+server {
+    listen 80;
+    server_name {{ website_url }} www.{{ website_url }};
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:{{ project_dir}}/mbresume.sock;
+    }
+}
