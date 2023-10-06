@@ -1,0 +1,17 @@
+[Unit]
+Description=mb-resume gunicorn service
+After=network.target
+
+[Service]
+Type=notify
+# the specific user that our service will run as
+User=bender
+Group=www-data
+
+RuntimeDirectory=gunicorn
+WorkingDirectory={{ project_dir }}
+Environment="PATH={{ project_dir }}/venv/bin:/bin"
+ExecStart={{ project_dir }}/venv/bin/gunicorn --workers 3 --bind unix:mbresume.sock -m 007 flask_app:app
+
+[Install]
+WantedBy=multi-user.target

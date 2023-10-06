@@ -1,0 +1,31 @@
+- block:
+  - name: Allow Nginx
+    community.general.ufw:
+      rule: allow
+      name: Nginx Full
+      
+  - name: Template mbresume site
+    ansible.builtin.template:
+      src: ../files/nginx/mbresume
+      dest: /etc/nginx/sites-available/mbresume
+
+  - name: Make Site Enabled for Nginx
+    ansible.builtin.file:
+      src: /etc/nginx/sites-available/mbresume
+      dest: /etc/nginx/sites-enabled/mbresume
+      state: link
+
+  - name: Restart Nginx
+    ansible.builtin.systemd:
+      name: nginx
+      state: restarted
+
+  - name: Obtain Certificates Via certbot
+    ansible.builtin.shell:
+     cmd: certbot --nginx -d maxbender.org -d www.maxbender.org -n --agree-tos --redirect -m maxbbender@gmail.com
+    register: cert_result
+  
+  - ansible.builtin.debug:
+      msg: "{{ cert_result }}"
+
+  become: yes

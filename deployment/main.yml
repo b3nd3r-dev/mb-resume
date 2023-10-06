@@ -1,0 +1,10 @@
+- hosts: maximum
+  gather_facts: no
+  tasks:
+  - ansible.builtin.include_vars:
+      file: vars.yml
+  
+  - name: Deploy Unix Configuration
+    ansible.builtin.include_tasks:
+      file: unix/main.yml
+    when: deploy_method == 'unix'

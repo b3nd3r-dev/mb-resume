@@ -1,0 +1,9 @@
+# Run Time Variables
+deploy_method: unix
+website_url: maxbender.org
+
+# GitHub
+branch: master
+
+# Directories
+project_dir: /opt/www/mb-resume

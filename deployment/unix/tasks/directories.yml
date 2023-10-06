@@ -1,0 +1,59 @@
+- name: Create Directory to Hold Website Deployables
+  ansible.builtin.file:
+    path: /opt/www
+    state: directory
+    mode: '0755'
+    owner: bender
+    group: www-data
+
+- name: Clone Project to Created Directory
+  ansible.builtin.git:
+    repo: git@github.com:b3nd3r-dev/mb-resume.git
+    version: "{{ branch }}"
+    dest: "{{ project_dir }}"
+
+- name: Install requirements & create virtual environment
+  pip: 
+    requirements: "{{ project_dir }}/requirements.txt"
+    virtualenv: "{{ project_dir }}/venv"
+    virtualenv_command: python3 -m venv
+
+- name: Template Development environment variables
+  copy:
+    dest: "{{ project_dir }}/envvars_dev"
+    content: "{{ content_to_write }}"
+  vars:
+    content_to_write: | 
+      export FLASK_APP=flask_app.py
+      export FLASK_CONFIG=development
+      export SECRET_KEY=abc123
+  
+- name: Template Production environment variables
+  copy:
+    dest: "{{ project_dir }}/envvars_prod"
+    content: "{{ content_to_write }}"
+  vars:
+    content_to_write: | 
+      export FLASK_APP=flask_app.py
+      export FLASK_CONFIG=production
+      export SECRET_KEY=#REPLACEMEeeeee
+
+- name: Add bender to the www-data group
+  ansible.builtin.user:
+    name: bender
+    groups: www-data
+    append: yes
+  become: yes
+
+- name: Install NPM Dependencies
+  community.general.npm:
+    path: "{{ project_dir }}/app/static"
+
+- name: Modify File permissions to be useable by group www-data
+  ansible.builtin.file:
+    path: "{{ project_dir }}"
+    owner: bender
+    group: www-data
+    state: directory
+    recurse: yes
+  become: yes
