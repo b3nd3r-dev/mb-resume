@@ -101,3 +101,7 @@ def deploy():
         seed_users(db)
 
     pass
+
+@app.context_processor
+def inject_website_url():
+    return dict(website_url='maxbender.org')
