@@ -39,7 +39,7 @@ class WYSIWYGModelView(ModelView):
         from flask_login import current_user
         return current_user.is_authenticated
 
-class ProjectTagView(ModelView):
+class ProjectTagView(WYSIWYGModelView):
     column_searchable_list = ['tag_id', 'project_id']
 
 
