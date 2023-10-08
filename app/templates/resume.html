@@ -12,7 +12,7 @@
     <section>
       <div class="columns" style="width: 100%;">
         <div class="column is-5 is-offset-1 ">
-          <div class="title has-text-primary pt-3">Max Bender <a href="https://maxbbender.com">maxbbender.com</a>
+          <div class="title has-text-primary pt-3">Max Bender <a href="https://{{ website_url }}">{{ website_url }}</a>
           </div>
           <!-- <div class="title is-size-4 has-text-primary">{{aboutme.title}}</div> -->
           <div class="subtitle has-text-primary" style="margin-bottom:5px;">Email: maxbbender@gmail.com
@@ -41,7 +41,7 @@
             <!-- <h3>Projects</h3> -->
             <ul>
               {% for project in achievement.projects %}
-              <li><a href="https://maxbbender.com/projectdetail/{{ project.id }}">{{ project.title }}</a></li>
+              <li><a href="https://{{ website_url }}/projectdetail/{{ project.id }}">{{ project.title }}</a></li>
               {% endfor %}
             </ul>
           </div>
@@ -125,7 +125,7 @@
         </div>
         <div class="subtitle has-text-primary is-size-5 has-text-centered">
           This is a programmatically generated resume, for an up to date & formatted version please visit
-          <a href="maxbbender.com">maxbbender.com</a>
+          <a href="https://{{ website_url }}">{{ website_url }}</a>
         </div>
       </div>
     </section>

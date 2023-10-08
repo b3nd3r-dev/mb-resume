@@ -1,0 +1,38 @@
+<!-- DESKTOP -->
+<div class="columns is-hidden-mobile mt-1">
+    <p class="subtitle" style="display: flex;
+    align-items: center;
+    height: 30px;
+    width: 100%;">
+    
+        <span class="has-text-white mr-2">Projects</span>
+        {% for project in achievement.projects %}
+            <a href="{{ url_for('main.projectdetail', projectid=project.id) }}">
+                <button class="button is-primary mx-1">
+                {{ project.title }}
+                </button>
+        </a>
+        {% endfor %}
+    </p>
+</div>
+
+<!-- MOBILE -->
+<div class="columns is-hidden-tablet">
+    <!-- <div class="columns">
+        <div class="column">
+            <span class="has-text-white mr-2">Projects</span>
+        </div>
+    </div> -->
+    {% for project in achievement.projects %}
+    <div class="columns">
+        <div class="column">
+            <a href="{{ url_for('main.projectdetail', projectid=project.id) }}">
+                <button class="button is-primary mx-1">
+                {{ project.title }}
+                </button>
+            </a>
+        </div>
+    </div>                                              
+    {% endfor %}
+    </p>
+</div>

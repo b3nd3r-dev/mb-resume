@@ -8,170 +8,17 @@
 {% block content %}
 <!-- INTRO -->
 <section>
-    <!-- TABLET + -->
-    <section>
-        <!-- TEXT -->
-        <div class="columns">
-            <div class="column is-10 is-offset-1">
-                <div class="columns">
-                    <div class="columns is-mobile has-background-black is-bold pt-6 is-hidden-mobile">
-                        <div class="column is-5 is-offset-1 has-text-vert-centered is-10-touch is-4-tablet ">
-                            <div class="title is-size-1 is-size-4-mobile has-text-primary has-text-centered">
-                                Max Bender</div>
-                            <div class="title is-size-3 is-size-4-mobile has-text-primary has-text-centered">
-                                {{aboutme.title}}
-                            </div>
-                            <div class="title is-size-4 is-size-5-mobile has-text-primary has-text-centered">
-                                {{aboutme.subtitle}}
-                            </div>
-                        </div>
-                        <div class="column is-5-tablet">
-                            <figure class='image padding-image'>
-                                <img class="is-rounded" src="{{ url_for('static', filename='images/max-headshot.jpg') }}">
-                            </figure>
-                        </div>
-                    </div>
-                    <!-- IMAGE -->
-                    <div class="columns">
-                        <div class="column is-6">
-                            <figure class='image padding-image-mobile is-hidden-tablet'>
-                                <img class="is-rounded" src="{{ url_for('static', filename='images/max-headshot.jpg') }}">
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> 
-    </section>
-
-    <!-- MOBILE + DESCRIPTION-->
-    <section>
-        <!-- TEXT -->
-        <div class="columns is-mobile has-background-black is-bold is-hidden-tablet">
-            <div class="column is-8 is-offset-2 has-text-vert-centered is-10-touch is-4-tablet ">
-                <div class="title is-size-1 is-size-3-mobile has-text-primary has-text-centered">
-                    Max Bender</div>
-                <div class="title is-size-2 is-size-4-mobile has-text-primary has-text-centered">
-                    {{aboutme.title}}</div>
-                <div class="title is-size-3 is-size-5-mobile has-text-primary has-text-centered">
-                    {{aboutme.subtitle}}
-                </div>
-            </div>
-        </div>
-        <div class="columns has-background-black">
-            <div class="column is-10 is-offset-1 pb-6 is-10-touch is-offset-1-touch">
-                <div class="subtitle is-italic has-text-primary is-family-secondary">
-                    {{ aboutme.quote }}
-                </div>
-                <div class="subtitle has-text-primary is-family-secondary">
-                    {{aboutme.description | safe}}
-                </div>
-            </div>
-        </div>
-    </section>
+    {% include 'index/intro.html' %}
 </section>
 
 <!-- Timeline -->
 <section>
-    <div class="columns">
-        <div class="column is-three-fifths is-offset-one-fifth">
-            <div class="columns is-vcentered">
-                <div class="column">
-                <!-- <div class="column is-10 is-offset-1 is-10-touch is-offset-1-touch"> -->
-                    <ul class="steps is-vertical has-content-centered">
-                        {% for achievement in achievements %}
-                        <li class="steps-segment">
-                            <a href="#" class="steps-marker">
-                                <span class="icon">
-                                    <i class="{{achievement.icon}}"></i>
-                                </span>
-                            </a>
-                            <div class="steps-content pl-6 hidden">
-                                <div class="title has-text-primary">
-                                    {{achievement.name}}
-                                    {% if achievement.link %}
-                                    - <a href="{{achievement.link}}" target="_blank">{{achievement.link_name}}</a>
-                                    {% endif %}
-                                </div>
-                                <div class="subtitle is-6 has-text-info">{{achievement.start_date}}-{{achievement.end_date}}
-                                </div>
-                                <!-- <div class="subtitle is-6 is-size-5 has-text-info ">
-                                    Projects : {% for project in achievement.projects %}<button class="button is-primary mx-1">{{ project.title }}</button>{% endfor %}
-                                </div> -->
-                                <div class="subtitle is-6 is-size-5">
-                                    <section class="hero">
-                                        <div class="hero-body">
-                                        <p class="title">
-                                            <div class="subtitle has-text-info">{{achievement.desc | safe}}</div>
-                                            </p>
-                                            {% if achievement.projects | length > 0 %}
-                                            <p class="subtitle" style="display: flex;
-                                            align-items: center;
-                                            height: 30px;
-                                            width: 100%;">
-                                            
-                                            <span class="has-text-white mr-2">Projects</span>
-                                            {% for project in achievement.projects %}<a href="{{ url_for('main.projectdetail', projectid=project.id) }}"><button class="button is-primary mx-1">{{ project.title }}</button></a>{% endfor %}
-                                            
-                                        </p>
-                                        {% endif %}
-                                        </div>
-                                    </section>
-                                </div>
-                                
-                                
-                            </div>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    {% include 'index/timeline.html' %}    
 </section>
 
 <!-- SKILLS -->
 <section class="section is-medium">
-    <div class="columns">
-        <div class="column is-4 is-offset-4 ">
-            <div class="title is-2 is-size-3-mobile has-text-primary has-text-centered mb-3" style="margin-bottom: 10px">Technologies</div>
-            <div style="border-bottom: solid 2px #bfbfbf; width: 87%; margin: auto;"></div>
-        </div>
-    </div>
-    <div class="title has-text-centered is-hidden-mobile">
-        <span class="has-text-link ml-5">FLUENT </span>
-        <span class="has-text-white ml-5">PROFICIENT </span>
-        <span class="has-text-grey ml-5">FAMILIAR</span>
-    </div>
-    <div class="title is-size-4 has-text-centered is-hidden-tablet">
-        <span class="has-text-link ml-5">FLUENT </span>
-        <br>
-        <span class="has-text-white ml-5">PROFICIENT </span>
-        <br>
-        <span class="has-text-grey ml-5">FAMILAR</span>
-    </div>
-    <div class="js-conveyor-1 jctkr-wrapper" style="height: 80px;">
-        <ul>
-            {% for n in range(20)%}
-            {% for tag in first_tag_list %}{% include 'elements/tag2.html' %}{% endfor %}
-            {% endfor %}
-        </ul>
-    </div>
-    <div class=" js-conveyor-2 jctkr-wrapper" style="height: 80px;">
-        <ul>
-            {% for n in range(20)%}
-            {% for tag in second_tag_list %}{% include 'elements/tag2.html' %}{% endfor %}
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="js-conveyor-3 jctkr-wrapper" style="height: 80px;">
-        <ul>
-            {% for n in range(20)%}
-            {% for tag in third_tag_list %}{% include 'elements/tag2.html' %}{% endfor %}
-            {% endfor %}
-        </ul>
-    </div>
+    {% include 'index/skills.html' %}
 </section>
 
 <!-- FEATURED PROJECTS -->

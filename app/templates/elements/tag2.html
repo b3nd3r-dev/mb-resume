@@ -1,21 +1,18 @@
-<li class="title is-family-primary" style="height: 50px;">
+<li class="is-family-primary" style="height: 50px;">
   {% if tag.knowledge == 'fluent' %}
   <span>
     <a href="{{url_for('main.tagdetail', tagid=tag.id)}}"
-      class=" title mx-3 is-size-1-touch has-text-link is-capitalized"
-      style="font-size: 4rem; font-weight: 400;">{{ tag.name }}</a>
+      class="title mx-3 is-size-1-desktop is-size-2-tablet is-size-3-mobile has-text-link is-capitalized">{{ tag.name }}</a>
   </span>
   {% elif tag.knowledge == 'proficient' %}
   <span>
     <a href="{{url_for('main.tagdetail', tagid=tag.id)}}"
-      class=" title mx-3 is-size-1-touch has-text-white is-capitalized"
-      style="font-size: 4rem; font-weight: 400;">{{ tag.name }}</a>
+      class="mx-3 is-size-1-desktop is-size-2-tablet is-size-3-mobile has-text-white is-capitalized">{{ tag.name }}</a>
   </span>
   {% elif tag.knowledge == 'familiar' %}
   <span>
     <a href="{{url_for('main.tagdetail', tagid=tag.id)}}"
-      class=" title mx-3 is-size-1-touch has-text-grey is-capitalized"
-      style="font-size: 4rem; font-weight: 400;">{{ tag.name }}</a>
+      class="title mx-3 is-size-1-desktop is-size-2-tablet is-size-3-mobile has-text-grey is-capitalized">{{ tag.name }}</a>
   </span>
   {% endif %}
 </li>
