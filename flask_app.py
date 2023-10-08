@@ -88,19 +88,17 @@ def make_shell_context():
 
 @app.cli.command()
 def deploy():
-    from os import getenv
+    from app.seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements, seed_users
     upgrade()
 
-    if getenv('FLASK_CONFIG') != 'production':
-        from app.seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements, seed_users
-        seed_tags(db)
-        seed_projects(db)
-        seed_collabs(db)
-        seed_achievements(db)
-        seed_aboutme(db)
-        seed_users(db)
+    seed_tags(db)
+    seed_projects(db)
+    seed_collabs(db)
+    seed_achievements(db)
+    seed_aboutme(db)
+    seed_users(db)
 
-    pass
+
 
 @app.context_processor
 def inject_website_url():
