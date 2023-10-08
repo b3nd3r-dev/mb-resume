@@ -88,7 +88,6 @@ def make_shell_context():
 
 @app.cli.command()
 def deploy():
-    from os import getenv
     from app.seed import seed_tags, seed_projects, seed_collabs, seed_aboutme, seed_achievements, seed_users
     upgrade()
 
