@@ -17,7 +17,7 @@ achievements=[{'id': 2, 'name': 'Marist College', 'start_date': '2014', 'end_dat
 
 achievement_projects=[{'project_id': 1, 'achievement_id': 5},{'project_id': 2, 'achievement_id': 4},{'project_id': 3, 'achievement_id': 4},{'project_id': 5, 'achievement_id': 4},{'project_id': 8, 'achievement_id': 7},{'project_id': 4, 'achievement_id': 2},{'project_id': 7, 'achievement_id': 2},]
 
-users=[{'id': 1, 'username': 'bender', 'password_hash': '63d14cd813bf42a0b0c56adeaf5ab36c5d9db009a022027002d3f3bf1f821dbf', 'salt': 'fa34c10f1bda4245b9ab90f9643d7d2b'},] 
+users=[{'id': 1, 'username': 'bender', 'password_hash': 'a860824783060ecfa36bf21d80d9ad3a246fe4321e4437eb433112786cea3e43', 'salt': 'be5b3707a5964652a28013eba6592c27'},] 
 
 def seed_tags(db):
     # ----------------- # 
