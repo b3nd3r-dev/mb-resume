@@ -2,7 +2,7 @@ from random import shuffle
 
 from flask import Blueprint, redirect, render_template, request, url_for, flash, make_response
 from flask import current_app as app
-from flask_login import logout_user, login_user, current_user
+from flask_login import logout_user, login_user, current_user, login_required
 from app import db
 from app.models import Project, Tag, User, AboutMe, Achievement, Collab, ProjectTag, AchievementProject, ProjectCollab
 from app.forms import LoginForm
@@ -182,6 +182,7 @@ def resume():
 
 
 @main.route('/seeddump')
+@login_required
 def seeddump():
     projects = Project.query.all()
     tags = Tag.query.all()
